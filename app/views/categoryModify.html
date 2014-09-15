@@ -1,0 +1,49 @@
+
+<div class="container">
+  <div class="panel panel-success">
+    <div class="panel-heading text-center">
+      <h3 class="text-info">
+        <span class="glyphicon glyphicon-user">修改类别</span>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-8 form-group text-info">&nbsp;</div>
+        <div class="col-md-4 right">
+          <div class="input-group">
+            <input type="text" class="form-control" ng-model="query" placeholder="搜索商品名称">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 form-group text-info">&nbsp;</div>
+      </div>
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-4 form-group">类名</div>
+            <div class="col-md-8 form-group">操作</div>
+          </div>
+        </div>
+        <div class="panel-body">
+            <div class="row" ng-repeat="category in categorys | filter:query">
+                <div class="col-md-4 form-group">{{category.name}}</div>
+                <div class="col-md-6 form-group" ng-show="modifySignal">
+                  <input type="text" ng-model="category.name" ng-change="changeCurrentCategory(category)">
+                  <button type="button" class="btn btn-primary btn-sm" ng-click="cancelModify()">取消</button>
+                </div>
+                <div class="col-md-2 form-group">
+                    <button type="button" class="btn btn-success btn-sm" ng-click="modifyCurrentCategory(category)">
+                      修改
+                    </button>
+                    <button class="trash">
+                      <span class="glyphicon glyphicon-trash" ng-click="deleteCurrentCategory(category)"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

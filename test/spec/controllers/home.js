@@ -1,3 +1,4 @@
+'use strict';
 describe('HomeCtrl', function () {
 
   var $scope, itemsService, categoryService, createController;

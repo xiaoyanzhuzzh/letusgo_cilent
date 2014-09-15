@@ -1,3 +1,4 @@
+'use strict';
 describe('CartItemsListCtrl', function () {
   var $scope, createController, cartItemOperateService;
    beforeEach(function () {

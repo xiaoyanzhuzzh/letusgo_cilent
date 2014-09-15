@@ -1,3 +1,4 @@
+'use strict';
 describe('categoryService', function () {
 
     var categoryService;

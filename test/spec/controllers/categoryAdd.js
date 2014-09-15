@@ -1,3 +1,4 @@
+'use strict';
 describe('CategoryAddCtrl', function () {
 
   var $scope, createController, categoryService;

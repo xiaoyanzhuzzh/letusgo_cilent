@@ -1,3 +1,4 @@
+'use strict';
 describe('itemManagementService', function () {
 
     var itemManagementService, items;

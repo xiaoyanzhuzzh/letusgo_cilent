@@ -1,3 +1,4 @@
+'use strict';
 describe('ItemModifyCtrl', function () {
 
   var $scope, createController, categoryService, itemManagementService;

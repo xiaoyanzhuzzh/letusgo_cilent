@@ -1,3 +1,4 @@
+'use strict';
 describe('addCartCountCtrl', function () {
 
   var $scope, createController;

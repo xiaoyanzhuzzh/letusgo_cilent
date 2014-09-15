@@ -80,7 +80,6 @@ angular.module('letusgoApp')
             if(items[i].category === changingCategory.name){
 
               items[i].category = category.name;
-              console.log(category.name);
               Util.localStorage.setStorageItem('changingCategory', category);
             }
           }

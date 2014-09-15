@@ -1,3 +1,5 @@
+'use strict';
+
 var Util = Util || {};
 Util.localStorage = {
     getStorageItem : function (key){

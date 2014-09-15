@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myYoApp')
+angular.module('letusgoApp')
   .service('categoryService', function(){
 
         this.getCategorys = function (items) {

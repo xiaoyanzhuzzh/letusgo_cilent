@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('myYoApp')
+angular.module('letusgoApp')
     .controller('ItemsListCtrl', function ($scope, itemsService, addToCartService) {
 
         $scope.items = Util.localStorage.getStorageItem('items');

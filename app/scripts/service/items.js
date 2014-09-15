@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myYoApp')
+angular.module('letusgoApp')
     .service('itemsService',function(){
 
         this.getItems = function(){

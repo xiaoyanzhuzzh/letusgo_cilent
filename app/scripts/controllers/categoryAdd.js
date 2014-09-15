@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('myYoApp')
+angular.module('letusgoApp')
     .controller('CategoryAddCtrl', function ($scope, categoryService) {
 
         $scope.items = Util.localStorage.getStorageItem('items');
@@ -25,7 +25,7 @@ angular.module('myYoApp')
             $scope.categorys = categoryService.deleteCategory($scope.categorys, category);
             $scope.items = categoryService.deleteItem($scope.items, category);
         };
-        
+
         $scope.addNewCategory = function (newCategory) {
 
             var category = {id: 0, name: newCategory};

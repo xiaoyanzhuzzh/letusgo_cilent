@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('myYoApp')
+angular.module('letusgoApp')
     .controller('addCartCountCtrl', function ($scope) {
 
         $scope.cartCount = Util.localStorage.getStorageItem('cartCount');

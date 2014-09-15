@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myYoApp')
+angular.module('letusgoApp')
   .service('cartItemOperateService', function(){
 
     this.getTotalNumber = function(array){

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myYoApp')
+angular.module('letusgoApp')
   .controller('CartItemsListCtrl', function ($scope, cartItemOperateService) {
 
   function getTotalNumber(cartItems) {

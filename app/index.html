@@ -14,59 +14,123 @@
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
-</head>
-<body ng-app="letusgoApp">
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-  your browser</a> to improve your experience.</p>
-<![endif]-->
+  </head>
+  <body ng-app="letusgoApp" ng-controller="addCartCountCtrl">
+  <!--[if lt IE 7]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+  <![endif]-->
 
-<!-- Add your site or application content here -->
-<div class="container">
-  <div class="header">
-    <ul class="nav nav-pills pull-right">
-      <li class="active"><a ng-href="#">Home</a></li>
-      <li><a ng-href="#/about">About</a></li>
-      <li><a ng-href="#">Contact</a></li>
-    </ul>
-    <h3 class="text-muted">client</h3>
+  <!-- Add your site or application content here -->
+  <div class="header area" data-area="header">
+          <div class="header_cnt cf">
+              <div class="header_left fl">
+                 &nbsp;&nbsp;欢迎来到来此购购物商城!
+              </div>
+          </div>
   </div>
+
+  <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <label>
+                  <a class="navbar-brand" href="#">Let's go!</a>
+              </label>
+          </div>
+          <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+
+                  <li role="presentation" class="active"><a href="#">主页</a></li>
+                  <li role="presentation"><a ng-href="#/itemsList">商城</a></li>
+                  <li role="presentation">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                      <span class="glyphicon glyphicon-user">类别管理<span class="caret"></span></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#/categoryModify">修改类别</a></li>
+                      <li><a ng-href="#/categoryAdd">添加类别</a></li>
+                    </ul>
+                  </li>
+                  <li role="presentation">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                      <span class="glyphicon glyphicon-user">商品管理<span class="caret"></span></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#/itemModify">修改商品</a></li>
+                      <li><a ng-href="#/itemAdd">添加商品</a></li>
+                    </ul>
+                  </li>
+                  <li role="presentation"><a ng-href="#/cartPayList">购物结算</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li>
+                      <a href="#/cartItemsList">
+                          <span class="glyphicon glyphicon-shopping-cart text-primary">购物车{{cartCount}}</span>
+
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
 
   <div ng-view=""></div>
 
   <div class="footer">
-    <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
   </div>
-</div>
 
-<!-- build:js(.) scripts/oldieshim.js -->
-<!--[if lt IE 9]>
-<script src="bower_components/es5-shim/es5-shim.js"></script>
-<script src="bower_components/json3/lib/json3.js"></script>
-<![endif]-->
-<!-- endbuild -->
 
-<!-- build:js(.) scripts/vendor.js -->
-<!-- bower:js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/lodash/dist/lodash.compat.js"></script>
-<script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
-<script src="bower_components/moment/moment.js"></script>
-<!-- endbower -->
-<!-- endbuild -->
+  <!-- build:js(.) scripts/oldieshim.js -->
+  <!--[if lt IE 9]>
+  <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/json3/lib/json3.js"></script>
+  <![endif]-->
+  <!-- endbuild -->
 
-<!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/main.js"></script>
-<script src="scripts/controllers/about.js"></script>
-<!-- endbuild -->
-</body>
-</html>
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+  <script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/Utils/utils.js"></script>
+  <script src="scripts/controllers/home.js"></script>
+  <script src="scripts/service/items.js"></script>
+  <script src="scripts/service/addToCart.js"></script>
+  <script src="scripts/service/cartItemOperate.js"></script>
+  <script src="scripts/service/category.js"></script>
+  <script src="scripts/service/itemManagement.js"></script>
+
+
+  <script src="scripts/controllers/cartCount.js"></script>
+  <script src="scripts/controllers/itemsList.js"></script>
+  <script src="scripts/controllers/cartItemsList.js"></script>
+  <script src="scripts/controllers/cartPayList.js"></script>
+  <script src="scripts/controllers/categoryModify.js"></script>
+  <script src="scripts/controllers/categoryAdd.js"></script>
+  <script src="scripts/controllers/itemModify.js"></script>
+  <script src="scripts/controllers/itemAdd.js"></script>
+
+  <!-- endbuild -->
+  </body>
+  </html>

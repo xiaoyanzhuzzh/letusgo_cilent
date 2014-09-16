@@ -68,7 +68,7 @@ describe('ItemAddCtrl', function () {
     it('should delete current item', function () {
 
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
-      spyOn(itemManagementService, 'deleteItem').andReturn([]);
+      spyOn(itemManagementService, 'deleteItem').and.returnValue([]);
       spyOn(Util.localStorage, 'getStorageItem');
 
       createController();
@@ -89,7 +89,7 @@ describe('ItemAddCtrl', function () {
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00};
 
       spyOn(Util.localStorage, 'setStorageItem');
-      spyOn(Util.localStorage, 'getStorageItem').andReturn([]);
+      spyOn(Util.localStorage, 'getStorageItem').and.returnValue([]);
 
       createController();
       $scope.addNewItem(item, categoryName);

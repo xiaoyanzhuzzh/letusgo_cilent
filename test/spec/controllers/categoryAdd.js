@@ -73,8 +73,8 @@ describe('CategoryAddCtrl', function () {
     it('should delete current categorys and items', function () {
 
       var category = {id: 0, name: '雪碧'};
-      spyOn(categoryService, 'deleteCategory').andReturn([]);
-      spyOn(categoryService, 'deleteItem').andReturn([]);
+      spyOn(categoryService, 'deleteCategory').and.returnValue([]);
+      spyOn(categoryService, 'deleteItem').and.returnValue([]);
 
       createController();
       $scope.deleteCurrentCategory(category);
@@ -93,7 +93,7 @@ describe('CategoryAddCtrl', function () {
       var newCategory = '饮品';
 
       spyOn(Util.localStorage, 'setStorageItem');
-      spyOn(Util.localStorage, 'getStorageItem').andReturn([{id: 0, name: '雪碧'}]);
+      spyOn(Util.localStorage, 'getStorageItem').and.returnValue([{id: 0, name: '雪碧'}]);
 
       createController();
       $scope.addNewCategory(newCategory);

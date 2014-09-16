@@ -75,8 +75,8 @@ describe('CategoryModifyCtrl', function () {
       var category = {id: 0, name: '雪碧'};
 
       spyOn(Util.localStorage, 'getStorageItem');
-      spyOn(categoryService, 'deleteCategory').andReturn([]);
-      spyOn(categoryService, 'deleteItem').andReturn([]);
+      spyOn(categoryService, 'deleteCategory').and.returnValue([]);
+      spyOn(categoryService, 'deleteItem').and.returnValue([]);
 
       createController();
       $scope.deleteCurrentCategory(category);
@@ -97,8 +97,8 @@ describe('CategoryModifyCtrl', function () {
       var category = {id: 0, name: '饮品'};
 
       spyOn(Util.localStorage, 'getStorageItem');
-      spyOn(categoryService, 'changeCategory').andReturn([{id: 0, name: '雪碧'}]);
-      spyOn(categoryService, 'changeItem').andReturn(
+      spyOn(categoryService, 'changeCategory').and.returnValue([{id: 0, name: '雪碧'}]);
+      spyOn(categoryService, 'changeItem').and.returnValue(
 
         [{barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}]
       );

@@ -25,7 +25,8 @@ describe('itemManagementService', function () {
         var result = itemManagementService.deleteItem(items, item);
 
         expect(result.length).toBe(0);
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
+        
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
       });
 
       it ('should have deleteItem function and return items array', function(){
@@ -39,7 +40,7 @@ describe('itemManagementService', function () {
         expect(result[0].name).toEqual('雪碧');
         expect(result[0].category).toEqual('饮品');
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(0);
+        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
       });
     });
 
@@ -66,7 +67,8 @@ describe('itemManagementService', function () {
         expect(result.length).toBe(1);
         expect(result[0].name).toEqual('雪碧');
         expect(result[0].category).toEqual('饮品');
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
+
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
       });
 
       it ('should have modifyItem function and return the same array', function(){
@@ -83,7 +85,8 @@ describe('itemManagementService', function () {
         expect(result.length).toBe(1);
         expect(result[0].name).toEqual('雪碧');
         expect(result[0].category).toEqual('饮品');
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
+
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
       });
     });
 });

@@ -30,7 +30,7 @@ describe('ItemModifyCtrl', function () {
     spyOn(Util.localStorage, 'getStorageItem');
     createController();
 
-    expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
+    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
   });
 
   it ('should load categorys from localStorage', function () {
@@ -38,7 +38,7 @@ describe('ItemModifyCtrl', function () {
     spyOn(Util.localStorage, 'getStorageItem');
     createController();
 
-    expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
+    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
   });
 
   it ('should have showItemSignal', function () {
@@ -59,7 +59,7 @@ describe('ItemModifyCtrl', function () {
       $scope.modifyButton(changeItem);
 
       expect($scope.showItemSignal).toBe(true);
-      expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
+      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
     });
   });
 
@@ -86,8 +86,8 @@ describe('ItemModifyCtrl', function () {
       createController();
       $scope.deleteCurrentItem(item);
 
-      expect(itemManagementService.deleteItem.calls.length).toEqual(1);
-      expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
+      expect(itemManagementService.deleteItem).toHaveBeenCalled();
+      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
     });
   });
 
@@ -108,8 +108,7 @@ describe('ItemModifyCtrl', function () {
       createController();
       $scope.modifyCurrentItem(newItem);
 
-      expect(itemManagementService.modifyItem.calls.length).toBe(1);
-      expect(Util.localStorage.setStorageItem.calls.length).toBe(0);
+      expect(itemManagementService.modifyItem).toHaveBeenCalled();
     });
   });
 });

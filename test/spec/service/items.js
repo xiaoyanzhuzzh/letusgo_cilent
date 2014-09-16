@@ -1,7 +1,7 @@
 'use strict';
-describe('itemsService', function () {
+describe('ItemsService', function () {
 
-    var itemsService;
+    var ItemsService;
 
     beforeEach(function () {
 
@@ -9,13 +9,13 @@ describe('itemsService', function () {
 
         inject(function ($injector) {
 
-            itemsService = $injector.get('itemsService');
+            ItemsService = $injector.get('ItemsService');
         });
     });
 
     it ('should load all the same items', function(){
 
-      var items = itemsService.getItems();
+      var items = ItemsService.getItems();
 
       expect(items.length).toBe(6);
       expect(items[0].barcode).toEqual('ITEM000000');

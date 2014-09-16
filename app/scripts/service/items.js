@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-    .service('itemsService',function(){
+    .service('ItemsService',function(){
 
         this.getItems = function(){
           var items = [

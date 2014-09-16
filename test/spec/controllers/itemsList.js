@@ -1,7 +1,7 @@
 'use strict';
 describe('Controller: ItemsListCtrl', function () {
 
-  var $scope, itemsService, createController, addToCartService;
+  var $scope, ItemsService, createController, AddToCartService;
 
   beforeEach(function () {
     module('letusgoApp');
@@ -9,16 +9,16 @@ describe('Controller: ItemsListCtrl', function () {
     inject(function ($injector) {
 
         $scope = $injector.get('$rootScope').$new();
-        itemsService = $injector.get('itemsService');
-        addToCartService = $injector.get('addToCartService');
+        ItemsService = $injector.get('ItemsService');
+        AddToCartService = $injector.get('AddToCartService');
 
         var $controller = $injector.get('$controller');
 
         createController = function () {
           return $controller ('ItemsListCtrl', {
                $scope: $scope,
-               itemsService: itemsService,
-               addToCartService: addToCartService
+               ItemsService: ItemsService,
+               AddToCartService: AddToCartService
           });
         };
     });
@@ -83,7 +83,7 @@ describe('Controller: ItemsListCtrl', function () {
       item = [{barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}];
 
       spyOn(Util.localStorage, 'getStorageItem').and.returnValue(undefined);
-      spyOn(addToCartService, 'isExistInCart').and.returnValue(undefined);
+      spyOn(AddToCartService, 'isExistInCart').and.returnValue(undefined);
 
       createController();
     });

@@ -31,7 +31,7 @@ describe('Controller: ItemsListCtrl', function () {
                  {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}
               ];
 
-          spyOn(Util.localStorage, 'getStorageItem').andReturn(items);
+          spyOn(Util.localStorage, 'getStorageItem').and.returnValue(items);
           createController();
 
     });
@@ -82,8 +82,8 @@ describe('Controller: ItemsListCtrl', function () {
 
       item = [{barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}];
 
-      spyOn(Util.localStorage, 'getStorageItem').andReturn(undefined);
-      spyOn(addToCartService, 'isExistInCart').andReturn(undefined);
+      spyOn(Util.localStorage, 'getStorageItem').and.returnValue(undefined);
+      spyOn(addToCartService, 'isExistInCart').and.returnValue(undefined);
 
       createController();
     });
@@ -106,7 +106,7 @@ describe('Controller: ItemsListCtrl', function () {
       itemA = {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'};
       itemB = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
 
-      spyOn(Util.localStorage, 'getStorageItem').andReturn(
+      spyOn(Util.localStorage, 'getStorageItem').and.returnValue(
 
           [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'},number: 1}]
       );
@@ -134,7 +134,7 @@ describe('Controller: ItemsListCtrl', function () {
 
     it ('function should have been called and can make the same cartItem number add by 1', function () {
 
-      spyOn(addToCartService, 'isExistInCart').andReturn(
+      spyOn(addToCartService, 'isExistInCart').and.returnValue(
 
         {item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'},number: 1}
       );

@@ -56,7 +56,7 @@ describe('itemManagementService', function () {
 
         var items = [{barcode:'ITEM000000', name: '可口可乐', unit:'瓶', price:3.00, category:'饮品'}];
 
-        spyOn(Util.localStorage,'getStorageItem').andReturn(
+        spyOn(Util.localStorage,'getStorageItem').and.returnValue(
           {barcode:'ITEM000000', name: '可口可乐', unit:'瓶', price:3.00, category:'饮品'}
         );
         spyOn(Util.localStorage,'setStorageItem');
@@ -73,7 +73,7 @@ describe('itemManagementService', function () {
 
         var items = [{barcode:'ITEM000000', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}];
 
-        spyOn(Util.localStorage,'getStorageItem').andReturn(
+        spyOn(Util.localStorage,'getStorageItem').and.returnValue(
           {barcode:'ITEM000000', name: '可口可乐', unit:'瓶', price:3.00, category:'饮品'}
         );
         spyOn(Util.localStorage,'setStorageItem');

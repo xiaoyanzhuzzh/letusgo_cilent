@@ -108,7 +108,7 @@ describe('ItemModifyCtrl', function () {
       createController();
       $scope.modifyCurrentItem(newItem);
 
-      expect(itemManagementService.modifyItem).toHaveBeenCalled();
+      expect(ItemManagementService.modifyItem).toHaveBeenCalled();
     });
   });
 });

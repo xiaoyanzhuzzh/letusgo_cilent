@@ -1,7 +1,7 @@
 'use strict';
-describe('itemManagementService', function () {
+describe('ItemManagementService', function () {
 
-    var itemManagementService, items;
+    var ItemManagementService, items;
 
     beforeEach(function () {
 
@@ -9,7 +9,7 @@ describe('itemManagementService', function () {
 
         inject(function ($injector) {
 
-            itemManagementService = $injector.get('itemManagementService');
+            ItemManagementService = $injector.get('ItemManagementService');
         });
 
         items = [{barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}];
@@ -22,7 +22,7 @@ describe('itemManagementService', function () {
         var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
         spyOn(Util.localStorage,'setStorageItem');
 
-        var result = itemManagementService.deleteItem(items, item);
+        var result = ItemManagementService.deleteItem(items, item);
 
         expect(result.length).toBe(0);
         
@@ -34,7 +34,7 @@ describe('itemManagementService', function () {
         var item = {barcode:'ITEM000000', name: '可口可乐', unit:'瓶', price:3.00, category:'饮品'};
         spyOn(Util.localStorage,'setStorageItem');
 
-        var result = itemManagementService.deleteItem(items, item);
+        var result = ItemManagementService.deleteItem(items, item);
 
         expect(result.length).toBe(1);
         expect(result[0].name).toEqual('雪碧');
@@ -62,7 +62,7 @@ describe('itemManagementService', function () {
         );
         spyOn(Util.localStorage,'setStorageItem');
 
-        var result = itemManagementService.modifyItem(newItem, items);
+        var result = ItemManagementService.modifyItem(newItem, items);
 
         expect(result.length).toBe(1);
         expect(result[0].name).toEqual('雪碧');
@@ -80,7 +80,7 @@ describe('itemManagementService', function () {
         );
         spyOn(Util.localStorage,'setStorageItem');
 
-        var result = itemManagementService.modifyItem(newItem, items);
+        var result = ItemManagementService.modifyItem(newItem, items);
 
         expect(result.length).toBe(1);
         expect(result[0].name).toEqual('雪碧');

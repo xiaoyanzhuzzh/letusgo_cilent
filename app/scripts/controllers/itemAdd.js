@@ -2,7 +2,7 @@
 
 
 angular.module('letusgoApp')
-    .controller('ItemAddCtrl', function ($scope,itemManagementService) {
+    .controller('ItemAddCtrl', function ($scope,ItemManagementService) {
 
         $scope.items = Util.localStorage.getStorageItem('items');
 
@@ -22,7 +22,7 @@ angular.module('letusgoApp')
 
         $scope.deleteCurrentItem = function (item) {
 
-          $scope.items = itemManagementService.deleteItem($scope.items, item);
+          $scope.items = ItemManagementService.deleteItem($scope.items, item);
         };
 
         $scope.addNewItem = function (item, categoryName) {

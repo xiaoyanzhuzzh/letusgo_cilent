@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('itemManagementService', function(){
+  .service('ItemManagementService', function(){
 
         this.deleteItem = function (items, item) {
 

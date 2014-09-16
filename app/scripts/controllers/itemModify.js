@@ -24,12 +24,12 @@ angular.module('letusgoApp')
 
     $scope.deleteCurrentItem = function (item) {
 
-      $scope.items = itemManagementService.deleteItem($scope.items, item);
+      $scope.items = ItemManagementService.deleteItem($scope.items, item);
     };
 
     $scope.modifyCurrentItem = function (newItem) {
 
-      $scope.items = itemManagementService.modifyItem(newItem, $scope.items);
+      $scope.items = ItemManagementService.modifyItem(newItem, $scope.items);
     };
 
   });

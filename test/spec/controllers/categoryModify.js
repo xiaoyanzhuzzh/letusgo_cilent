@@ -28,7 +28,7 @@ describe('CategoryModifyCtrl', function () {
     spyOn(Util.localStorage, 'getStorageItem');
     createController();
 
-    expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
+    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
   });
 
   it ('should load categorys from localStorage', function () {
@@ -36,7 +36,7 @@ describe('CategoryModifyCtrl', function () {
     spyOn(Util.localStorage, 'getStorageItem');
     createController();
 
-    expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
+    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
   });
 
   it ('should have modifySignal', function () {
@@ -84,9 +84,9 @@ describe('CategoryModifyCtrl', function () {
       expect($scope.items.length).toBe(0);
       expect($scope.categorys.length).toEqual(0);
 
-      expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
-      expect(categoryService.deleteItem.calls.length).toEqual(1);
-      expect(categoryService.deleteCategory.calls.length).toBe(1);
+      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(categoryService.deleteItem).toHaveBeenCalled();
+      expect(categoryService.deleteCategory).toHaveBeenCalled();
     });
   });
 
@@ -109,9 +109,9 @@ describe('CategoryModifyCtrl', function () {
       expect($scope.categorys.length).toEqual(1);
       expect($scope.items.length).toEqual(1);
 
-      expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
-      expect(categoryService.changeCategory.calls.length).toBe(1);
-      expect(categoryService.changeItem.calls.length).toBe(1);
+      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(categoryService.changeCategory).toHaveBeenCalled();
+      expect(categoryService.changeItem).toHaveBeenCalled();
     });
   });
 });

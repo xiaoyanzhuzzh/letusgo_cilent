@@ -2,7 +2,7 @@
 
 
 angular.module('letusgoApp')
-    .controller('CategoryAddCtrl', function ($scope, categoryService) {
+    .controller('CategoryAddCtrl', function ($scope, CategoryService) {
 
         $scope.items = Util.localStorage.getStorageItem('items');
 
@@ -22,8 +22,8 @@ angular.module('letusgoApp')
 
         $scope.deleteCurrentCategory = function (category) {
 
-            $scope.categorys = categoryService.deleteCategory($scope.categorys, category);
-            $scope.items = categoryService.deleteItem($scope.items, category);
+            $scope.categorys = CategoryService.deleteCategory($scope.categorys, category);
+            $scope.items = CategoryService.deleteItem($scope.items, category);
         };
 
         $scope.addNewCategory = function (newCategory) {

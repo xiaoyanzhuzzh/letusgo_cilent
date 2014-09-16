@@ -1,7 +1,7 @@
 'use strict';
-describe('categoryService', function () {
+describe('CategoryService', function () {
 
-    var categoryService;
+    var CategoryService;
 
     beforeEach(function () {
 
@@ -9,14 +9,14 @@ describe('categoryService', function () {
 
         inject(function ($injector) {
 
-            categoryService = $injector.get('categoryService');
+            CategoryService = $injector.get('CategoryService');
         });
     });
 
     it('should have getCategorys function and return categoryNames', function(){
 
       var items = [{barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}];
-      var categoryNames = categoryService.getCategorys(items);
+      var categoryNames = CategoryService.getCategorys(items);
 
       expect(categoryNames[0]).toEqual('饮品');
     });
@@ -25,17 +25,17 @@ describe('categoryService', function () {
 
       var items = [{barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}];
 
-      spyOn(categoryService, 'getCategorys').and.returnValue(['饮品']);
+      spyOn(CategoryService, 'getCategorys').and.returnValue(['饮品']);
       spyOn(Util.localStorage,'setStorageItem');
 
-      var categorys = categoryService.getCategorysAndId(items);
+      var categorys = CategoryService.getCategorysAndId(items);
 
       expect(categorys.length).toBe(1);
       expect(categorys[0].id).toEqual(0);
       expect(categorys[0].name).toEqual('饮品');
 
       expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
-      expect(categoryService.getCategorys).toHaveBeenCalled();
+      expect(CategoryService.getCategorys).toHaveBeenCalled();
     });
 
     describe('deleteCategory function', function () {
@@ -52,7 +52,7 @@ describe('categoryService', function () {
 
         category = {id: 0, name: '饮品'};
 
-        var result = categoryService.deleteCategory(category, categorys);
+        var result = CategoryService.deleteCategory(category, categorys);
 
         expect(result.length).toBe(0);
 
@@ -63,7 +63,7 @@ describe('categoryService', function () {
 
         category = {id: 1, name: '水果'};
 
-        var result = categoryService.deleteCategory(category, categorys);
+        var result = CategoryService.deleteCategory(category, categorys);
 
         expect(result.length).toBe(1);
         expect(result[0].name).toEqual('饮品');
@@ -87,7 +87,7 @@ describe('categoryService', function () {
 
         category = {id: 1, name: '饮品'};
 
-        var result = categoryService.deleteItem(category, items);
+        var result = CategoryService.deleteItem(category, items);
 
         expect(result.length).toBe(0);
 
@@ -98,7 +98,7 @@ describe('categoryService', function () {
 
         category = {id: 0, name: '水果'};
 
-        var result = categoryService.deleteItem(category, items);
+        var result = CategoryService.deleteItem(category, items);
 
         expect(result.length).toBe(1);
         expect(result[0].category).toEqual('饮品');
@@ -122,7 +122,7 @@ describe('categoryService', function () {
 
         category = {id: 0, name: '饮品'};
 
-        var result = categoryService.changeCategory(category, categorys);
+        var result = CategoryService.changeCategory(category, categorys);
 
         expect(result.length).toBe(1);
         expect(result[0].name).toEqual('饮品');
@@ -135,7 +135,7 @@ describe('categoryService', function () {
 
         category = {id: 1, name: '水果'};
 
-        var result = categoryService.changeCategory(category, categorys);
+        var result = CategoryService.changeCategory(category, categorys);
 
         expect(result.length).toBe(1);
         expect(result[0].name).toEqual('饮品');
@@ -162,7 +162,7 @@ describe('categoryService', function () {
       //   spyOn(Util.localStorage,'getStorageItem').and.returnValue([{id: 0, name:'饮品'}]);
       //   category = {id: 0, name: '饮品t'};
       //
-      //   var result = categoryService.changeItem(category, items);
+      //   var result = CategoryService.changeItem(category, items);
       //
       //   expect(result.length).toBe(1);
       //   expect(result[0].category).toEqual('饮品t');
@@ -177,7 +177,7 @@ describe('categoryService', function () {
         spyOn(Util.localStorage,'getStorageItem').and.returnValue([{id: 0, name:'水果'}]);
         category = {id: 0, name: '水果f'};
 
-        var result = categoryService.changeItem(category, items);
+        var result = CategoryService.changeItem(category, items);
 
         expect(result.length).toBe(1);
         expect(result[0].category).toEqual('饮品');

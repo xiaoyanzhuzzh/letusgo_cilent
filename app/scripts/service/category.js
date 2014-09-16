@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('categoryService', function(){
+  .service('CategoryService', function(){
 
         this.getCategorys = function (items) {
 

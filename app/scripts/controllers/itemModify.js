@@ -2,11 +2,11 @@
 
 
 angular.module('letusgoApp')
-  .controller('ItemModifyCtrl', function ($scope, categoryService, itemManagementService) {
+  .controller('ItemModifyCtrl', function ($scope, CategoryService, ItemManagementService) {
 
     $scope.items = Util.localStorage.getStorageItem('items');
 
-    //$scope.categorys = categoryService.getCategorysAndId($scope.items);
+    //$scope.categorys = CategoryService.getCategorysAndId($scope.items);
     $scope.categorys = Util.localStorage.getStorageItem('categorys');
 
     $scope.showItemSignal = false;

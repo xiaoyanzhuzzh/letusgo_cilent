@@ -1,7 +1,7 @@
 'use strict';
 describe('CategoryAddCtrl', function () {
 
-  var $scope, createController, categoryService;
+  var $scope, createController, CategoryService;
 
   beforeEach(function () {
        module('letusgoApp');
@@ -9,7 +9,7 @@ describe('CategoryAddCtrl', function () {
        inject(function ($injector) {
 
            $scope = $injector.get('$rootScope').$new();
-           categoryService = $injector.get('categoryService');
+           CategoryService = $injector.get('CategoryService');
 
            var $controller = $injector.get('$controller');
 
@@ -17,7 +17,7 @@ describe('CategoryAddCtrl', function () {
 
              return $controller ('CategoryAddCtrl', {
                   $scope: $scope,
-                  categoryService: categoryService
+                  CategoryService: CategoryService
              });
            };
        });
@@ -73,8 +73,8 @@ describe('CategoryAddCtrl', function () {
     it('should delete current categorys and items', function () {
 
       var category = {id: 0, name: '雪碧'};
-      spyOn(categoryService, 'deleteCategory').and.returnValue([]);
-      spyOn(categoryService, 'deleteItem').and.returnValue([]);
+      spyOn(CategoryService, 'deleteCategory').and.returnValue([]);
+      spyOn(CategoryService, 'deleteItem').and.returnValue([]);
 
       createController();
       $scope.deleteCurrentCategory(category);
@@ -82,8 +82,8 @@ describe('CategoryAddCtrl', function () {
       expect($scope.items.length).toBe(0);
       expect($scope.categorys.length).toEqual(0);
 
-      expect(categoryService.deleteItem).toHaveBeenCalled();
-      expect(categoryService.deleteCategory).toHaveBeenCalled();
+      expect(CategoryService.deleteItem).toHaveBeenCalled();
+      expect(CategoryService.deleteCategory).toHaveBeenCalled();
     });
   });
 

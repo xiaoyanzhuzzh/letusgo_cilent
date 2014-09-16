@@ -2,8 +2,8 @@
 
 
 angular.module('letusgoApp')
-  .controller('HomeCtrl', function ($scope, itemsService, categoryService) {
+  .controller('HomeCtrl', function ($scope, ItemsService, CategoryService) {
 
-    $scope.items = itemsService.getItems();
-    $scope.categorys = categoryService.getCategorysAndId($scope.items);
+    $scope.items = ItemsService.getItems();
+    $scope.categorys = CategoryService.getCategorysAndId($scope.items);
   });

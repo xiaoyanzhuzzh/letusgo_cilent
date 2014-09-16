@@ -1,7 +1,7 @@
 'use strict';
 describe('ItemModifyCtrl', function () {
 
-  var $scope, createController, categoryService, itemManagementService;
+  var $scope, createController, CategoryService, ItemManagementService;
 
   beforeEach(function () {
     module('letusgoApp');
@@ -9,8 +9,8 @@ describe('ItemModifyCtrl', function () {
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      categoryService = $injector.get('categoryService');
-      itemManagementService = $injector.get('itemManagementService');
+      CategoryService = $injector.get('CategoryService');
+      ItemManagementService = $injector.get('ItemManagementService');
 
       var $controller = $injector.get('$controller');
 
@@ -18,8 +18,8 @@ describe('ItemModifyCtrl', function () {
 
         return $controller ('ItemModifyCtrl', {
           $scope: $scope,
-          categoryService: categoryService,
-          itemManagementService: itemManagementService
+          CategoryService: CategoryService,
+          ItemManagementService: ItemManagementService
         });
       };
     });
@@ -80,13 +80,13 @@ describe('ItemModifyCtrl', function () {
 
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
 
-      spyOn(itemManagementService, 'deleteItem').and.returnValue([]);
+      spyOn(ItemManagementService, 'deleteItem').and.returnValue([]);
       spyOn(Util.localStorage, 'getStorageItem');
 
       createController();
       $scope.deleteCurrentItem(item);
 
-      expect(itemManagementService.deleteItem).toHaveBeenCalled();
+      expect(ItemManagementService.deleteItem).toHaveBeenCalled();
       expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
     });
   });
@@ -100,7 +100,7 @@ describe('ItemModifyCtrl', function () {
       spyOn(Util.localStorage, 'getStorageItem');
       spyOn(Util.localStorage, 'setStorageItem');
 
-      spyOn(itemManagementService, 'modifyItem').and.returnValue(
+      spyOn(ItemManagementService, 'modifyItem').and.returnValue(
 
         [{barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}]
       );

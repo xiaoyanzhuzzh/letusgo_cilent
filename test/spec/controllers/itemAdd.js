@@ -1,7 +1,7 @@
 'use strict';
 describe('ItemAddCtrl', function () {
 
-  var $scope, createController, categoryService, itemManagementService;
+  var $scope, createController, CategoryService, ItemManagementService;
 
   beforeEach(function () {
     module('letusgoApp');
@@ -9,8 +9,8 @@ describe('ItemAddCtrl', function () {
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      categoryService = $injector.get('categoryService');
-      itemManagementService = $injector.get('itemManagementService');
+      CategoryService = $injector.get('CategoryService');
+      ItemManagementService = $injector.get('ItemManagementService');
 
       var $controller = $injector.get('$controller');
 
@@ -18,8 +18,8 @@ describe('ItemAddCtrl', function () {
 
         return $controller ('ItemAddCtrl', {
           $scope: $scope,
-          categoryService: categoryService,
-          itemManagementService: itemManagementService
+          CategoryService: CategoryService,
+          ItemManagementService: ItemManagementService
         });
       };
     });
@@ -68,7 +68,7 @@ describe('ItemAddCtrl', function () {
     it('should delete current item', function () {
 
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
-      spyOn(itemManagementService, 'deleteItem').and.returnValue([]);
+      spyOn(ItemManagementService, 'deleteItem').and.returnValue([]);
       spyOn(Util.localStorage, 'getStorageItem');
 
       createController();
@@ -76,7 +76,7 @@ describe('ItemAddCtrl', function () {
 
       expect($scope.items.length).toBe(0);
 
-      expect(itemManagementService.deleteItem).toHaveBeenCalled();
+      expect(ItemManagementService.deleteItem).toHaveBeenCalled();
       expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
     });
   });

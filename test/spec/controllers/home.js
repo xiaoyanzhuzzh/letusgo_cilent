@@ -1,7 +1,7 @@
 'use strict';
 describe('HomeCtrl', function () {
 
-  var $scope, itemsService, categoryService, createController;
+  var $scope, ItemsService, CategoryService, createController;
 
   beforeEach(function () {
        module('letusgoApp');
@@ -9,8 +9,8 @@ describe('HomeCtrl', function () {
        inject(function ($injector) {
 
            $scope = $injector.get('$rootScope').$new();
-           itemsService = $injector.get('itemsService');
-           categoryService = $injector.get('categoryService');
+           ItemsService = $injector.get('ItemsService');
+           CategoryService = $injector.get('CategoryService');
 
            var $controller = $injector.get('$controller');
 
@@ -18,8 +18,8 @@ describe('HomeCtrl', function () {
 
              return $controller ('HomeCtrl', {
                   $scope: $scope,
-                  itemsService: itemsService,
-                  categoryService: categoryService
+                  ItemsService: ItemsService,
+                  CategoryService: CategoryService
              });
            };
        });
@@ -27,19 +27,19 @@ describe('HomeCtrl', function () {
 
   it ('should load items', function () {
 
-    spyOn(itemsService, 'getItems').and.returnValue([]);
+    spyOn(ItemsService, 'getItems').and.returnValue([]);
     createController();
 
     expect($scope.items.length).toEqual(0);
-    expect(itemsService.getItems).toHaveBeenCalled();
+    expect(ItemsService.getItems).toHaveBeenCalled();
   });
 
   it ('should load categorys', function () {
 
-    spyOn(categoryService, 'getCategorysAndId').and.returnValue([]);
+    spyOn(CategoryService, 'getCategorysAndId').and.returnValue([]);
     createController();
 
     expect($scope.categorys.length).toEqual(0);
-    expect(categoryService.getCategorysAndId).toHaveBeenCalled();
+    expect(CategoryService.getCategorysAndId).toHaveBeenCalled();
   });
 });

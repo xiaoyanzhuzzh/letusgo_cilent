@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-    .controller('CategoryModifyCtrl', function ($scope, categoryService) {
+    .controller('CategoryModifyCtrl', function ($scope, CategoryService) {
 
         $scope.items = Util.localStorage.getStorageItem('items');
 
@@ -22,15 +22,15 @@ angular.module('letusgoApp')
 
         $scope.deleteCurrentCategory = function (category) {
 
-          $scope.categorys = categoryService.deleteCategory(category, $scope.categorys);
-          $scope.items = categoryService.deleteItem(category, $scope.items);
+          $scope.categorys = CategoryService.deleteCategory(category, $scope.categorys);
+          $scope.items = CategoryService.deleteItem(category, $scope.items);
         };
 
         $scope.changeCurrentCategory = function (category) {
 
-          $scope.categorys = categoryService.changeCategory(category, $scope.categorys);
+          $scope.categorys = CategoryService.changeCategory(category, $scope.categorys);
 
-          $scope.items = categoryService.changeItem(category, $scope.items);
+          $scope.items = CategoryService.changeItem(category, $scope.items);
         };
 
 

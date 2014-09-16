@@ -1,7 +1,7 @@
 'use strict';
 describe('CategoryModifyCtrl', function () {
 
-  var $scope, createController, categoryService;
+  var $scope, createController, CategoryService;
 
   beforeEach(function () {
     module('letusgoApp');
@@ -9,7 +9,7 @@ describe('CategoryModifyCtrl', function () {
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      categoryService = $injector.get('categoryService');
+      CategoryService = $injector.get('CategoryService');
 
       var $controller = $injector.get('$controller');
 
@@ -17,7 +17,7 @@ describe('CategoryModifyCtrl', function () {
 
         return $controller ('CategoryModifyCtrl', {
           $scope: $scope,
-          categoryService: categoryService
+          CategoryService: CategoryService
         });
       };
     });
@@ -75,8 +75,8 @@ describe('CategoryModifyCtrl', function () {
       var category = {id: 0, name: '雪碧'};
 
       spyOn(Util.localStorage, 'getStorageItem');
-      spyOn(categoryService, 'deleteCategory').and.returnValue([]);
-      spyOn(categoryService, 'deleteItem').and.returnValue([]);
+      spyOn(CategoryService, 'deleteCategory').and.returnValue([]);
+      spyOn(CategoryService, 'deleteItem').and.returnValue([]);
 
       createController();
       $scope.deleteCurrentCategory(category);
@@ -85,8 +85,8 @@ describe('CategoryModifyCtrl', function () {
       expect($scope.categorys.length).toEqual(0);
 
       expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
-      expect(categoryService.deleteItem).toHaveBeenCalled();
-      expect(categoryService.deleteCategory).toHaveBeenCalled();
+      expect(CategoryService.deleteItem).toHaveBeenCalled();
+      expect(CategoryService.deleteCategory).toHaveBeenCalled();
     });
   });
 
@@ -97,8 +97,8 @@ describe('CategoryModifyCtrl', function () {
       var category = {id: 0, name: '饮品'};
 
       spyOn(Util.localStorage, 'getStorageItem');
-      spyOn(categoryService, 'changeCategory').and.returnValue([{id: 0, name: '雪碧'}]);
-      spyOn(categoryService, 'changeItem').and.returnValue(
+      spyOn(CategoryService, 'changeCategory').and.returnValue([{id: 0, name: '雪碧'}]);
+      spyOn(CategoryService, 'changeItem').and.returnValue(
 
         [{barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}]
       );
@@ -110,8 +110,8 @@ describe('CategoryModifyCtrl', function () {
       expect($scope.items.length).toEqual(1);
 
       expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
-      expect(categoryService.changeCategory).toHaveBeenCalled();
-      expect(categoryService.changeItem).toHaveBeenCalled();
+      expect(CategoryService.changeCategory).toHaveBeenCalled();
+      expect(CategoryService.changeItem).toHaveBeenCalled();
     });
   });
 });

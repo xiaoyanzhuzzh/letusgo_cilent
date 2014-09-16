@@ -63,8 +63,8 @@ describe('cartItemOperateService', function () {
 
         cartItemOperateService.addCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(2);
-        expect(cartItemOperateService.getTotalNumber.calls.length).toBe(1);
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+        expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
       });
 
       it ('should have addCartItemNumber function and cannot add the different cartItem number', function(){
@@ -76,8 +76,8 @@ describe('cartItemOperateService', function () {
 
         cartItemOperateService.addCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(0);
-        expect(cartItemOperateService.getTotalNumber.calls.length).toBe(0);
+        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
+        expect(cartItemOperateService.getTotalNumber.calls.count()).toBe(0);
       });
     });
 
@@ -92,8 +92,8 @@ describe('cartItemOperateService', function () {
 
         cartItemOperateService.reduceCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(2);
-        expect(cartItemOperateService.getTotalNumber.calls.length).toBe(1);
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+        expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
       });
 
       it ('should have reduceCartItemNumber function and can reduce the different cateItem number', function(){
@@ -105,8 +105,8 @@ describe('cartItemOperateService', function () {
 
         cartItemOperateService.reduceCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(0);
-        expect(cartItemOperateService.getTotalNumber.calls.length).toBe(0);
+        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
+        expect(cartItemOperateService.getTotalNumber.calls.count()).toBe(0);
       });
 
       it ('should have reduceCartItemNumber function and cannot reduce to 0', function(){
@@ -118,8 +118,7 @@ describe('cartItemOperateService', function () {
 
         cartItemOperateService.reduceCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(0);
-        expect(cartItemOperateService.getTotalNumber.calls.length).toBe(0);
+        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
       });
     });
 
@@ -134,8 +133,8 @@ describe('cartItemOperateService', function () {
 
         cartItemOperateService.deleteCartItem(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(2);
-        expect(cartItemOperateService.getTotalNumber.calls.length).toBe(1);
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+        expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
       });
 
       it ('should have deleteCartItem function and cannot delete the different cartItem number', function(){
@@ -147,8 +146,8 @@ describe('cartItemOperateService', function () {
 
         cartItemOperateService.deleteCartItem(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(0);
-        expect(cartItemOperateService.getTotalNumber.calls.length).toBe(0);
+        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
+        expect(cartItemOperateService.getTotalNumber.calls.count()).toBe(0);
       });
     });
 
@@ -163,8 +162,8 @@ describe('cartItemOperateService', function () {
 
         cartItemOperateService.changeCurrentCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(2);
-        expect(cartItemOperateService.getTotalNumber.calls.length).toBe(1);
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+        expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
       });
 
       it ('should have changeCurrentCartItemNumber function and cannot change the different cartItem number', function(){
@@ -176,8 +175,8 @@ describe('cartItemOperateService', function () {
 
         cartItemOperateService.changeCurrentCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(0);
-        expect(cartItemOperateService.getTotalNumber.calls.length).toBe(0);
+        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
+        expect(cartItemOperateService.getTotalNumber.calls.count()).toBe(0);
       });
     });
 });

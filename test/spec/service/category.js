@@ -25,7 +25,7 @@ describe('categoryService', function () {
 
       var items = [{barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}];
 
-      spyOn(categoryService, 'getCategorys').andReturn(['饮品']);
+      spyOn(categoryService, 'getCategorys').and.returnValue(['饮品']);
       spyOn(Util.localStorage,'setStorageItem');
 
       var categorys = categoryService.getCategorysAndId(items);
@@ -155,7 +155,7 @@ describe('categoryService', function () {
 
       // it('should have changeItem function and return changed items', function(){
       //
-      //   spyOn(Util.localStorage,'getStorageItem').andReturn([{id: 0, name:'饮品'}]);
+      //   spyOn(Util.localStorage,'getStorageItem').and.returnValue([{id: 0, name:'饮品'}]);
       //   category = {id: 0, name: '饮品t'};
       //
       //   var result = categoryService.changeItem(category, items);
@@ -170,7 +170,7 @@ describe('categoryService', function () {
 
       it('should have changeItem function and return the same items', function(){
 
-        spyOn(Util.localStorage,'getStorageItem').andReturn([{id: 0, name:'水果'}]);
+        spyOn(Util.localStorage,'getStorageItem').and.returnValue([{id: 0, name:'水果'}]);
         category = {id: 0, name: '水果f'};
 
         var result = categoryService.changeItem(category, items);

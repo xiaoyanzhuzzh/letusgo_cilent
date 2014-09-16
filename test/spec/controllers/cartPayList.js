@@ -23,7 +23,7 @@ describe('CartPayListCtrl', function () {
 
   describe('cartPayList', function () {
     it('should load cartPayList', function () {
-      spyOn(Util.localStorage, 'getStorageItem').andReturn(
+      spyOn(Util.localStorage, 'getStorageItem').and.returnValue(
 
         [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'},number: 1}]
       );
@@ -40,7 +40,7 @@ describe('CartPayListCtrl', function () {
       beforeEach(function () {
 
         spyOn(Util.localStorage, 'getStorageItem');
-        spyOn(cartItemOperateService,'getTotalMoney').andReturn(1);
+        spyOn(cartItemOperateService,'getTotalMoney').and.returnValue(1);
         createController();
       });
 
@@ -56,7 +56,7 @@ describe('CartPayListCtrl', function () {
       beforeEach(function () {
 
         spyOn(Util.localStorage, 'getStorageItem');
-        spyOn(cartItemOperateService,'getTotalNumber').andReturn(1);
+        spyOn(cartItemOperateService,'getTotalNumber').and.returnValue(1);
         createController();
       });
 

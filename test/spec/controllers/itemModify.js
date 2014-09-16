@@ -80,7 +80,7 @@ describe('ItemModifyCtrl', function () {
 
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
 
-      spyOn(itemManagementService, 'deleteItem').andReturn([]);
+      spyOn(itemManagementService, 'deleteItem').and.returnValue([]);
       spyOn(Util.localStorage, 'getStorageItem');
 
       createController();
@@ -100,7 +100,7 @@ describe('ItemModifyCtrl', function () {
       spyOn(Util.localStorage, 'getStorageItem');
       spyOn(Util.localStorage, 'setStorageItem');
 
-      spyOn(itemManagementService, 'modifyItem').andReturn(
+      spyOn(itemManagementService, 'modifyItem').and.returnValue(
 
         [{barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}]
       );

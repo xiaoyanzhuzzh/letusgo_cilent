@@ -27,7 +27,7 @@ describe('HomeCtrl', function () {
 
   it ('should load items', function () {
 
-    spyOn(itemsService, 'getItems').andReturn([]);
+    spyOn(itemsService, 'getItems').and.returnValue([]);
     createController();
 
     expect($scope.items.length).toEqual(0);
@@ -36,7 +36,7 @@ describe('HomeCtrl', function () {
 
   it ('should load categorys', function () {
 
-    spyOn(categoryService, 'getCategorysAndId').andReturn([]);
+    spyOn(categoryService, 'getCategorysAndId').and.returnValue([]);
     createController();
 
     expect($scope.categorys.length).toEqual(0);

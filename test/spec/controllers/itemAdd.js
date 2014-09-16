@@ -30,7 +30,7 @@ describe('ItemAddCtrl', function () {
     spyOn(Util.localStorage, 'getStorageItem');
     createController();
 
-    expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
+    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
   });
 
   it ('should load categorys from localStorage', function () {
@@ -38,7 +38,7 @@ describe('ItemAddCtrl', function () {
     spyOn(Util.localStorage, 'getStorageItem');
     createController();
 
-    expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
+    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
   });
 
   describe('addButton', function () {
@@ -77,7 +77,7 @@ describe('ItemAddCtrl', function () {
       expect($scope.items.length).toBe(0);
 
       expect(itemManagementService.deleteItem.calls.length).toEqual(1);
-      expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
+      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
     });
   });
 
@@ -94,8 +94,8 @@ describe('ItemAddCtrl', function () {
       createController();
       $scope.addNewItem(item, categoryName);
 
-      expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
-      expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
+      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
     });
   });
 });

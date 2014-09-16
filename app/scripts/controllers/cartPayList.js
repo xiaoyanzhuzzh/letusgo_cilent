@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('CartPayListCtrl', function ($scope, cartItemOperateService) {
+  .controller('CartPayListCtrl', function ($scope, CartItemOperateService) {
 
      $scope.cartPayList = Util.localStorage.getStorageItem('cartItems');
-     $scope.total = cartItemOperateService.getTotalMoney($scope.cartPayList );
-     $scope.totalNumber = cartItemOperateService.getTotalNumber($scope.cartPayList );
+     $scope.total = CartItemOperateService.getTotalMoney($scope.cartPayList );
+     $scope.totalNumber = CartItemOperateService.getTotalNumber($scope.cartPayList );
 
   });

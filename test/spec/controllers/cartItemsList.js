@@ -1,6 +1,6 @@
 'use strict';
 describe('CartItemsListCtrl', function () {
-  var $scope, createController, cartItemOperateService;
+  var $scope, createController, CartItemOperateService;
    beforeEach(function () {
 
      module('letusgoApp');
@@ -8,7 +8,7 @@ describe('CartItemsListCtrl', function () {
      inject(function ($injector) {
 
        $scope = $injector.get('$rootScope').$new();
-       cartItemOperateService = $injector.get('cartItemOperateService');
+       CartItemOperateService = $injector.get('CartItemOperateService');
 
        var $controller = $injector.get('$controller');
 
@@ -16,7 +16,7 @@ describe('CartItemsListCtrl', function () {
 
          return $controller ('CartItemsListCtrl', {
            $scope: $scope,
-           cartItemOperateService: cartItemOperateService
+           CartItemOperateService: CartItemOperateService
          });
        };
      });
@@ -42,7 +42,7 @@ describe('CartItemsListCtrl', function () {
     it('should load total', function () {
 
       spyOn(Util.localStorage, 'getStorageItem');
-      spyOn(cartItemOperateService,'getTotalMoney').and.returnValue(3);
+      spyOn(CartItemOperateService,'getTotalMoney').and.returnValue(3);
       createController();
 
       expect($scope.total).toBe(3);
@@ -55,7 +55,7 @@ describe('CartItemsListCtrl', function () {
     it('should load totalNumber', function () {
 
       spyOn(Util.localStorage, 'getStorageItem');
-      spyOn(cartItemOperateService,'getTotalNumber').and.returnValue(1);
+      spyOn(CartItemOperateService,'getTotalNumber').and.returnValue(1);
       createController();
 
       expect($scope.totalNumber).toBe(1);
@@ -69,9 +69,9 @@ describe('CartItemsListCtrl', function () {
     beforeEach(function () {
 
       cartItem = {item: {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}, number: 2};
-      spyOn(cartItemOperateService, 'getTotalMoney');
-      spyOn(cartItemOperateService, 'getTotalNumber');
-      spyOn(cartItemOperateService, 'changeCurrentCartItemNumber');
+      spyOn(CartItemOperateService, 'getTotalMoney');
+      spyOn(CartItemOperateService, 'getTotalNumber');
+      spyOn(CartItemOperateService, 'changeCurrentCartItemNumber');
       createController();
     });
 
@@ -79,9 +79,9 @@ describe('CartItemsListCtrl', function () {
 
       $scope.changeCartItemNumber(cartItem);
 
-      expect(cartItemOperateService.getTotalMoney).toHaveBeenCalled();
-      expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
-      expect(cartItemOperateService.changeCurrentCartItemNumber).toHaveBeenCalled();
+      expect(CartItemOperateService.getTotalMoney).toHaveBeenCalled();
+      expect(CartItemOperateService.getTotalNumber).toHaveBeenCalled();
+      expect(CartItemOperateService.changeCurrentCartItemNumber).toHaveBeenCalled();
     });
   });
 
@@ -91,9 +91,9 @@ describe('CartItemsListCtrl', function () {
     beforeEach(function () {
 
       cartItem = {item: {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}, number: 2};
-      spyOn(cartItemOperateService, 'getTotalMoney');
-      spyOn(cartItemOperateService, 'getTotalNumber');
-      spyOn(cartItemOperateService, 'addCartItemNumber');
+      spyOn(CartItemOperateService, 'getTotalMoney');
+      spyOn(CartItemOperateService, 'getTotalNumber');
+      spyOn(CartItemOperateService, 'addCartItemNumber');
       createController();
     });
 
@@ -101,9 +101,9 @@ describe('CartItemsListCtrl', function () {
 
       $scope.addCartItemNumber(cartItem);
 
-      expect(cartItemOperateService.getTotalMoney).toHaveBeenCalled();
-      expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
-      expect(cartItemOperateService.addCartItemNumber).toHaveBeenCalled();
+      expect(CartItemOperateService.getTotalMoney).toHaveBeenCalled();
+      expect(CartItemOperateService.getTotalNumber).toHaveBeenCalled();
+      expect(CartItemOperateService.addCartItemNumber).toHaveBeenCalled();
 
     });
 
@@ -115,9 +115,9 @@ describe('CartItemsListCtrl', function () {
     beforeEach(function () {
 
       cartItem = {item: {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}, number: 2};
-      spyOn(cartItemOperateService, 'getTotalMoney');
-      spyOn(cartItemOperateService, 'getTotalNumber');
-      spyOn(cartItemOperateService, 'reduceCartItemNumber');
+      spyOn(CartItemOperateService, 'getTotalMoney');
+      spyOn(CartItemOperateService, 'getTotalNumber');
+      spyOn(CartItemOperateService, 'reduceCartItemNumber');
       createController();
     });
 
@@ -125,9 +125,9 @@ describe('CartItemsListCtrl', function () {
 
       $scope.reduceCartItemNumber(cartItem);
 
-      expect(cartItemOperateService.getTotalMoney).toHaveBeenCalled();
-      expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
-      expect(cartItemOperateService.reduceCartItemNumber).toHaveBeenCalled();
+      expect(CartItemOperateService.getTotalMoney).toHaveBeenCalled();
+      expect(CartItemOperateService.getTotalNumber).toHaveBeenCalled();
+      expect(CartItemOperateService.reduceCartItemNumber).toHaveBeenCalled();
 
     });
 
@@ -139,9 +139,9 @@ describe('CartItemsListCtrl', function () {
     beforeEach(function () {
 
       cartItem = {item: {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}, number: 2};
-      spyOn(cartItemOperateService, 'getTotalMoney');
-      spyOn(cartItemOperateService, 'getTotalNumber');
-      spyOn(cartItemOperateService, 'deleteCartItem');
+      spyOn(CartItemOperateService, 'getTotalMoney');
+      spyOn(CartItemOperateService, 'getTotalNumber');
+      spyOn(CartItemOperateService, 'deleteCartItem');
       createController();
     });
 
@@ -149,9 +149,9 @@ describe('CartItemsListCtrl', function () {
 
       $scope.deleteCartItem(cartItem);
 
-      expect(cartItemOperateService.getTotalMoney).toHaveBeenCalled();
-      expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
-      expect(cartItemOperateService.deleteCartItem).toHaveBeenCalled();
+      expect(CartItemOperateService.getTotalMoney).toHaveBeenCalled();
+      expect(CartItemOperateService.getTotalNumber).toHaveBeenCalled();
+      expect(CartItemOperateService.deleteCartItem).toHaveBeenCalled();
     });
   });
 });

@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('CartItemsListCtrl', function ($scope, cartItemOperateService) {
+  .controller('CartItemsListCtrl', function ($scope, CartItemOperateService) {
 
   function getTotalNumber(cartItems) {
-    return cartItemOperateService.getTotalNumber(cartItems);
+    return CartItemOperateService.getTotalNumber(cartItems);
   }
 
   function getTotalMoney(cartItems) {
-    return cartItemOperateService.getTotalMoney(cartItems);
+    return CartItemOperateService.getTotalMoney(cartItems);
   }
 
   function updateTotalAndTotalNumber() {
@@ -26,22 +26,22 @@ angular.module('letusgoApp')
   updateTotalAndTotalNumber();
 
   $scope.changeCartItemNumber = function(cartItem){
-    cartItemOperateService.changeCurrentCartItemNumber(cartItem, $scope.cartItems);
+    CartItemOperateService.changeCurrentCartItemNumber(cartItem, $scope.cartItems);
     updateData();
   };
 
   $scope.addCartItemNumber = function(cartItem){
-    cartItemOperateService.addCartItemNumber(cartItem, $scope.cartItems);
+    CartItemOperateService.addCartItemNumber(cartItem, $scope.cartItems);
     updateData();
   };
 
   $scope.reduceCartItemNumber = function(cartItem){
-    cartItemOperateService.reduceCartItemNumber(cartItem, $scope.cartItems);
+    CartItemOperateService.reduceCartItemNumber(cartItem, $scope.cartItems);
     updateData();
   };
 
   $scope.deleteCartItem = function(cartItem){
-    $scope.cartItems = cartItemOperateService.deleteCartItem(cartItem, $scope.cartItems);
+    $scope.cartItems = CartItemOperateService.deleteCartItem(cartItem, $scope.cartItems);
     updateData();
   };
 });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('cartItemOperateService', function(){
+  .service('CartItemOperateService', function(){
 
     this.getTotalNumber = function(array){
         var totalNumber = 0;
@@ -79,6 +79,4 @@ angular.module('letusgoApp')
        }
 
      };
-
-
   });

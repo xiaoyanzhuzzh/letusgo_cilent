@@ -1,13 +1,13 @@
 'use strict';
 describe('CartPayListCtrl', function () {
-   var $scope, cartItemOperateService, createController;
+   var $scope, CartItemOperateService, createController;
   beforeEach(function () {
     module('letusgoApp');
 
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      cartItemOperateService = $injector.get('cartItemOperateService');
+      CartItemOperateService = $injector.get('CartItemOperateService');
 
       var $controller = $injector.get('$controller');
 
@@ -15,7 +15,7 @@ describe('CartPayListCtrl', function () {
 
         return $controller ('CartPayListCtrl', {
           $scope: $scope,
-          cartItemOperateService: cartItemOperateService
+          CartItemOperateService: CartItemOperateService
         });
       };
     });
@@ -40,14 +40,14 @@ describe('CartPayListCtrl', function () {
       beforeEach(function () {
 
         spyOn(Util.localStorage, 'getStorageItem');
-        spyOn(cartItemOperateService,'getTotalMoney').and.returnValue(1);
+        spyOn(CartItemOperateService,'getTotalMoney').and.returnValue(1);
         createController();
       });
 
       it ('should get totalMoney', function () {
 
         expect($scope.total).toEqual(1);
-        expect(cartItemOperateService.getTotalMoney).toHaveBeenCalled();
+        expect(CartItemOperateService.getTotalMoney).toHaveBeenCalled();
       });
     });
 
@@ -56,14 +56,14 @@ describe('CartPayListCtrl', function () {
       beforeEach(function () {
 
         spyOn(Util.localStorage, 'getStorageItem');
-        spyOn(cartItemOperateService,'getTotalNumber').and.returnValue(1);
+        spyOn(CartItemOperateService,'getTotalNumber').and.returnValue(1);
         createController();
       });
 
       it ('should get totalNumber', function () {
 
         expect($scope.totalNumber).toEqual(1);
-        expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
+        expect(CartItemOperateService.getTotalNumber).toHaveBeenCalled();
         expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
       });
     });

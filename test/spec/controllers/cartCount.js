@@ -43,8 +43,9 @@ describe('addCartCountCtrl', function () {
       $scope.addCartCount();
 
       expect($scope.cartCount).toEqual(32);
-      expect(Util.localStorage.getStorageItem)toHaveBeenCalled();
-      expect(Util.localStorage.setStorageItem)toHaveBeenCalled();
+
+      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
     });
 
     it ('should make cartItems be 0', function () {
@@ -54,8 +55,8 @@ describe('addCartCountCtrl', function () {
       $scope.addCartCount();
 
       expect($scope.cartCount).toEqual(1);
-      expect(Util.localStorage.getStorageItem))toHaveBeenCalled();
-      expect(Util.localStorage.setStorageItem)toHaveBeenCalled();
+      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
     });
   });
 });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('addToCartService', function(){
+  .service('AddToCartService', function(){
 
         this.isExistInCart = function(barcode, cartItems){
             var item;

@@ -1,7 +1,7 @@
 'use strict';
-describe('addToCartService', function () {
+describe('AddToCartService', function () {
 
-    var addToCartService;
+    var AddToCartService;
 
     beforeEach(function () {
 
@@ -9,7 +9,7 @@ describe('addToCartService', function () {
 
         inject(function ($injector) {
 
-            addToCartService = $injector.get('addToCartService');
+            AddToCartService = $injector.get('AddToCartService');
         });
     });
 
@@ -17,7 +17,7 @@ describe('addToCartService', function () {
 
       var barcode = 'ITEM000000';
       var cartItems = [];
-      var result = addToCartService.isExistInCart(barcode, cartItems);
+      var result = AddToCartService.isExistInCart(barcode, cartItems);
 
       expect(result).toBe(undefined);
     });
@@ -27,7 +27,7 @@ describe('addToCartService', function () {
       var barcode = 'ITEM000000';
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
       var cartItems = [{item: item, number: 1}];
-      var result = addToCartService.isExistInCart(barcode, cartItems);
+      var result = AddToCartService.isExistInCart(barcode, cartItems);
 
       expect(result).toBe(undefined);
     });
@@ -37,7 +37,7 @@ describe('addToCartService', function () {
       var barcode = 'ITEM000001';
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
       var cartItems = [{item: item, number: 1}];
-      var result = addToCartService.isExistInCart(barcode, cartItems);
+      var result = AddToCartService.isExistInCart(barcode, cartItems);
 
       expect(result).toEqual(cartItems[0]);
     });

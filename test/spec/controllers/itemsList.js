@@ -93,7 +93,7 @@ describe('Controller: ItemsListCtrl', function () {
       $scope.addToCart(item[0]);
 
       expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
-      expect(addToCartService.isExistInCart).toHaveBeenCalled();
+      expect(AddToCartService.isExistInCart).toHaveBeenCalled();
     });
   });
 
@@ -116,12 +116,12 @@ describe('Controller: ItemsListCtrl', function () {
 
     it ('function should have been called and can add different to cart', function () {
 
-      spyOn(addToCartService, 'isExistInCart');
+      spyOn(AddToCartService, 'isExistInCart');
       createController();
       $scope.addToCart(itemA);
 
       expect($scope.cartItems.length).toBe(2);
-      expect(addToCartService.isExistInCart).toHaveBeenCalled();
+      expect(AddToCartService.isExistInCart).toHaveBeenCalled();
       expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
       expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
 
@@ -134,7 +134,7 @@ describe('Controller: ItemsListCtrl', function () {
 
     it ('function should have been called and can make the same cartItem number add by 1', function () {
 
-      spyOn(addToCartService, 'isExistInCart').and.returnValue(
+      spyOn(AddToCartService, 'isExistInCart').and.returnValue(
 
         {item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'},number: 1}
       );
@@ -142,7 +142,7 @@ describe('Controller: ItemsListCtrl', function () {
       $scope.addToCart(itemB);
 
       expect($scope.cartItems.length).toBe(1);
-      expect(addToCartService.isExistInCart).toHaveBeenCalled();
+      expect(AddToCartService.isExistInCart).toHaveBeenCalled();
       expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
       expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
 

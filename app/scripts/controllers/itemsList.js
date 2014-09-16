@@ -2,7 +2,7 @@
 
 
 angular.module('letusgoApp')
-    .controller('ItemsListCtrl', function ($scope, itemsService, addToCartService) {
+    .controller('ItemsListCtrl', function ($scope, ItemsService, AddToCartService) {
 
         $scope.items = Util.localStorage.getStorageItem('items');
 
@@ -16,7 +16,7 @@ angular.module('letusgoApp')
             $scope.cartItems = [];
           }
 
-          var cartItem = addToCartService.isExistInCart(item.barcode, $scope.cartItems);
+          var cartItem = AddToCartService.isExistInCart(item.barcode, $scope.cartItems);
 
           if (cartItem) {
             cartItem.number += 1;

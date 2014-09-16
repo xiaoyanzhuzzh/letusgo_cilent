@@ -28,7 +28,7 @@ describe('CategoryAddCtrl', function () {
     spyOn(Util.localStorage, 'getStorageItem');
     createController();
 
-    expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
+    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
   });
 
   it ('should load categorys from localStorage', function () {
@@ -36,7 +36,7 @@ describe('CategoryAddCtrl', function () {
     spyOn(Util.localStorage, 'getStorageItem');
     createController();
 
-    expect(Util.localStorage.getStorageItem.calls.length).toBe(2);
+    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
   });
 
   it ('should have showSignal', function () {
@@ -82,7 +82,7 @@ describe('CategoryAddCtrl', function () {
       expect($scope.items.length).toBe(0);
       expect($scope.categorys.length).toEqual(0);
       expect(categoryService.deleteItem.calls.length).toEqual(1);
-      expect(categoryService.deleteCategory.calls.length).toBe(1);
+      expect(categoryService.deleteCategory).toHaveBeenCalled();
     });
   });
 
@@ -98,7 +98,7 @@ describe('CategoryAddCtrl', function () {
       createController();
       $scope.addNewCategory(newCategory);
 
-      expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
+      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
     });
   });
 });

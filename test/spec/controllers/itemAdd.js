@@ -76,7 +76,7 @@ describe('ItemAddCtrl', function () {
 
       expect($scope.items.length).toBe(0);
 
-      expect(itemManagementService.deleteItem.calls.length).toEqual(1);
+      expect(itemManagementService.deleteItem).toHaveBeenCalled();
       expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
     });
   });

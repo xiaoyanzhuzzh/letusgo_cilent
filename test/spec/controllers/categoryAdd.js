@@ -81,7 +81,8 @@ describe('CategoryAddCtrl', function () {
 
       expect($scope.items.length).toBe(0);
       expect($scope.categorys.length).toEqual(0);
-      expect(categoryService.deleteItem.calls.length).toEqual(1);
+
+      expect(categoryService.deleteItem).toHaveBeenCalled();
       expect(categoryService.deleteCategory).toHaveBeenCalled();
     });
   });

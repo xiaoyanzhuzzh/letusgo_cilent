@@ -23,7 +23,7 @@ describe('addCartCountCtrl', function () {
 
   it ('should load cartCount from localStorage', function () {
 
-    spyOn(Util.localStorage, 'getStorageItem').andReturn(31);
+    spyOn(Util.localStorage, 'getStorageItem').and.returnValue(31);
     createController();
 
     expect($scope.cartCount).toEqual(31);
@@ -38,7 +38,7 @@ describe('addCartCountCtrl', function () {
     });
 
     it ('should make cartCount add by 1', function () {
-      spyOn(Util.localStorage, 'getStorageItem').andReturn(31);
+      spyOn(Util.localStorage, 'getStorageItem').and.returnValue(31);
       createController();
       $scope.addCartCount();
 
@@ -49,7 +49,7 @@ describe('addCartCountCtrl', function () {
 
     it ('should make cartItems be 0', function () {
 
-      spyOn(Util.localStorage, 'getStorageItem').andReturn(undefined);
+      spyOn(Util.localStorage, 'getStorageItem').and.returnValue(undefined);
       createController();
       $scope.addCartCount();
 

@@ -32,7 +32,7 @@ describe('CartPayListCtrl', function () {
       expect($scope.cartPayList.length).toBe(1);
       expect($scope.cartPayList[0].number).toEqual(1);
       expect($scope.cartPayList[0].item.barcode).toEqual('ITEM000001');
-      expect(Util.localStorage.getStorageItem.calls.length).toBe(1);
+      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
     });
 
     describe('totalMoney', function () {
@@ -47,7 +47,7 @@ describe('CartPayListCtrl', function () {
       it ('should get totalMoney', function () {
 
         expect($scope.total).toEqual(1);
-        expect(cartItemOperateService.getTotalMoney.calls.length).toBe(1);
+        expect(cartItemOperateService.getTotalMoney).toHaveBeenCalled();
       });
     });
 
@@ -63,8 +63,8 @@ describe('CartPayListCtrl', function () {
       it ('should get totalNumber', function () {
 
         expect($scope.totalNumber).toEqual(1);
-        expect(cartItemOperateService.getTotalNumber.calls.length).toBe(1);
-        expect(Util.localStorage.getStorageItem.calls.length).toBe(1);
+        expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
+        expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
       });
     });
   });

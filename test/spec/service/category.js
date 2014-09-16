@@ -34,8 +34,8 @@ describe('categoryService', function () {
       expect(categorys[0].id).toEqual(0);
       expect(categorys[0].name).toEqual('饮品');
 
-      expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
-      expect(categoryService.getCategorys.calls.length).toBe(1);
+      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+      expect(categoryService.getCategorys).toHaveBeenCalled();
     });
 
     describe('deleteCategory function', function () {
@@ -55,7 +55,8 @@ describe('categoryService', function () {
         var result = categoryService.deleteCategory(category, categorys);
 
         expect(result.length).toBe(0);
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
+
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
       });
 
       it('should have deleteCategory function and return categorys is the same array', function(){
@@ -68,7 +69,7 @@ describe('categoryService', function () {
         expect(result[0].name).toEqual('饮品');
         expect(result[0].id).toEqual(0);
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(0);
+        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
       });
     });
 
@@ -89,7 +90,8 @@ describe('categoryService', function () {
         var result = categoryService.deleteItem(category, items);
 
         expect(result.length).toBe(0);
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
+
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
       });
 
       it('should have deleteItem function and return categorys is the same array', function(){
@@ -102,7 +104,7 @@ describe('categoryService', function () {
         expect(result[0].category).toEqual('饮品');
         expect(result[0].name).toEqual('雪碧');
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
       });
     });
 
@@ -125,7 +127,8 @@ describe('categoryService', function () {
         expect(result.length).toBe(1);
         expect(result[0].name).toEqual('饮品');
         expect(result[0].id).toBe(0);
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
+
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
       });
 
       it('should have changeCategory function and return the same categorys', function(){
@@ -137,7 +140,8 @@ describe('categoryService', function () {
         expect(result.length).toBe(1);
         expect(result[0].name).toEqual('饮品');
         expect(result[0].id).toBe(0);
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(0);
+
+        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
       });
     });
 
@@ -164,8 +168,8 @@ describe('categoryService', function () {
       //   expect(result[0].category).toEqual('饮品t');
       //   expect(result[0].name).toEqual('雪碧');
       //
-      //   expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
-      //   expect(Util.localStorage.getStorageItem.calls.length).toBe(1);
+      //   expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+      //   expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
       // });
 
       it('should have changeItem function and return the same items', function(){
@@ -179,8 +183,8 @@ describe('categoryService', function () {
         expect(result[0].category).toEqual('饮品');
         expect(result[0].name).toEqual('雪碧');
 
-        expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
-        expect(Util.localStorage.getStorageItem.calls.length).toBe(1);
+        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+        expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
       });
    });
 });

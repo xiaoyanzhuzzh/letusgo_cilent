@@ -5,7 +5,7 @@ describe('itemManagementService', function () {
 
     beforeEach(function () {
 
-        module('myYoApp');
+        module('letusgoApp');
 
         inject(function ($injector) {
 

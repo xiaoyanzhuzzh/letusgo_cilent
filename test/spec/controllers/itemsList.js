@@ -4,7 +4,7 @@ describe('Controller: ItemsListCtrl', function () {
   var $scope, itemsService, createController, addToCartService;
 
   beforeEach(function () {
-    module('myYoApp');
+    module('letusgoApp');
 
     inject(function ($injector) {
 

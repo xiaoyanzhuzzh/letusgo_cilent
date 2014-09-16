@@ -2,7 +2,7 @@
 describe('CartPayListCtrl', function () {
    var $scope, cartItemOperateService, createController;
   beforeEach(function () {
-    module('myYoApp');
+    module('letusgoApp');
 
     inject(function ($injector) {
 

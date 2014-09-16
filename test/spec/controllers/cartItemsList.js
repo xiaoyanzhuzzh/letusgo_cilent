@@ -3,7 +3,7 @@ describe('CartItemsListCtrl', function () {
   var $scope, createController, cartItemOperateService;
    beforeEach(function () {
 
-     module('myYoApp');
+     module('letusgoApp');
 
      inject(function ($injector) {
 

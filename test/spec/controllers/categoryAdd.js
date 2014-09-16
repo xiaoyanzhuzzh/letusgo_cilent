@@ -4,7 +4,7 @@ describe('CategoryAddCtrl', function () {
   var $scope, createController, categoryService;
 
   beforeEach(function () {
-       module('myYoApp');
+       module('letusgoApp');
 
        inject(function ($injector) {
 

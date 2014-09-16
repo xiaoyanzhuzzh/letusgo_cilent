@@ -4,7 +4,7 @@ describe('addCartCountCtrl', function () {
   var $scope, createController;
 
   beforeEach(function () {
-       module('myYoApp');
+       module('letusgoApp');
 
        inject(function ($injector) {
 

@@ -4,7 +4,7 @@ describe('HomeCtrl', function () {
   var $scope, itemsService, categoryService, createController;
 
   beforeEach(function () {
-       module('myYoApp');
+       module('letusgoApp');
 
        inject(function ($injector) {
 

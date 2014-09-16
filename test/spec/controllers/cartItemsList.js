@@ -25,7 +25,7 @@ describe('CartItemsListCtrl', function () {
   describe('cartItems', function () {
 
     it('should load cartItems', function () {
-      spyOn(Util.localStorage, 'getStorageItem').andReturn(
+      spyOn(Util.localStorage, 'getStorageItem').and.returnValue(
         [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'},number: 1}]
       );
       createController();
@@ -42,7 +42,7 @@ describe('CartItemsListCtrl', function () {
     it('should load total', function () {
 
       spyOn(Util.localStorage, 'getStorageItem');
-      spyOn(cartItemOperateService,'getTotalMoney').andReturn(3);
+      spyOn(cartItemOperateService,'getTotalMoney').and.returnValue(3);
       createController();
 
       expect($scope.total).toBe(3);
@@ -55,7 +55,7 @@ describe('CartItemsListCtrl', function () {
     it('should load totalNumber', function () {
 
       spyOn(Util.localStorage, 'getStorageItem');
-      spyOn(cartItemOperateService,'getTotalNumber').andReturn(1);
+      spyOn(cartItemOperateService,'getTotalNumber').and.returnValue(1);
       createController();
 
       expect($scope.totalNumber).toBe(1);

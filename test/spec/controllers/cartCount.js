@@ -27,7 +27,7 @@ describe('addCartCountCtrl', function () {
     createController();
 
     expect($scope.cartCount).toEqual(31);
-    expect(Util.localStorage.getStorageItem.calls.length).toBe(1);
+    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
   });
 
   describe('addCartCount',function () {
@@ -54,7 +54,7 @@ describe('addCartCountCtrl', function () {
       $scope.addCartCount();
 
       expect($scope.cartCount).toEqual(1);
-      expect(Util.localStorage.getStorageItem.calls.length).toBe(1);
+      expect(Util.localStorage.getStorageItem).calls.length).toBe(1);
       expect(Util.localStorage.setStorageItem.calls.length).toBe(1);
     });
   });

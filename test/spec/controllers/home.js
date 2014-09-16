@@ -31,7 +31,7 @@ describe('HomeCtrl', function () {
     createController();
 
     expect($scope.items.length).toEqual(0);
-    expect(itemsService.getItems.calls.length).toBe(1);
+    expect(itemsService.getItems).toHaveBeenCalled();
   });
 
   it ('should load categorys', function () {
@@ -40,6 +40,6 @@ describe('HomeCtrl', function () {
     createController();
 
     expect($scope.categorys.length).toEqual(0);
-    expect(categoryService.getCategorysAndId.calls.length).toBe(1);
+    expect(categoryService.getCategorysAndId).toHaveBeenCalled();
   });
 });

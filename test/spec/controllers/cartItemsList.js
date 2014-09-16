@@ -33,7 +33,7 @@ describe('CartItemsListCtrl', function () {
       expect($scope.cartItems.length).toBe(1);
       expect($scope.cartItems[0].number).toEqual(1);
       expect($scope.cartItems[0].item.barcode).toEqual('ITEM000001');
-      expect(Util.localStorage.getStorageItem.calls.length).toBe(1);
+      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
     });
   });
 
@@ -46,7 +46,7 @@ describe('CartItemsListCtrl', function () {
       createController();
 
       expect($scope.total).toBe(3);
-      expect(Util.localStorage.getStorageItem.calls.length).toBe(1);
+      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
     });
   });
 
@@ -59,7 +59,7 @@ describe('CartItemsListCtrl', function () {
       createController();
 
       expect($scope.totalNumber).toBe(1);
-      expect(Util.localStorage.getStorageItem.calls.length).toBe(1);
+      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
     });
   });
 
@@ -79,9 +79,9 @@ describe('CartItemsListCtrl', function () {
 
       $scope.changeCartItemNumber(cartItem);
 
-      expect(cartItemOperateService.getTotalMoney.calls.length).toBe(2);
-      expect(cartItemOperateService.getTotalNumber.calls.length).toBe(3);
-      expect(cartItemOperateService.changeCurrentCartItemNumber.calls.length).toBe(1);
+      expect(cartItemOperateService.getTotalMoney).toHaveBeenCalled();
+      expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
+      expect(cartItemOperateService.changeCurrentCartItemNumber).toHaveBeenCalled();
     });
   });
 
@@ -101,9 +101,9 @@ describe('CartItemsListCtrl', function () {
 
       $scope.addCartItemNumber(cartItem);
 
-      expect(cartItemOperateService.getTotalMoney.calls.length).toBe(2);
-      expect(cartItemOperateService.getTotalNumber.calls.length).toBe(3);
-      expect(cartItemOperateService.addCartItemNumber.calls.length).toBe(1);
+      expect(cartItemOperateService.getTotalMoney).toHaveBeenCalled();
+      expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
+      expect(cartItemOperateService.addCartItemNumber).toHaveBeenCalled();
 
     });
 
@@ -125,9 +125,9 @@ describe('CartItemsListCtrl', function () {
 
       $scope.reduceCartItemNumber(cartItem);
 
-      expect(cartItemOperateService.getTotalMoney.calls.length).toBe(2);
-      expect(cartItemOperateService.getTotalNumber.calls.length).toBe(3);
-      expect(cartItemOperateService.reduceCartItemNumber.calls.length).toBe(1);
+      expect(cartItemOperateService.getTotalMoney).toHaveBeenCalled();
+      expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
+      expect(cartItemOperateService.reduceCartItemNumber).toHaveBeenCalled();
 
     });
 
@@ -149,9 +149,9 @@ describe('CartItemsListCtrl', function () {
 
       $scope.deleteCartItem(cartItem);
 
-      expect(cartItemOperateService.getTotalMoney.calls.length).toBe(2);
-      expect(cartItemOperateService.getTotalNumber.calls.length).toBe(3);
-      expect(cartItemOperateService.deleteCartItem.calls.length).toBe(1);
+      expect(cartItemOperateService.getTotalMoney).toHaveBeenCalled();
+      expect(cartItemOperateService.getTotalNumber).toHaveBeenCalled();
+      expect(cartItemOperateService.deleteCartItem).toHaveBeenCalled();
     });
   });
 });

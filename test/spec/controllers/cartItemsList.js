@@ -1,6 +1,6 @@
 'use strict';
 describe('CartItemsListCtrl', function () {
-  var $scope, createController, CartItemOperateService;
+  var $scope, createController, CartItemOperateService, ItemsService;
    beforeEach(function () {
 
      module('letusgoApp');
@@ -9,6 +9,7 @@ describe('CartItemsListCtrl', function () {
 
        $scope = $injector.get('$rootScope').$new();
        CartItemOperateService = $injector.get('CartItemOperateService');
+       ItemsService = $injector.get('ItemsService');
 
        var $controller = $injector.get('$controller');
 
@@ -16,7 +17,8 @@ describe('CartItemsListCtrl', function () {
 
          return $controller ('CartItemsListCtrl', {
            $scope: $scope,
-           CartItemOperateService: CartItemOperateService
+           CartItemOperateService: CartItemOperateService,
+           ItemsService: ItemsService
          });
        };
      });
@@ -25,7 +27,7 @@ describe('CartItemsListCtrl', function () {
   describe('cartItems', function () {
 
     it('should load cartItems', function () {
-      spyOn(Util.localStorage, 'getStorageItem').and.returnValue(
+      spyOn(ItemsService, 'get').and.returnValue(
         [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'},number: 1}]
       );
       createController();
@@ -33,7 +35,7 @@ describe('CartItemsListCtrl', function () {
       expect($scope.cartItems.length).toBe(1);
       expect($scope.cartItems[0].number).toEqual(1);
       expect($scope.cartItems[0].item.barcode).toEqual('ITEM000001');
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
     });
   });
 
@@ -41,12 +43,12 @@ describe('CartItemsListCtrl', function () {
 
     it('should load total', function () {
 
-      spyOn(Util.localStorage, 'getStorageItem');
+      spyOn(ItemsService, 'get');
       spyOn(CartItemOperateService,'getTotalMoney').and.returnValue(3);
       createController();
 
       expect($scope.total).toBe(3);
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
     });
   });
 
@@ -54,12 +56,12 @@ describe('CartItemsListCtrl', function () {
 
     it('should load totalNumber', function () {
 
-      spyOn(Util.localStorage, 'getStorageItem');
+      spyOn(ItemsService, 'get');
       spyOn(CartItemOperateService,'getTotalNumber').and.returnValue(1);
       createController();
 
       expect($scope.totalNumber).toBe(1);
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
     });
   });
 

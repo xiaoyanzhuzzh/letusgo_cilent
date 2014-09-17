@@ -70,7 +70,7 @@ describe('Controller: ItemsListCtrl', function () {
 
       createController();
 
-      expect(ItemsService.get).toHaveBeenCalled();
+      expect(ItemsService.get.calls.count()).toBe(2);
     });
   });
 
@@ -83,7 +83,7 @@ describe('Controller: ItemsListCtrl', function () {
       item = [{barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}];
 
       spyOn(ItemsService, 'get').and.returnValue(undefined);
-      spyOn(AddToCartService, 'isExistInCart').and.returnValue(undefined);
+      spyOn(AddToCartService, 'getCartItems');
 
       createController();
     });
@@ -92,8 +92,8 @@ describe('Controller: ItemsListCtrl', function () {
 
       $scope.addToCart(item[0]);
 
-      expect(ItemsService.get).toHaveBeenCalled();
-      expect(AddToCartService.isExistInCart).toHaveBeenCalled();
+      expect(ItemsService.get.calls.count()).toBe(2);
+      expect(AddToCartService.getCartItems.calls.count()).toBe(1);
     });
   });
 
@@ -110,44 +110,29 @@ describe('Controller: ItemsListCtrl', function () {
 
           [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'},number: 1}]
       );
-
-      spyOn(ItemsService, 'set');
     });
 
     it ('function should have been called and can add different to cart', function () {
 
-      spyOn(AddToCartService, 'isExistInCart');
+      spyOn(AddToCartService, 'getCartItems');
       createController();
       $scope.addToCart(itemA);
 
-      expect($scope.cartItems.length).toBe(2);
-      expect(AddToCartService.isExistInCart).toHaveBeenCalled();
-      expect(ItemsService.get).toHaveBeenCalled();
-      expect(ItemsService.set).toHaveBeenCalled();
-
-      expect($scope.cartItems[0].number).toBe(1);
-      expect($scope.cartItems[0].item.barcode).toBe('ITEM000001');
-
-      expect($scope.cartItems[1].number).toBe(1);
-      expect($scope.cartItems[1].item.barcode).toBe('ITEM000000');
+      expect(ItemsService.get.calls.count()).toBe(2);
+      expect(AddToCartService.getCartItems.calls.count()).toBe(1);
     });
 
     it ('function should have been called and can make the same cartItem number add by 1', function () {
 
-      spyOn(AddToCartService, 'isExistInCart').and.returnValue(
+      spyOn(AddToCartService, 'getCartItems').and.returnValue(
 
         {item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'},number: 1}
       );
       createController();
       $scope.addToCart(itemB);
 
-      expect($scope.cartItems.length).toBe(1);
-      expect(AddToCartService.isExistInCart).toHaveBeenCalled();
-      expect(ItemsService.get).toHaveBeenCalled();
-      expect(ItemsService.set).toHaveBeenCalled();
-
-      expect($scope.cartItems[0].number).toBe(1);
-      expect($scope.cartItems[0].item.barcode).toBe('ITEM000001');
+      expect(AddToCartService.getCartItems.calls.count()).toBe(1);
+      expect(ItemsService.get.calls.count()).toBe(2);
     });
   });
 });

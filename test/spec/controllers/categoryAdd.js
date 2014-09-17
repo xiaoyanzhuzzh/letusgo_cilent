@@ -1,7 +1,7 @@
 'use strict';
 describe('CategoryAddCtrl', function () {
 
-  var $scope, createController, CategoryService;
+  var $scope, createController, CategoryService, ItemsService;
 
   beforeEach(function () {
        module('letusgoApp');
@@ -10,6 +10,7 @@ describe('CategoryAddCtrl', function () {
 
            $scope = $injector.get('$rootScope').$new();
            CategoryService = $injector.get('CategoryService');
+           ItemsService = $injector.get('ItemsService');
 
            var $controller = $injector.get('$controller');
 
@@ -17,7 +18,8 @@ describe('CategoryAddCtrl', function () {
 
              return $controller ('CategoryAddCtrl', {
                   $scope: $scope,
-                  CategoryService: CategoryService
+                  CategoryService: CategoryService,
+                  ItemsService: ItemsService
              });
            };
        });
@@ -25,18 +27,18 @@ describe('CategoryAddCtrl', function () {
 
   it ('should load items from localStorage', function () {
 
-    spyOn(Util.localStorage, 'getStorageItem');
+    spyOn(ItemsService, 'get');
     createController();
 
-    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+    expect(ItemsService.get).toHaveBeenCalled();
   });
 
   it ('should load categorys from localStorage', function () {
 
-    spyOn(Util.localStorage, 'getStorageItem');
+    spyOn(ItemsService, 'get');
     createController();
 
-    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+    expect(ItemsService.get).toHaveBeenCalled();
   });
 
   it ('should have showSignal', function () {
@@ -93,13 +95,13 @@ describe('CategoryAddCtrl', function () {
 
       var newCategory = '饮品';
 
-      spyOn(Util.localStorage, 'setStorageItem');
-      spyOn(Util.localStorage, 'getStorageItem').and.returnValue([{id: 0, name: '雪碧'}]);
+      spyOn(ItemsService, 'set');
+      spyOn(ItemsService, 'get').and.returnValue([{id: 0, name: '雪碧'}]);
 
       createController();
       $scope.addNewCategory(newCategory);
 
-      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+      expect(ItemsService.set).toHaveBeenCalled();
     });
   });
 });

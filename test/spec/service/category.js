@@ -57,7 +57,7 @@ describe('CategoryService', function () {
 
         expect(result.length).toBe(0);
 
-        expect(localStorageService.set).toHaveBeenCalled();
+        expect(localStorageService.set.calls.count()).toBe(1);
       });
 
       it('should have deleteCategory function and return categorys is the same array', function(){
@@ -167,10 +167,9 @@ describe('CategoryService', function () {
 
         expect(result.length).toBe(1);
         expect(result[0].category).toEqual('饮品t');
-        expect(result[0].name).toEqual('雪碧');
 
-        expect(localStorageService.set).toHaveBeenCalled();
-        expect(localStorageService.get).toHaveBeenCalled();
+        expect(localStorageService.set.calls.count()).toBe(2);
+        expect(localStorageService.get.calls.count()).toBe(1);
       });
 
       it('should have changeItem function and return the same items', function(){
@@ -184,8 +183,8 @@ describe('CategoryService', function () {
         expect(result[0].category).toEqual('饮品');
         expect(result[0].name).toEqual('雪碧');
 
-        expect(localStorageService.set).toHaveBeenCalled();
-        expect(localStorageService.get).toHaveBeenCalled();
+        expect(localStorageService.set.calls.count()).toBe(1);
+        expect(localStorageService.get.calls.count()).toBe(1);
       });
    });
 });

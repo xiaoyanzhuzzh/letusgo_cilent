@@ -73,7 +73,7 @@ angular.module('letusgoApp')
 
         this.changeItem = function (category, items) {
 
-          var changingCategory = localStorageService.getStorageItem('changingCategory');
+          var changingCategory = localStorageService.get('changingCategory');
 
           for(var i = 0; i < items.length; i++){
 

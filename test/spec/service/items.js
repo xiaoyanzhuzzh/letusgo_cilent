@@ -1,7 +1,7 @@
 'use strict';
 describe('ItemsService', function () {
 
-    var ItemsService;
+    var ItemsService, localStorageService;
 
     beforeEach(function () {
 
@@ -10,6 +10,8 @@ describe('ItemsService', function () {
         inject(function ($injector) {
 
             ItemsService = $injector.get('ItemsService');
+            localStorageService = $injector.get('localStorageService');
+
         });
     });
 
@@ -23,4 +25,21 @@ describe('ItemsService', function () {
       expect(items[2].category).toEqual('水果');
     });
 
+      it ('should have get function', function(){
+
+
+      spyOn(localStorageService, 'get');
+      ItemsService.get('items');
+
+      expect(localStorageService.get.calls.count()).toBe(1);
+    });
+
+    it ('should load all the same items', function(){
+
+      var cartCount = 9;
+      spyOn(localStorageService, 'set');
+      ItemsService.set('cartCount', cartCount);
+
+      expect(localStorageService.set.calls.count()).toBe(1);
+    });
 });

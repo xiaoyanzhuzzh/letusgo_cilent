@@ -1,7 +1,7 @@
 'use strict';
 describe('ItemManagementService', function () {
 
-    var ItemManagementService, items;
+    var ItemManagementService, items, localStorageService;
 
     beforeEach(function () {
 
@@ -10,6 +10,7 @@ describe('ItemManagementService', function () {
         inject(function ($injector) {
 
             ItemManagementService = $injector.get('ItemManagementService');
+            localStorageService = $injector.get('localStorageService');
         });
 
         items = [{barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}];
@@ -20,19 +21,19 @@ describe('ItemManagementService', function () {
       it ('should have deleteItem function and return a empty array', function(){
 
         var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
 
         var result = ItemManagementService.deleteItem(items, item);
 
         expect(result.length).toBe(0);
-        
-        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+
+        expect(localStorageService.set).toHaveBeenCalled();
       });
 
       it ('should have deleteItem function and return items array', function(){
 
         var item = {barcode:'ITEM000000', name: '可口可乐', unit:'瓶', price:3.00, category:'饮品'};
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
 
         var result = ItemManagementService.deleteItem(items, item);
 
@@ -40,7 +41,7 @@ describe('ItemManagementService', function () {
         expect(result[0].name).toEqual('雪碧');
         expect(result[0].category).toEqual('饮品');
 
-        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
+        expect(localStorageService.set.calls.count()).toBe(0);
       });
     });
 
@@ -57,10 +58,10 @@ describe('ItemManagementService', function () {
 
         var items = [{barcode:'ITEM000000', name: '可口可乐', unit:'瓶', price:3.00, category:'饮品'}];
 
-        spyOn(Util.localStorage,'getStorageItem').and.returnValue(
+        spyOn(localStorageService,'get').and.returnValue(
           {barcode:'ITEM000000', name: '可口可乐', unit:'瓶', price:3.00, category:'饮品'}
         );
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
 
         var result = ItemManagementService.modifyItem(newItem, items);
 
@@ -68,17 +69,17 @@ describe('ItemManagementService', function () {
         expect(result[0].name).toEqual('雪碧');
         expect(result[0].category).toEqual('饮品');
 
-        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+        expect(localStorageService.set).toHaveBeenCalled();
       });
 
       it ('should have modifyItem function and return the same array', function(){
 
         var items = [{barcode:'ITEM000000', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}];
 
-        spyOn(Util.localStorage,'getStorageItem').and.returnValue(
+        spyOn(localStorageService,'get').and.returnValue(
           {barcode:'ITEM000000', name: '可口可乐', unit:'瓶', price:3.00, category:'饮品'}
         );
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
 
         var result = ItemManagementService.modifyItem(newItem, items);
 
@@ -86,7 +87,7 @@ describe('ItemManagementService', function () {
         expect(result[0].name).toEqual('雪碧');
         expect(result[0].category).toEqual('饮品');
 
-        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+        expect(localStorageService.set).toHaveBeenCalled();
       });
     });
 });

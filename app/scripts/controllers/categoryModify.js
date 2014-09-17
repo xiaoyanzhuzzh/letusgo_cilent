@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('letusgoApp')
-    .controller('CategoryModifyCtrl', function ($scope, CategoryService) {
+    .controller('CategoryModifyCtrl', function ($scope, ItemsService, CategoryService) {
 
-        $scope.items = Util.localStorage.getStorageItem('items');
+        $scope.items = ItemsService.get('items');
 
-        $scope.categorys = Util.localStorage.getStorageItem('categorys');
+        $scope.categorys = ItemsService.get('categorys');
 
         $scope.modifySignal = false;
 
         $scope.modifyCurrentCategory = function (changingCategory) {
 
           $scope.modifySignal = true;
-          Util.localStorage.setStorageItem('changingCategory', changingCategory);
+          ItemsService.set('changingCategory', changingCategory);
         };
 
         $scope.cancelModify = function () {

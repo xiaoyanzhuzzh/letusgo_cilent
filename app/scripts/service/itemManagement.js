@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('ItemManagementService', function(){
+  .service('ItemManagementService', function(localStorageService){
 
         this.deleteItem = function (items, item) {
 
@@ -10,7 +10,7 @@ angular.module('letusgoApp')
             if(item.name === items[i].name){
 
               items = _.without(items, items[i]);
-              Util.localStorage.setStorageItem('items', items);
+              localStorageService.set('items', items);
             }
           }
           return items;
@@ -18,7 +18,7 @@ angular.module('letusgoApp')
 
         this.modifyItem = function (newItem, items) {
 
-          var changingItem = Util.localStorage.getStorageItem('changingItem');
+          var changingItem = localStorageService.getStorageItem('changingItem');
 
           for (var i = 0; i < items.length; i++) {
 
@@ -29,7 +29,7 @@ angular.module('letusgoApp')
               items[i].price = newItem.price;
             }
           }
-          Util.localStorage.setStorageItem('items', items);
+          localStorageService.set('items', items);
           return items;
         };
   });

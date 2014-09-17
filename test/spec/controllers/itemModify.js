@@ -20,7 +20,8 @@ describe('ItemModifyCtrl', function () {
         return $controller ('ItemModifyCtrl', {
           $scope: $scope,
           CategoryService: CategoryService,
-          ItemManagementService: ItemManagementService
+          ItemManagementService: ItemManagementService,
+          ItemsService: ItemsService
         });
       };
     });

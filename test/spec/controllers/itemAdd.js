@@ -11,7 +11,7 @@ describe('ItemAddCtrl', function () {
       $scope = $injector.get('$rootScope').$new();
       CategoryService = $injector.get('CategoryService');
       ItemManagementService = $injector.get('ItemManagementService');
-      v = $injector.get('ItemsService');
+      ItemsService = $injector.get('ItemsService');
 
       var $controller = $injector.get('$controller');
 
@@ -20,7 +20,8 @@ describe('ItemAddCtrl', function () {
         return $controller ('ItemAddCtrl', {
           $scope: $scope,
           CategoryService: CategoryService,
-          ItemManagementService: ItemManagementService
+          ItemManagementService: ItemManagementService,
+          ItemsService: ItemsService
         });
       };
     });

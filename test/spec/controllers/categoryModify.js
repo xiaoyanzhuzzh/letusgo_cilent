@@ -1,7 +1,7 @@
 'use strict';
 describe('CategoryModifyCtrl', function () {
 
-  var $scope, createController, CategoryService;
+  var $scope, createController, CategoryService, ItemsService;
 
   beforeEach(function () {
     module('letusgoApp');
@@ -10,6 +10,7 @@ describe('CategoryModifyCtrl', function () {
 
       $scope = $injector.get('$rootScope').$new();
       CategoryService = $injector.get('CategoryService');
+      ItemsService = $injector.get('ItemsService');
 
       var $controller = $injector.get('$controller');
 
@@ -17,7 +18,8 @@ describe('CategoryModifyCtrl', function () {
 
         return $controller ('CategoryModifyCtrl', {
           $scope: $scope,
-          CategoryService: CategoryService
+          CategoryService: CategoryService,
+          ItemsService: ItemsService
         });
       };
     });
@@ -25,18 +27,18 @@ describe('CategoryModifyCtrl', function () {
 
   it ('should load items from localStorage', function () {
 
-    spyOn(Util.localStorage, 'getStorageItem');
+    spyOn(ItemsService, 'get');
     createController();
 
-    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+    expect(ItemsService.get).toHaveBeenCalled();
   });
 
   it ('should load categorys from localStorage', function () {
 
-    spyOn(Util.localStorage, 'getStorageItem');
+    spyOn(ItemsService, 'get');
     createController();
 
-    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+    expect(ItemsService.get).toHaveBeenCalled();
   });
 
   it ('should have modifySignal', function () {
@@ -74,7 +76,7 @@ describe('CategoryModifyCtrl', function () {
 
       var category = {id: 0, name: '雪碧'};
 
-      spyOn(Util.localStorage, 'getStorageItem');
+      spyOn(ItemsService, 'get');
       spyOn(CategoryService, 'deleteCategory').and.returnValue([]);
       spyOn(CategoryService, 'deleteItem').and.returnValue([]);
 
@@ -84,7 +86,7 @@ describe('CategoryModifyCtrl', function () {
       expect($scope.items.length).toBe(0);
       expect($scope.categorys.length).toEqual(0);
 
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
       expect(CategoryService.deleteItem).toHaveBeenCalled();
       expect(CategoryService.deleteCategory).toHaveBeenCalled();
     });
@@ -96,7 +98,7 @@ describe('CategoryModifyCtrl', function () {
 
       var category = {id: 0, name: '饮品'};
 
-      spyOn(Util.localStorage, 'getStorageItem');
+      spyOn(ItemsService, 'get');
       spyOn(CategoryService, 'changeCategory').and.returnValue([{id: 0, name: '雪碧'}]);
       spyOn(CategoryService, 'changeItem').and.returnValue(
 
@@ -109,7 +111,7 @@ describe('CategoryModifyCtrl', function () {
       expect($scope.categorys.length).toEqual(1);
       expect($scope.items.length).toEqual(1);
 
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
       expect(CategoryService.changeCategory).toHaveBeenCalled();
       expect(CategoryService.changeItem).toHaveBeenCalled();
     });

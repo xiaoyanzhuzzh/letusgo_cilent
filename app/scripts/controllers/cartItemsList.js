@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('CartItemsListCtrl', function ($scope, CartItemOperateService) {
+  .controller('CartItemsListCtrl', function ($scope,ItemsService, CartItemOperateService) {
 
   function getTotalNumber(cartItems) {
     return CartItemOperateService.getTotalNumber(cartItems);
@@ -21,7 +21,7 @@ angular.module('letusgoApp')
     $scope.$parent.cartCount = getTotalNumber($scope.cartItems);
   }
 
-  $scope.cartItems = Util.localStorage.getStorageItem('cartItems');
+  $scope.cartItems = ItemsService.get('cartItems');
 
   updateTotalAndTotalNumber();
 

@@ -57,5 +57,18 @@ describe('AddToCartService', function () {
 
          expect(AddToCartService.isExistInCart.calls.count()).toBe(1);
        });
+
+       it ('should load cartItems to localStorage', function () {
+
+         var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
+         var cartItems = {item: item, number: 1};
+
+         spyOn(AddToCartService, 'isExistInCart').and.returnValue(cartItems);
+         spyOn(localStorageService, 'set');
+
+         AddToCartService.getCartItems(item, cartItems);
+
+         expect(AddToCartService.isExistInCart.calls.count()).toBe(1);
+       });
     });
 });

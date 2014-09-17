@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('CategoryService', function(){
+  .service('CategoryService', function(localStorageService){
 
         this.getCategorys = function (items) {
 
@@ -25,7 +25,7 @@ angular.module('letusgoApp')
           for (var i = 0; i < categoryNames.length; i++) {
 
             categorys.push({id: i, name: categoryNames[i]});
-            Util.localStorage.setStorageItem('categorys', categorys);
+            localStorageService.set('categorys', categorys);
           }
           return categorys;
         };
@@ -38,7 +38,7 @@ angular.module('letusgoApp')
             if(category.id === categorys[i].id){
 
               categorys = _.without(categorys, categorys[i]);
-              Util.localStorage.setStorageItem('categorys', categorys);
+              localStorageService.set('categorys', categorys);
             }
           }
           return categorys;
@@ -54,7 +54,7 @@ angular.module('letusgoApp')
               i--;
             }
           }
-          Util.localStorage.setStorageItem('items', items);
+          localStorageService.set('items', items);
           return items;
         };
 
@@ -65,7 +65,7 @@ angular.module('letusgoApp')
             if(category.name === categorys[i].name){
 
               categorys[i].name = category.name;
-              Util.localStorage.setStorageItem('categorys', categorys);
+              localStorageService.set('categorys', categorys);
             }
           }
           return categorys;
@@ -73,17 +73,17 @@ angular.module('letusgoApp')
 
         this.changeItem = function (category, items) {
 
-          var changingCategory = Util.localStorage.getStorageItem('changingCategory');
+          var changingCategory = localStorageService.getStorageItem('changingCategory');
 
           for(var i = 0; i < items.length; i++){
 
             if(items[i].category === changingCategory.name){
 
               items[i].category = category.name;
-              Util.localStorage.setStorageItem('changingCategory', category);
+              localStorageService.set('changingCategory', category);
             }
           }
-          Util.localStorage.setStorageItem('items', items);
+          localStorageService.set('items', items);
           return items;
         };
   });

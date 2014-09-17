@@ -1,7 +1,7 @@
 'use strict';
 describe('CartItemOperateService', function () {
 
-    var CartItemOperateService;
+    var CartItemOperateService, localStorageService;
 
     beforeEach(function () {
 
@@ -10,6 +10,7 @@ describe('CartItemOperateService', function () {
         inject(function ($injector) {
 
             CartItemOperateService = $injector.get('CartItemOperateService');
+            localStorageService = $injector.get('localStorageService');
         });
     });
 
@@ -58,12 +59,12 @@ describe('CartItemOperateService', function () {
 
         var cartItem = {item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1};
         var cartArray = [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1}];
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
         spyOn(CartItemOperateService,'getTotalNumber');
 
         CartItemOperateService.addCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+        expect(localStorageService.set).toHaveBeenCalled();
         expect(CartItemOperateService.getTotalNumber).toHaveBeenCalled();
       });
 
@@ -71,12 +72,12 @@ describe('CartItemOperateService', function () {
 
         var cartItem = {item: {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}, number: 1};
         var cartArray = [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1}];
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
         spyOn(CartItemOperateService,'getTotalNumber');
 
         CartItemOperateService.addCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
+        expect(localStorageService.set.calls.count()).toBe(0);
         expect(CartItemOperateService.getTotalNumber.calls.count()).toBe(0);
       });
     });
@@ -87,12 +88,12 @@ describe('CartItemOperateService', function () {
 
         var cartItem = {item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 2};
         var cartArray = [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 2}];
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
         spyOn(CartItemOperateService,'getTotalNumber');
 
         CartItemOperateService.reduceCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+        expect(localStorageService.set).toHaveBeenCalled();
         expect(CartItemOperateService.getTotalNumber).toHaveBeenCalled();
       });
 
@@ -100,12 +101,12 @@ describe('CartItemOperateService', function () {
 
         var cartItem = {item: {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}, number: 1};
         var cartArray = [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 2}];
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
         spyOn(CartItemOperateService,'getTotalNumber');
 
         CartItemOperateService.reduceCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
+        expect(localStorageService.set.calls.count()).toBe(0);
         expect(CartItemOperateService.getTotalNumber.calls.count()).toBe(0);
       });
 
@@ -113,12 +114,12 @@ describe('CartItemOperateService', function () {
 
         var cartItem = {item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1};
         var cartArray = [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1}];
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
         spyOn(CartItemOperateService,'getTotalNumber');
 
         CartItemOperateService.reduceCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
+        expect(localStorageService.set.calls.count()).toBe(0);
       });
     });
 
@@ -128,12 +129,12 @@ describe('CartItemOperateService', function () {
 
         var cartItem = {item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1};
         var cartArray = [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1}];
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
         spyOn(CartItemOperateService,'getTotalNumber');
 
         CartItemOperateService.deleteCartItem(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+        expect(localStorageService.set).toHaveBeenCalled();
         expect(CartItemOperateService.getTotalNumber).toHaveBeenCalled();
       });
 
@@ -141,12 +142,12 @@ describe('CartItemOperateService', function () {
 
         var cartItem = {item: {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}, number: 1};
         var cartArray = [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1}];
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
         spyOn(CartItemOperateService,'getTotalNumber');
 
         CartItemOperateService.deleteCartItem(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
+        expect(localStorageService.set.calls.count()).toBe(0);
         expect(CartItemOperateService.getTotalNumber.calls.count()).toBe(0);
       });
     });
@@ -157,12 +158,12 @@ describe('CartItemOperateService', function () {
 
         var cartItem = {item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1};
         var cartArray = [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1}];
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
         spyOn(CartItemOperateService,'getTotalNumber');
 
         CartItemOperateService.changeCurrentCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+        expect(localStorageService.set).toHaveBeenCalled();
         expect(CartItemOperateService.getTotalNumber).toHaveBeenCalled();
       });
 
@@ -170,12 +171,12 @@ describe('CartItemOperateService', function () {
 
         var cartItem = {item: {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}, number: 1};
         var cartArray = [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1}];
-        spyOn(Util.localStorage,'setStorageItem');
+        spyOn(localStorageService,'set');
         spyOn(CartItemOperateService,'getTotalNumber');
 
         CartItemOperateService.changeCurrentCartItemNumber(cartItem, cartArray);
 
-        expect(Util.localStorage.setStorageItem.calls.count()).toBe(0);
+        expect(localStorageService.set.calls.count()).toBe(0);
         expect(CartItemOperateService.getTotalNumber.calls.count()).toBe(0);
       });
     });

@@ -2,11 +2,11 @@
 
 
 angular.module('letusgoApp')
-    .controller('CategoryAddCtrl', function ($scope, CategoryService) {
+    .controller('CategoryAddCtrl', function ($scope, ItemsService, CategoryService) {
 
-        $scope.items = Util.localStorage.getStorageItem('items');
+        $scope.items = ItemsService.get('items');
 
-        $scope.categorys = Util.localStorage.getStorageItem('categorys');
+        $scope.categorys = ItemsService.get('categorys');
 
         $scope.showSignal = false;
 
@@ -32,7 +32,7 @@ angular.module('letusgoApp')
             category.id = $scope.categorys[$scope.categorys.length - 1].id + 1;
 
             $scope.categorys.push(category);
-            Util.localStorage.setStorageItem('categorys', $scope.categorys);
+            ItemsService.set('categorys', $scope.categorys);
 
             $scope.showSignal = false;
         };

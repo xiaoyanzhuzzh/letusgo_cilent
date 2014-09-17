@@ -1,7 +1,7 @@
 'use strict';
 describe('ItemModifyCtrl', function () {
 
-  var $scope, createController, CategoryService, ItemManagementService;
+  var $scope, createController, CategoryService, ItemManagementService, ItemsService;
 
   beforeEach(function () {
     module('letusgoApp');
@@ -11,6 +11,7 @@ describe('ItemModifyCtrl', function () {
       $scope = $injector.get('$rootScope').$new();
       CategoryService = $injector.get('CategoryService');
       ItemManagementService = $injector.get('ItemManagementService');
+      ItemsService = $injector.get('ItemsService');
 
       var $controller = $injector.get('$controller');
 
@@ -27,18 +28,18 @@ describe('ItemModifyCtrl', function () {
 
   it ('should load items from localStorage', function () {
 
-    spyOn(Util.localStorage, 'getStorageItem');
+    spyOn(ItemsService, 'get');
     createController();
 
-    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+    expect(ItemsService.get).toHaveBeenCalled();
   });
 
   it ('should load categorys from localStorage', function () {
 
-    spyOn(Util.localStorage, 'getStorageItem');
+    spyOn(ItemsService, 'get');
     createController();
 
-    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+    expect(ItemsService.get).toHaveBeenCalled();
   });
 
   it ('should have showItemSignal', function () {
@@ -53,13 +54,13 @@ describe('ItemModifyCtrl', function () {
     it('should make showItemSignal true', function () {
 
       var changeItem = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
-      spyOn(Util.localStorage, 'setStorageItem');
+      spyOn(ItemsService, 'set');
 
       createController();
       $scope.modifyButton(changeItem);
 
       expect($scope.showItemSignal).toBe(true);
-      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+      expect(ItemsService.set).toHaveBeenCalled();
     });
   });
 
@@ -81,13 +82,13 @@ describe('ItemModifyCtrl', function () {
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
 
       spyOn(ItemManagementService, 'deleteItem').and.returnValue([]);
-      spyOn(Util.localStorage, 'getStorageItem');
+      spyOn(ItemsService, 'get');
 
       createController();
       $scope.deleteCurrentItem(item);
 
       expect(ItemManagementService.deleteItem).toHaveBeenCalled();
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
     });
   });
 
@@ -97,8 +98,8 @@ describe('ItemModifyCtrl', function () {
 
       var newItem = {name: '雪碧', unit:'瓶', price:3.00};
 
-      spyOn(Util.localStorage, 'getStorageItem');
-      spyOn(Util.localStorage, 'setStorageItem');
+      spyOn(ItemsService, 'get');
+      spyOn(ItemsService, 'set');
 
       spyOn(ItemManagementService, 'modifyItem').and.returnValue(
 

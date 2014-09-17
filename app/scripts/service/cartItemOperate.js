@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('CartItemOperateService', function(){
+  .service('CartItemOperateService', function(localStorageService){
 
     this.getTotalNumber = function(array){
         var totalNumber = 0;
@@ -31,8 +31,8 @@ angular.module('letusgoApp')
             if(cartItem.item.name === cartArray[i].item.name) {
                  cartArray[i].number += 1;
 
-                 Util.localStorage.setStorageItem('cartItems', cartArray);
-                 Util.localStorage.setStorageItem('cartCount', this.getTotalNumber(cartArray));
+                localStorageService.set('cartItems', cartArray);
+                localStorageService.set('cartCount', this.getTotalNumber(cartArray));
             }
         }
     };
@@ -44,8 +44,8 @@ angular.module('letusgoApp')
                 if (cartArray[i].number > 1){
                     cartArray[i].number -= 1;
 
-                    Util.localStorage.setStorageItem('cartItems', cartArray);
-                    Util.localStorage.setStorageItem('cartCount', this.getTotalNumber(cartArray));
+                   localStorageService.set('cartItems', cartArray);
+                   localStorageService.set('cartCount', this.getTotalNumber(cartArray));
                 }
                 break;
             }
@@ -59,8 +59,8 @@ angular.module('letusgoApp')
              if( cartItem.item.name === cartArray[i].item.name){
                  cartArray = _.without(cartArray,cartArray[i]);
 
-                 Util.localStorage.setStorageItem('cartItems', cartArray);
-                 Util.localStorage.setStorageItem('cartCount', this.getTotalNumber(cartArray));
+                localStorageService.set('cartItems', cartArray);
+                localStorageService.set('cartCount', this.getTotalNumber(cartArray));
              }
          }
          return cartArray;
@@ -73,8 +73,8 @@ angular.module('letusgoApp')
 
                cartArray[i].number = parseInt(cartItem.number);
 
-               Util.localStorage.setStorageItem('cartItems', cartArray);
-               Util.localStorage.setStorageItem('cartCount', this.getTotalNumber(cartArray));
+              localStorageService.set('cartItems', cartArray);
+              localStorageService.set('cartCount', this.getTotalNumber(cartArray));
            }
        }
 

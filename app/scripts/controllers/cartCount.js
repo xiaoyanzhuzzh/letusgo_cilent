@@ -2,9 +2,9 @@
 
 
 angular.module('letusgoApp')
-    .controller('addCartCountCtrl', function ($scope) {
+    .controller('addCartCountCtrl', function ($scope, ItemsService) {
 
-        $scope.cartCount = Util.localStorage.getStorageItem('cartCount');
+        $scope.cartCount = ItemsService.get('cartCount');
 
         $scope.addCartCount = function(){
 
@@ -13,7 +13,7 @@ angular.module('letusgoApp')
                 $scope.cartCount = 0;
             }
 
-            Util.localStorage.setStorageItem('cartCount', ++$scope.cartCount);
+            ItemsService.set('cartCount', ++$scope.cartCount);
         };
 
     });

@@ -34,5 +34,5 @@ angular.module('letusgoApp')
          ItemsService.set('items', $scope.items);
 
          $scope.showItemSignal = false;
-        }
+       };
     });

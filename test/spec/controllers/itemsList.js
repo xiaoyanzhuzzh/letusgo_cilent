@@ -31,7 +31,7 @@ describe('Controller: ItemsListCtrl', function () {
                  {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}
               ];
 
-          spyOn(Util.localStorage, 'getStorageItem').and.returnValue(items);
+          spyOn(ItemsService, 'get').and.returnValue(items);
           createController();
 
     });
@@ -66,11 +66,11 @@ describe('Controller: ItemsListCtrl', function () {
 
     it ('should load cartItems from localStorage', function () {
 
-      spyOn(Util.localStorage, 'getStorageItem');
+      spyOn(ItemsService, 'get');
 
       createController();
 
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
     });
   });
 
@@ -82,7 +82,7 @@ describe('Controller: ItemsListCtrl', function () {
 
       item = [{barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}];
 
-      spyOn(Util.localStorage, 'getStorageItem').and.returnValue(undefined);
+      spyOn(ItemsService, 'get').and.returnValue(undefined);
       spyOn(AddToCartService, 'isExistInCart').and.returnValue(undefined);
 
       createController();
@@ -92,7 +92,7 @@ describe('Controller: ItemsListCtrl', function () {
 
       $scope.addToCart(item[0]);
 
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
       expect(AddToCartService.isExistInCart).toHaveBeenCalled();
     });
   });
@@ -106,12 +106,12 @@ describe('Controller: ItemsListCtrl', function () {
       itemA = {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'};
       itemB = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
 
-      spyOn(Util.localStorage, 'getStorageItem').and.returnValue(
+      spyOn(ItemsService, 'get').and.returnValue(
 
           [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'},number: 1}]
       );
 
-      spyOn(Util.localStorage, 'setStorageItem');
+      spyOn(ItemsService, 'set');
     });
 
     it ('function should have been called and can add different to cart', function () {
@@ -122,8 +122,8 @@ describe('Controller: ItemsListCtrl', function () {
 
       expect($scope.cartItems.length).toBe(2);
       expect(AddToCartService.isExistInCart).toHaveBeenCalled();
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
-      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
+      expect(ItemsService.set).toHaveBeenCalled();
 
       expect($scope.cartItems[0].number).toBe(1);
       expect($scope.cartItems[0].item.barcode).toBe('ITEM000001');
@@ -143,8 +143,8 @@ describe('Controller: ItemsListCtrl', function () {
 
       expect($scope.cartItems.length).toBe(1);
       expect(AddToCartService.isExistInCart).toHaveBeenCalled();
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
-      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
+      expect(ItemsService.set).toHaveBeenCalled();
 
       expect($scope.cartItems[0].number).toBe(1);
       expect($scope.cartItems[0].item.barcode).toBe('ITEM000001');

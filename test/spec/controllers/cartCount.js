@@ -1,7 +1,7 @@
 'use strict';
 describe('addCartCountCtrl', function () {
 
-  var $scope, createController;
+  var $scope, createController, ItemsService;
 
   beforeEach(function () {
        module('letusgoApp');
@@ -9,13 +9,15 @@ describe('addCartCountCtrl', function () {
        inject(function ($injector) {
 
            $scope = $injector.get('$rootScope').$new();
+           ItemsService = $injector.get('ItemsService');
 
            var $controller = $injector.get('$controller');
 
            createController = function () {
 
              return $controller ('addCartCountCtrl', {
-                  $scope: $scope
+                  $scope: $scope,
+                  ItemsService: ItemsService
              });
            };
        });
@@ -23,40 +25,40 @@ describe('addCartCountCtrl', function () {
 
   it ('should load cartCount from localStorage', function () {
 
-    spyOn(Util.localStorage, 'getStorageItem').and.returnValue(31);
+    spyOn(ItemsService, 'get').and.returnValue(31);
     createController();
 
     expect($scope.cartCount).toEqual(31);
-    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+    expect(ItemsService.get).toHaveBeenCalled();
   });
 
   describe('addCartCount',function () {
 
     beforeEach(function () {
 
-      spyOn(Util.localStorage, 'setStorageItem');
+      spyOn(ItemsService, 'set');
     });
 
     it ('should make cartCount add by 1', function () {
-      spyOn(Util.localStorage, 'getStorageItem').and.returnValue(31);
+      spyOn(ItemsService, 'get').and.returnValue(31);
       createController();
       $scope.addCartCount();
 
       expect($scope.cartCount).toEqual(32);
 
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
-      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
+      expect(ItemsService.set).toHaveBeenCalled();
     });
 
     it ('should make cartItems be 0', function () {
 
-      spyOn(Util.localStorage, 'getStorageItem').and.returnValue(undefined);
+      spyOn(ItemsService, 'get').and.returnValue(undefined);
       createController();
       $scope.addCartCount();
 
       expect($scope.cartCount).toEqual(1);
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
-      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
+      expect(ItemsService.set).toHaveBeenCalled();
     });
   });
 });

@@ -18,7 +18,7 @@ angular.module('letusgoApp')
 
         this.modifyItem = function (newItem, items) {
 
-          var changingItem = localStorageService.getStorageItem('changingItem');
+          var changingItem = localStorageService.get('changingItem');
 
           for (var i = 0; i < items.length; i++) {
 

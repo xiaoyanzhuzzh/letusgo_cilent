@@ -1,7 +1,7 @@
 'use strict';
 describe('ItemAddCtrl', function () {
 
-  var $scope, createController, CategoryService, ItemManagementService;
+  var $scope, createController, CategoryService, ItemManagementService, ItemsService;
 
   beforeEach(function () {
     module('letusgoApp');
@@ -11,6 +11,7 @@ describe('ItemAddCtrl', function () {
       $scope = $injector.get('$rootScope').$new();
       CategoryService = $injector.get('CategoryService');
       ItemManagementService = $injector.get('ItemManagementService');
+      v = $injector.get('ItemsService');
 
       var $controller = $injector.get('$controller');
 
@@ -27,18 +28,18 @@ describe('ItemAddCtrl', function () {
 
   it ('should load items from localStorage', function () {
 
-    spyOn(Util.localStorage, 'getStorageItem');
+    spyOn(ItemsService, 'get');
     createController();
 
-    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+    expect(ItemsService.get).toHaveBeenCalled();
   });
 
   it ('should load categorys from localStorage', function () {
 
-    spyOn(Util.localStorage, 'getStorageItem');
+    spyOn(ItemsService, 'get');
     createController();
 
-    expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+    expect(ItemsService.get).toHaveBeenCalled();
   });
 
   describe('addButton', function () {
@@ -69,7 +70,7 @@ describe('ItemAddCtrl', function () {
 
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
       spyOn(ItemManagementService, 'deleteItem').and.returnValue([]);
-      spyOn(Util.localStorage, 'getStorageItem');
+      spyOn(ItemsService, 'get');
 
       createController();
       $scope.deleteCurrentItem(item);
@@ -77,7 +78,7 @@ describe('ItemAddCtrl', function () {
       expect($scope.items.length).toBe(0);
 
       expect(ItemManagementService.deleteItem).toHaveBeenCalled();
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
     });
   });
 
@@ -88,14 +89,14 @@ describe('ItemAddCtrl', function () {
       var categoryName = '饮品';
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00};
 
-      spyOn(Util.localStorage, 'setStorageItem');
-      spyOn(Util.localStorage, 'getStorageItem').and.returnValue([]);
+      spyOn(ItemsService, 'set');
+      spyOn(ItemsService, 'get').and.returnValue([]);
 
       createController();
       $scope.addNewItem(item, categoryName);
 
-      expect(Util.localStorage.setStorageItem).toHaveBeenCalled();
-      expect(Util.localStorage.getStorageItem).toHaveBeenCalled();
+      expect(ItemsService.set).toHaveBeenCalled();
+      expect(ItemsService.get).toHaveBeenCalled();
     });
   });
 });

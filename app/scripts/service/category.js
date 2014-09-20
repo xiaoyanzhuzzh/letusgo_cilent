@@ -20,28 +20,28 @@ angular.module('letusgoApp')
         this.getCategorysAndId = function (items) {
 
           var categoryNames = this.getCategorys(items);
-          var categorys = [];
+          var categories = [];
 
           for (var i = 0; i < categoryNames.length; i++) {
 
-            categorys.push({id: i, name: categoryNames[i]});
-            localStorageService.set('categorys', categorys);
+            categories.push({id: i, name: categoryNames[i]});
+            localStorageService.set('categories', categories);
           }
-          return categorys;
+          return categories;
         };
 
 
-        this.deleteCategory = function (category, categorys) {
+        this.deleteCategory = function (category, categories) {
 
-          for (var i = 0; i < categorys.length; i++){
+          for (var i = 0; i < categories.length; i++){
 
-            if(category.id === categorys[i].id){
+            if(category.id === categories[i].id){
 
-              categorys = _.without(categorys, categorys[i]);
-              localStorageService.set('categorys', categorys);
+              categories = _.without(categories, categories[i]);
+              localStorageService.set('categories', categories);
             }
           }
-          return categorys;
+          return categories;
         };
 
         this.deleteItem = function (category, items) {
@@ -58,17 +58,17 @@ angular.module('letusgoApp')
           return items;
         };
 
-        this.changeCategory = function (category, categorys) {
+        this.changeCategory = function (category, categories) {
 
-          for (var i = 0; i < categorys.length; i++){
+          for (var i = 0; i < categories.length; i++){
 
-            if(category.name === categorys[i].name){
+            if(category.name === categories[i].name){
 
-              categorys[i].name = category.name;
-              localStorageService.set('categorys', categorys);
+              categories[i].name = category.name;
+              localStorageService.set('categories', categories);
             }
           }
-          return categorys;
+          return categories;
         };
 
         this.changeItem = function (category, items) {

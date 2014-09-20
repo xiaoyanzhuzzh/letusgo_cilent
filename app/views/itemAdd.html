@@ -28,9 +28,11 @@
                   <form>
                     <div class="text-center form-group">
                       类别：<select ng-model="category.name">
-                        <option  ng-repeat="category in categorys">{{category.name}}</option>
+                        <option  ng-repeat="category in categories">{{category.name}}</option>
                       </select>
                     </div>
+                    <div class="text-center form-group" ng-show="false">id:<input ng-model="item.id"></div>
+                    <div class="text-center form-group" ng-show="false">条形码：<input ng-model="item.barcode"></div>
                     <div class="text-center form-group">名称：<input ng-model="item.name"></div>
                     <div class="text-center form-group">单位：<input ng-model="item.unit"></div>
                     <div class="text-center form-group">单价：<input ng-model="item.price"></div>

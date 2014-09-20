@@ -25,11 +25,18 @@
             <div class="panel-body">
               <div class="row">
                 <form>
-                  <div class="text-center form-group">名称：<input ng-model="item.name"></div>
-                  <div class="text-center form-group">单位：<input ng-model="item.unit"></div>
-                  <div class="text-center form-group">单价：<input ng-model="item.price"></div>
                   <div class="text-center form-group">
-                    <button type="button" class="btn btn-success btn-sm" ng-click="modifyCurrentItem(item)">修改</button>
+                    类别：<select ng-model="category.name">
+                      <option  ng-repeat="category in categories">{{category.name}}</option>
+                    </select>
+                  </div>
+                  <div class="text-center form-group" ng-show="false">id:<input ng-model="itemInfo.id"></div>
+                  <div class="text-center form-group" ng-show="false">条形码：<input ng-model="itemInfo.barcode"></div>
+                  <div class="text-center form-group">名称：<input ng-model="itemInfo.name"></div>
+                  <div class="text-center form-group">单位：<input ng-model="itemInfo.unit"></div>
+                  <div class="text-center form-group">单价：<input ng-model="itemInfo.price"></div>
+                  <div class="text-center form-group">
+                    <button type="button" class="btn btn-success btn-sm" ng-click="modifyCurrentItem(itemInfo, category.name)">修改</button>
                     <button type="button" class="btn btn-warning btn-sm" ng-click="cancelButton()">取消</button>
                   </div>
                 </form>
@@ -49,10 +56,12 @@
             </div>
             <div class="panel-body">
               <div class="row" ng-repeat="item in items | filter:query">
-                <div class="col-md-3 form-group">{{item.name}}</div>
-                <div class="col-md-3 form-group">{{item.unit}}</div>
-                <div class="col-md-3 form-group">{{item.price}} 元</div>
-                <div class="col-md-3 form-group">
+                <div class="col-md-2 form-group">{{item.category}}</div>
+                <div class="col-md-3 form-group" ng-show="false">{{item.id}}</div>
+                <div class="col-md-2 form-group">{{item.name}}</div>
+                <div class="col-md-2 form-group">{{item.unit}}</div>
+                <div class="col-md-2 form-group">{{item.price}} 元</div>
+                <div class="col-md-2 form-group">
                   <button type="button" class="btn btn-info btn-sm" ng-click="modifyButton(item)">
                     修改
                   </button>

@@ -1,21 +1,77 @@
 'use strict';
 
 angular.module('letusgoApp')
-    .service('ItemsService',function(localStorageService){
+    .service('ItemsService',function(localStorageService, $http){
 
-        this.getItems = function(){
-          var items = [
-              {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'},
-              {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'},
-              {barcode:'ITEM000002', name:'苹果', unit: '斤',price: 5.50, category:'水果'},
-              {barcode:'ITEM000003', name: '荔枝', unit:'斤', price:15.00,category:'水果'},
-              {barcode:'ITEM000004', name:'电池', unit: '个', price:2.00, category:'生活用品'},
-              {barcode:'ITEM000005', name:'方便面', unit:'袋',price: 4.50, category:'零食'},
-           ];
+        function getItemsData(callback){
 
-          localStorageService.set('items',items);
-          return items;
-         };
+          $http.get('/api/items')
+           .success(function (data) {
+             callback(data);
+           });
+        }
+
+        function setItemsData(items, callback){
+
+          $http({method: 'POST', url: '/api/items', data:{'items': items}})
+           .success(function (data) {
+
+             callback(data);
+           });
+        }
+
+        this.getItems = function(callback){
+
+          getItemsData(function(data){
+
+            callback(data);
+          });
+        };
+
+        this.deleteItem = function (item, callback){
+
+          getItemsData(function(data){
+            var items = data;
+            var index = _.findIndex(items, {'id': item.id});
+            items.splice(index, 1);
+
+            setItemsData(items, function(newData){
+              if(newData === 'OK'){
+                callback(items);
+              }
+            });
+          });
+        };
+
+        this.modifyItem = function (newItem, callback){
+
+          getItemsData(function(data){
+            var items = data;
+            var index = _.findIndex(items, {'name': newItem.name});
+            items[index] = newItem;
+            setItemsData(items, function(newData){
+              if(newData === 'OK'){
+                callback(items);
+              }
+            });
+          });
+        };
+        // this.modifyItem = function (newItem, items) {
+        //
+        //   var changingItem = localStorageService.get('changingItem');
+        //
+        //   for (var i = 0; i < items.length; i++) {
+        //
+        //     if(changingItem.name === items[i].name) {
+        //
+        //       items[i].name = newItem.name;
+        //       items[i].unit = newItem.unit;
+        //       items[i].price = newItem.price;
+        //     }
+        //   }
+        //   localStorageService.set('items', items);
+        //   return items;
+        // };
 
          this.get = function(key){
 
@@ -23,7 +79,7 @@ angular.module('letusgoApp')
          };
 
          this.set = function (key, value){
-           
+
            localStorageService.set(key, value);
          };
     });

@@ -6,10 +6,12 @@ angular.module('letusgoApp')
 
       $scope.$emit('to-parent-itemsListActive');
 
-      $scope.items = ItemsService.get('items');
+      $scope.items = [];
+      ItemsService.getItems(function(data) {
+        $scope.items = data;
+      });
 
-      $scope.cartItems = ItemsService.get('cartItems');
-
+      $scope.cartItems = [];
       $scope.addToCart = function(item) {
 
         $scope.$emit('to-parent-cartCount');

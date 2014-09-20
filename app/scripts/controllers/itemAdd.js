@@ -2,11 +2,17 @@
 
 
 angular.module('letusgoApp')
-    .controller('ItemAddCtrl', function ($scope, ItemsService, ItemManagementService) {
+    .controller('ItemAddCtrl', function ($scope, ItemsService, ItemManagementService, CategoryService) {
 
-        $scope.items = ItemsService.get('items');
+        $scope.items = [];
+        ItemsService.getItems(function(data) {
+          $scope.items = data;
+        });
 
-        $scope.categorys = ItemsService.get('categorys');
+        $scope.categories = [];
+        CategoryService.getCategories(function(data) {
+          $scope.categories = data;
+        });
 
         $scope.showItemSignal = false;
 

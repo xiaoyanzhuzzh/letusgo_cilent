@@ -3,9 +3,15 @@
 angular.module('letusgoApp')
     .controller('CategoryModifyCtrl', function ($scope, ItemsService, CategoryService) {
 
-        $scope.items = ItemsService.get('items');
+        $scope.items = [];
+        ItemsService.getItems(function(data) {
+          $scope.items = data;
+        });
 
-        $scope.categorys = ItemsService.get('categorys');
+        $scope.categories = [];
+        CategoryService.getCategories(function(data) {
+          $scope.categories = data;
+        });
 
         $scope.modifySignal = false;
 
@@ -32,6 +38,4 @@ angular.module('letusgoApp')
 
           $scope.items = CategoryService.changeItem(category, $scope.items);
         };
-
-
     });

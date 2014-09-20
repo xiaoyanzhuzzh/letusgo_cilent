@@ -2,18 +2,29 @@
 
 
 angular.module('letusgoApp')
-  .controller('ItemModifyCtrl', function ($scope, CategoryService, ItemsService, ItemManagementService) {
+  .controller('ItemModifyCtrl', function ($scope, CategoryService, ItemsService) {
 
-    $scope.items = ItemsService.get('items');
+    $scope.items = [];
+    ItemsService.getItems(function(data) {
+      $scope.items = data;
+    });
 
-    $scope.categorys = ItemsService.get('categorys');
+    $scope.categories = [];
+    CategoryService.getCategories(function(data) {
+      $scope.categories = data;
+    });
 
     $scope.showItemSignal = false;
 
-    $scope.modifyButton = function (changingItem) {
+    $scope.modifyButton = function (item) {
 
       $scope.showItemSignal = true;
-      ItemsService.set('changingItem', changingItem);
+      $scope.itemInfo = {
+        id: item.id,
+        name: item.name,
+        unit: item.unit,
+        price: item.price,
+      };
     };
 
     $scope.cancelButton = function () {
@@ -23,12 +34,21 @@ angular.module('letusgoApp')
 
     $scope.deleteCurrentItem = function (item) {
 
-      $scope.items = ItemManagementService.deleteItem($scope.items, item);
+      ItemsService.deleteItem(item, function(data) {
+
+        $scope.items = data;
+      });
     };
 
-    $scope.modifyCurrentItem = function (newItem) {
+    $scope.modifyCurrentItem = function (newItem, categoryName) {
 
-      $scope.items = ItemManagementService.modifyItem(newItem, $scope.items);
+      newItem.category = categoryName;
+      console.log(newItem);
+      // ItemsService.modifyItem(newItem, function(data){
+      //
+      //   $scope.items = data;
+      // });
+      // $scope.items = ItemManagementService.modifyItem(newItem, $scope.items);
     };
 
   });

@@ -2,10 +2,7 @@
 
 
 angular.module('letusgoApp')
-  .controller('HomeCtrl', function ($scope, ItemsService, CategoryService) {
+  .controller('HomeCtrl', function ($scope) {
 
     $scope.$emit('to-parent-homeActive');
-
-    $scope.items = ItemsService.getItems();
-    $scope.categorys = CategoryService.getCategorysAndId($scope.items);
   });

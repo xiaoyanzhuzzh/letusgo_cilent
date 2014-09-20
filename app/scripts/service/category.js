@@ -1,7 +1,34 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('CategoryService', function(localStorageService){
+  .service('CategoryService', function($http, localStorageService){
+
+    function getCategoriesData(callback){
+
+      $http.get('/api/categories')
+       .success(function(data) {
+
+         callback(data);
+       });
+    }
+
+    function setCategoriesData(categories, callback){
+
+      $http({method: 'POST', url: '/api/categories', data: {'categories': categories}})
+       .success(function(data){
+
+         callback(data);
+       });
+    }
+
+
+    this.getCategories = function (callback) {
+
+      getCategoriesData(function(data){
+
+        callback(data);
+      });
+    };
 
         this.getCategorys = function (items) {
 
@@ -17,7 +44,7 @@ angular.module('letusgoApp')
           return categoryNames;
         };
 
-        this.getCategorysAndId = function (items) {
+        this.getCategorysAndIds = function (items) {
 
           var categoryNames = this.getCategorys(items);
           var categories = [];

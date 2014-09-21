@@ -26,8 +26,8 @@
               <div class="row">
                 <form>
                   <div class="text-center form-group">
-                    类别：<select ng-model="category.name">
-                      <option  ng-repeat="category in categories">{{category.name}}</option>
+                    类别：<select ng-model="itemInfo.category" ng-options="category.name as category.name for category in categories">
+                      <!--<option  ng-repeat="category in categories">{{category.name}}</option>-->
                     </select>
                   </div>
                   <div class="text-center form-group" ng-show="false">id:<input ng-model="itemInfo.id"></div>
@@ -36,7 +36,7 @@
                   <div class="text-center form-group">单位：<input ng-model="itemInfo.unit"></div>
                   <div class="text-center form-group">单价：<input ng-model="itemInfo.price"></div>
                   <div class="text-center form-group">
-                    <button type="button" class="btn btn-success btn-sm" ng-click="modifyCurrentItem(itemInfo, category.name)">修改</button>
+                    <button type="button" class="btn btn-success btn-sm" ng-click="modifyCurrentItem(itemInfo)">修改</button>
                     <button type="button" class="btn btn-warning btn-sm" ng-click="cancelButton()">取消</button>
                   </div>
                 </form>
@@ -58,6 +58,7 @@
               <div class="row" ng-repeat="item in items | filter:query">
                 <div class="col-md-2 form-group">{{item.category}}</div>
                 <div class="col-md-3 form-group" ng-show="false">{{item.id}}</div>
+                <div class="col-md-3 form-group" ng-show="false">{{item.barcode}}</div>
                 <div class="col-md-2 form-group">{{item.name}}</div>
                 <div class="col-md-2 form-group">{{item.unit}}</div>
                 <div class="col-md-2 form-group">{{item.price}} 元</div>

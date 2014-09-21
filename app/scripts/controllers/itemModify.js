@@ -6,6 +6,7 @@ angular.module('letusgoApp')
 
     $scope.items = [];
     ItemsService.getItems(function(data) {
+      console.log('-----+++++++++++');
       $scope.items = data;
     });
 
@@ -17,13 +18,15 @@ angular.module('letusgoApp')
     $scope.showItemSignal = false;
 
     $scope.modifyButton = function (item) {
-
       $scope.showItemSignal = true;
+
       $scope.itemInfo = {
         id: item.id,
+        barcode: item.barcode,
         name: item.name,
         unit: item.unit,
         price: item.price,
+        category: item.category
       };
     };
 
@@ -34,21 +37,17 @@ angular.module('letusgoApp')
 
     $scope.deleteCurrentItem = function (item) {
 
-      ItemsService.deleteItem(item, function(data) {
-
+      ItemsService.deleteItem(item.id);
+      ItemsService.getItems(function(data) {
         $scope.items = data;
       });
     };
 
-    $scope.modifyCurrentItem = function (newItem, categoryName) {
+    $scope.modifyCurrentItem = function (newItem) {
 
-      newItem.category = categoryName;
-      console.log(newItem);
-      // ItemsService.modifyItem(newItem, function(data){
-      //
-      //   $scope.items = data;
-      // });
-      // $scope.items = ItemManagementService.modifyItem(newItem, $scope.items);
+      ItemsService.putItem(newItem);
+      ItemsService.getItems(function(data) {
+        $scope.items = data;
+      });
     };
-
   });

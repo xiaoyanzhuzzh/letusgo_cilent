@@ -13,7 +13,7 @@ angular.module('letusgoApp')
     CategoryService.getCategories(function(data) {
       $scope.categories = data;
     });
-    
+
     $scope.showSignal = false;
 
     $scope.addButton = function () {

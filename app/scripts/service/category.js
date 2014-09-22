@@ -22,6 +22,11 @@ angular.module('letusgoApp')
       $http({method: 'PUT', url: '/api/categories/' + category.id, data:{'category': category}});
     }
 
+    function addCategoryData(category) {
+
+      $http({method: 'POST', url: '/api/categories/' + category.id, data:{'category': category}});
+    }
+
     this.getCategories = function (callback) {
 
       getCategoriesData(function(data){
@@ -38,6 +43,11 @@ angular.module('letusgoApp')
     this.putCategory = function(category) {
 
       putCategoryData(category);
+    };
+
+    this.addCategory = function(category) {
+
+      addCategoryData(category);
     };
 
     this.deleteItem = function (category, items) {

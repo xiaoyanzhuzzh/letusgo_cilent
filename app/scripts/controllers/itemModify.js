@@ -6,7 +6,7 @@ angular.module('letusgoApp')
 
     $scope.items = [];
     ItemsService.getItems(function(data) {
-      console.log('-----+++++++++++');
+
       $scope.items = data;
     });
 

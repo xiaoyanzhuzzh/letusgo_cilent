@@ -2,7 +2,7 @@
 
 
 angular.module('letusgoApp')
-    .controller('ItemAddCtrl', function ($scope, ItemsService, ItemManagementService, CategoryService) {
+    .controller('ItemAddCtrl', function ($scope, ItemsService, CategoryService) {
 
         $scope.items = [];
         ItemsService.getItems(function(data) {

@@ -27,48 +27,55 @@
                 <div class="row">
                   <form>
                     <div class="text-center form-group">
-                      类别：<select ng-model="category.name">
-                        <option  ng-repeat="category in categories">{{category.name}}</option>
-                      </select>
-                    </div>
-                    <div class="text-center form-group" ng-show="false">id:<input ng-model="item.id"></div>
-                    <div class="text-center form-group" ng-show="false">条形码：<input ng-model="item.barcode"></div>
-                    <div class="text-center form-group">名称：<input ng-model="item.name"></div>
-                    <div class="text-center form-group">单位：<input ng-model="item.unit"></div>
-                    <div class="text-center form-group">单价：<input ng-model="item.price"></div>
-                    <div class="text-center form-group">
-                      <button type="button" class="btn btn-success btn-sm" ng-click="addNewItem(item, category.name)">添加</button>
-                      <button type="button" class="btn btn-warning btn-sm" ng-click="cancelButton()">取消</button>
+                      <div class="text-center form-group">
+                        类别：<select ng-model="itemInfo.category" ng-options="category.name as category.name for category in categories">
+                        </select>
+                      </div>
+                      <div class="text-center form-group" ng-show="false">id:<input ng-model="itemInfo.id"></div>
+                      <div class="text-center form-group" ng-show="false">条形码：<input ng-model="itemInfo.barcode"></div>
+                      <div class="text-center form-group">名称：<input ng-model="itemInfo.name"></div>
+                      <div class="text-center form-group">单位：<input ng-model="itemInfo.unit"></div>
+                      <div class="text-center form-group">单价：<input ng-model="itemInfo.price"></div>
+                      <div class="text-center form-group">
+                        <button type="button" class="btn btn-success btn-sm" ng-click="addNewItem(item, category.name)">添加</button>
+                        <button type="button" class="btn btn-warning btn-sm" ng-click="cancelButton()">取消</button>
+                      </div>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-8 form-group text-default">
-            <div class="panel panel-success">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-md-4 form-group">名称</div>
-                  <div class="col-md-4 form-group">单位</div>
-                  <div class="col-md-3 form-group">单价(元)</div>
-                  <div class="col-md-1 form-group">操作</div>
-                </div>
+        <div class="col-md-8 form-group text-info">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-md-2 form-group text-center">类别</div>
+                <div class="col-md-1 form-group text-center" ng-show="false">id</div>
+                <div class="col-md-1 form-group text-center" ng-show="false">barcode</div>
+                <div class="col-md-2 form-group text-center">名称</div>
+                <div class="col-md-2 form-group text-center">单位</div>
+                <div class="col-md-2 form-group text-center">单价(元)</div>
+                <div class="col-md-3 form-group text-right">操作</div>
               </div>
-              <div class="panel-body">
-                <div class="row" ng-repeat="item in items | filter:query">
-                    <div class="col-md-4 form-group">{{item.name}}</div>
-                    <div class="col-md-4 form-group">{{item.unit}}</div>
-                    <div class="col-md-3 form-group">{{(item.price)}}</div>
-                    <div class="col-md-1 form-group">
-                        <button class="trash">
-                             <span class="glyphicon glyphicon-trash" ng-click="deleteCurrentItem(item)"></span>
-                        </button>
-                    </div>
+            </div>
+            <div class="panel-body">
+              <div class="row" ng-repeat="item in items | filter:query">
+                <div class="col-md-2 form-group text-center">{{item.category}}</div>
+                <div class="col-md-1 form-group text-center" ng-show="false">{{item.id}}</div>
+                <div class="col-md-1 form-group text-center" ng-show="false">{{item.barcode}}</div>
+                <div class="col-md-2 form-group text-center">{{item.name}}</div>
+                <div class="col-md-2 form-group text-center">{{item.unit}}</div>
+                <div class="col-md-2 form-group text-center">{{item.price}} 元</div>
+                <div class="col-md-3 form-group text-right">
+                  <button class="trash">
+                       <span class="glyphicon glyphicon-trash" ng-click="deleteCurrentItem(item)"></span>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
       </div>
 

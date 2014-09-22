@@ -7,7 +7,7 @@ angular.module('letusgoApp')
 
       $http.get('/api/items')
        .success(function(data) {
-          console.log(data);
+
           callback(data);
        });
     }
@@ -18,9 +18,15 @@ angular.module('letusgoApp')
     }
 
     function putItemData(item) {
-      $http({method: 'PUT', url: '/api/items/' + item.id, data:{'item': item}});
 
+      $http({method: 'PUT', url: '/api/items/' + item.id, data:{'item': item}});
     }
+
+    function addItemData(item) {
+
+      $http({method: 'POST', url: 'api/items/' + item.id, data:{'item': item}});
+    }
+
     this.getItems = function(callback){
 
         getItemsData(function (data) {
@@ -39,9 +45,15 @@ angular.module('letusgoApp')
     };
 
     this.putItem = function(item) {
+
       putItemData(item);
     };
 
+    this.addItem = function(item) {
+
+      addItemData(item);
+
+    };
     this.get = function(key){
 
      return localStorageService.get(key);

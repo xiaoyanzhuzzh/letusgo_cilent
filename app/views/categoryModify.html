@@ -30,11 +30,11 @@
             <div class="row" ng-repeat="category in categories | filter:query">
                 <div class="col-md-4 form-group">{{category.name}}</div>
                 <div class="col-md-6 form-group" ng-show="modifySignal">
-                  <input type="text" ng-model="category.name" ng-change="changeCurrentCategory(category)">
+                  <input type="text" ng-model="category.name" ng-change="modifyCurrentCategory(category)">
                   <button type="button" class="btn btn-primary btn-sm" ng-click="cancelModify()">取消</button>
                 </div>
                 <div class="col-md-2 form-group">
-                    <button type="button" class="btn btn-success btn-sm" ng-click="modifyCurrentCategory(category)">
+                    <button type="button" class="btn btn-success btn-sm" ng-click="modifyButton(category)">
                       修改
                     </button>
                     <button class="trash">

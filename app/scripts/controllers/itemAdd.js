@@ -28,17 +28,18 @@ angular.module('letusgoApp')
 
         $scope.deleteCurrentItem = function (item) {
 
-          $scope.items = ItemManagementService.deleteItem($scope.items, item);
+          ItemsService.deleteItem(item.id);
+          ItemsService.getItems(function(data) {
+            $scope.items = data;
+          });
         };
 
-        $scope.addNewItem = function (item, categoryName) {
+        $scope.addNewItem = function (item) {
 
-         item.category = categoryName;
-
-         $scope.items.push(item);
-
-         ItemsService.set('items', $scope.items);
-
-         $scope.showItemSignal = false;
+          ItemsService.addItem(item);
+          ItemsService.getItems(function(data) {
+            $scope.items = data;
+          });
+          $scope.showItemSignal = false;
        };
     });

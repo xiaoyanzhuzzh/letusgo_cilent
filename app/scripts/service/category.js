@@ -39,6 +39,7 @@ angular.module('letusgoApp')
 
       putCategoryData(category);
     };
+
     this.deleteItem = function (category, items) {
 
       for(var i = 0; i < items.length; i++){
@@ -52,19 +53,6 @@ angular.module('letusgoApp')
       localStorageService.set('items', items);
       return items;
         };
-
-    this.changeCategory = function (category, categories) {
-
-      for (var i = 0; i < categories.length; i++){
-
-        if(category.name === categories[i].name){
-
-          categories[i].name = category.name;
-          localStorageService.set('categories', categories);
-        }
-      }
-      return categories;
-    };
 
     this.changeItem = function (category, items) {
 

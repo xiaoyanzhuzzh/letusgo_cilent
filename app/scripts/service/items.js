@@ -52,8 +52,8 @@ angular.module('letusgoApp')
     this.addItem = function(item) {
 
       addItemData(item);
-
     };
+
     this.get = function(key){
 
      return localStorageService.get(key);

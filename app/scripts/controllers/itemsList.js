@@ -13,7 +13,7 @@ angular.module('letusgoApp')
 
     $scope.cartItems = [];
     CartItemsService.getCartItems(function(data) {
-      Sscope.cartItems = data;
+      $scope.cartItems = data;
     });
 
     $scope.addToCartButton = function(item) {

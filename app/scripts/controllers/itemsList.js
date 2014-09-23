@@ -2,23 +2,29 @@
 
 
 angular.module('letusgoApp')
-    .controller('ItemsListCtrl', function ($scope, ItemsService, AddToCartService) {
+  .controller('ItemsListCtrl', function ($scope, ItemsService, CartItemsService, AddToCartService) {
 
-      $scope.$emit('to-parent-itemsListActive');
+    $scope.$emit('to-parent-itemsListActive');
 
-      $scope.items = [];
-      ItemsService.getItems(function(data) {
-        $scope.items = data;
-      });
+    $scope.items = [];
+    ItemsService.getItems(function(data) {
+      $scope.items = data;
+    });
 
-      $scope.cartItems = [];
-      $scope.addToCart = function(item) {
+    $scope.cartItems = [];
+    CartItemsService.getCartItems(function(data) {
+      Sscope.cartItems = data;
+    });
 
-        $scope.$emit('to-parent-cartCount');
+    $scope.addToCartButton = function(item) {
+      console.log(item);
+      CartItemsService.setCartItems(item);
 
-        if (!$scope.cartItems) {
-          $scope.cartItems = [];
-        }
-        AddToCartService.getCartItems(item, $scope.cartItems);
-      };
-  });
+//      $scope.$emit('to-parent-cartCount');
+//
+//      if (!$scope.cartItems) {
+//        $scope.cartItems = [];
+//      }
+//      AddToCartService.getCartItems(item, $scope.cartItems);
+    };
+});

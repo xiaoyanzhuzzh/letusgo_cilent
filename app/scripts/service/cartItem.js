@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('CartItemsService', function($http, localStorageService){
+  .service('CartItemsService', function($http){
 
     function getCartItemsData(callback) {
 
@@ -35,6 +35,11 @@ angular.module('letusgoApp')
     function deleteCartItemData(id) {
 
       $http.delete('api/cartItems/' + id);
+    }
+
+    function emptyCartItemsData(){
+
+      $http.delete('/api/cartItems/');
     }
 
     this.getCartItems = function(callback) {
@@ -71,6 +76,11 @@ angular.module('letusgoApp')
       changeCartItemNumberData(cartItem);
     };
 
+    this.emptyCartItems = function() {
+
+      emptyCartItemsData();
+    };
+
     this.getTotalNumber = function(array){
         var totalNumber = 0;
         if(!array){
@@ -93,30 +103,4 @@ angular.module('letusgoApp')
         return total;
     };
 
-//     this.deleteCartItem = function(cartItem, cartArray){
-//
-//         for(var i = 0; i < cartArray.length; i++){
-//             if( cartItem.item.name === cartArray[i].item.name){
-//                 cartArray = _.without(cartArray,cartArray[i]);
-//
-//                localStorageService.set('cartItems', cartArray);
-//                localStorageService.set('cartCount', this.getTotalNumber(cartArray));
-//             }
-//         }
-//         return cartArray;
-//     };
-//
-//     this.changeCurrentCartItemNumber = function(cartItem, cartArray){
-//
-//       for(var i = 0; i < cartArray.length; i++){
-//           if( cartItem.item.name === cartArray[i].item.name){
-//
-//               cartArray[i].number = parseInt(cartItem.number);
-//
-//              localStorageService.set('cartItems', cartArray);
-//              localStorageService.set('cartCount', this.getTotalNumber(cartArray));
-//           }
-//       }
-//
-//     };
   });

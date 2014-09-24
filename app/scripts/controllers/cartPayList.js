@@ -12,4 +12,15 @@ angular.module('letusgoApp')
       $scope.total = CartItemsService.getTotalMoney($scope.cartPayList );
       $scope.totalNumber = CartItemsService.getTotalNumber($scope.cartPayList );
     });
+
+    $scope.payButton = function() {
+
+      CartItemsService.emptyCartItems();
+      CartItemsService.getCartItems(function(data) {
+
+        $scope.cartPayList = data;
+        $scope.total = CartItemsService.getTotalMoney($scope.cartPayList );
+        $scope.totalNumber = CartItemsService.getTotalNumber($scope.cartPayList );
+      });
+    };
   });

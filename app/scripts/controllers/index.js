@@ -2,44 +2,55 @@
 
 
 angular.module('letusgoApp')
-    .controller('indexCtrl', function ($scope, ItemsService) {
+  .controller('indexCtrl', function ($scope, ItemsService) {
 
-        $scope.cartCount = ItemsService.get('cartCount');
+    function activity(homelist, itemslist, cartItemsList, cartPayList, categoryManagement, itemManagement) {
 
-        $scope.$on('to-parent-cartCount', function () {
+      $scope.homeActive = homelist;
+      $scope.itemsListActive = itemslist;
+      $scope.cartItemsListActive = cartItemsList;
+      $scope.cartPayListActive = cartPayList;
+      $scope.categoryManagementActive = categoryManagement;
+      $scope.itemManagementActive = itemManagement
+    }
 
-          if(!$scope.cartCount){
+    $scope.cartCount = ItemsService.get('cartCount');
 
-              $scope.cartCount = 0;
-          }
-          ItemsService.set('cartCount', ++$scope.cartCount);
-        });
+    $scope.$on('to-parent-cartCount', function () {
 
-        $scope.$on('to-parent-homeActive', function () {
-          $scope.homeActive = true;
-          $scope.itemsListActive = false;
-          $scope.cartItemsListActive = false;
-          $scope.cartPayListActive = false;
-      });
+      if(!$scope.cartCount){
 
-      $scope.$on('to-parent-itemsListActive', function () {
-          $scope.homeActive = false;
-          $scope.itemsListActive = true;
-          $scope.cartItemsListActive = false;
-          $scope.cartPayListActive = false;
-      });
-
-      $scope.$on('to-parent-cartItemsListActive', function () {
-          $scope.homeActive = false;
-          $scope.itemsListActive = false;
-          $scope.cartItemsListActive = true;
-          $scope.cartPayListActive = false;
-      });
-
-      $scope.$on('to-parent-cartPayListActive', function () {
-          $scope.homeActive = false;
-          $scope.itemsListActive = false;
-          $scope.cartItemsListActive = false;
-          $scope.cartPayListActive = true;
-      });
+        $scope.cartCount = 0;
+      }
+      ItemsService.set('cartCount', ++$scope.cartCount);
     });
+
+    $scope.$on('to-parent-homeActive', function () {
+
+      activity(true, false, false, false, false, false);
+    });
+
+    $scope.$on('to-parent-itemsListActive', function () {
+
+      activity(false, true, false, false, false, false);
+    });
+
+    $scope.$on('to-parent-cartItemsListActive', function () {
+
+      activity(false, false, true, false, false, false);
+    });
+
+    $scope.$on('to-parent-cartPayListActive', function () {
+
+      activity(false, false, false, true, false, false);
+    });
+
+    $scope.$on('to-parent-categoryManagementActive', function () {
+
+      activity(false, false, false, false, true, false);
+    });
+
+    $scope.$on('to-parent-itemManagementActive', function () {
+      activity(false, false, false, false, false, true);
+    });
+});

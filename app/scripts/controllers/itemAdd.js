@@ -36,6 +36,8 @@ angular.module('letusgoApp')
 
     $scope.addNewItem = function (item) {
 
+      item.id = $scope.items[$scope.items.length - 1].id + 1;
+
       ItemsService.addItem(item);
       ItemsService.getItems(function(data) {
         $scope.items = data;

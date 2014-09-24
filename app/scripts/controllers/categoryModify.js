@@ -38,7 +38,7 @@ angular.module('letusgoApp')
     };
 
     $scope.modifyCurrentCategory = function (newCategory) {
-      console.log(newCategory);
+
       CategoryService.putCategory(newCategory);
       CategoryService.getCategories(function(data) {
         $scope.categories = data;

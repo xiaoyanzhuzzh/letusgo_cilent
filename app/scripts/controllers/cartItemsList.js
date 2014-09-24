@@ -57,7 +57,7 @@ angular.module('letusgoApp')
   $scope.changeCartItemNumber = function(cartItem){
 
     CartItemsService.changeCartItemNumber(cartItem);
-   
+
     updateData();
   };
 });

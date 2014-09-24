@@ -5,6 +5,9 @@ angular.module('letusgoApp')
 
     $scope.$emit('to-parent-cartPayListActive');
 
+    $scope.showPaySignal = true;
+    $scope.showFinishPaySignal = false;
+
     $scope.cartPayList = [];
     CartItemsService.getCartItems(function(data) {
 

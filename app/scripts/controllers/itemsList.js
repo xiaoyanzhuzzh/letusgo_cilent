@@ -18,11 +18,6 @@ angular.module('letusgoApp')
       console.log(item);
       CartItemsService.setCartItems(item);
 
-//      $scope.$emit('to-parent-cartCount');
-//
-//      if (!$scope.cartItems) {
-//        $scope.cartItems = [];
-//      }
-//      AddToCartService.getCartItems(item, $scope.cartItems);
+      $scope.$emit('to-parent-cartCount');
     };
 });

@@ -3,61 +3,58 @@
 angular.module('letusgoApp')
   .controller('CartItemsListCtrl', function ($scope,ItemsService, CartItemsService) {
 
-  function getTotalNumber(cartItems) {
+    function getTotalNumber(cartItems) {
 
-    return CartItemsService.getTotalNumber(cartItems);
-  }
+      return CartItemsService.getTotalNumber(cartItems);
+    }
 
-  function getTotalMoney(cartItems) {
+    function getTotalMoney(cartItems) {
 
-    return CartItemsService.getTotalMoney(cartItems);
-  }
+      return CartItemsService.getTotalMoney(cartItems);
+    }
 
-  function updateTotalAndTotalNumber() {
+    function updateTotalAndTotalNumber() {
 
-    $scope.total = getTotalMoney($scope.cartItems);
-    $scope.totalNumber = getTotalNumber($scope.cartItems);
-  }
+      $scope.total = getTotalMoney($scope.cartItems);
+      $scope.totalNumber = getTotalNumber($scope.cartItems);
+    }
 
-  function updateData() {
+    function updateData() {
 
-    CartItemsService.getCartItems(function(data) {
+      CartItemsService.getCartItems(function(data) {
 
-      $scope.cartItems = data;
-      updateTotalAndTotalNumber();
-    });
-  }
+        $scope.cartItems = data;
+        updateTotalAndTotalNumber();
+        ItemsService.set('cartCount', $scope.totalNumber);
+      });
+    }
 
-  $scope.$emit('to-parent-cartItemsListActive');
+    $scope.$emit('to-parent-cartItemsListActive');
 
-  $scope.cartItems = [];
-  updateData();
-
-  $scope.addCartItemNumber = function(cartItem){
-
-    CartItemsService.addCartItemNumber(cartItem.item.id);
-
+    $scope.cartItems = [];
     updateData();
-  };
 
-  $scope.reduceCartItemNumber = function(cartItem){
+    $scope.addCartItemNumber = function(cartItem){
 
-    CartItemsService.reduceCartItemNumber(cartItem.item.id);
+      CartItemsService.addCartItemNumber(cartItem.item.id);
+      updateData();
+    };
 
-    updateData();
-  };
+    $scope.reduceCartItemNumber = function(cartItem){
 
-  $scope.deleteCartItem = function(cartItem){
+      CartItemsService.reduceCartItemNumber(cartItem.item.id);
+      updateData();
+    };
 
-    CartItemsService.deleteCartItem(cartItem.item.id, $scope.cartItems);
+    $scope.deleteCartItem = function(cartItem){
 
-    updateData();
-  };
+      CartItemsService.deleteCartItem(cartItem.item.id, $scope.cartItems);
+      updateData();
+    };
 
-  $scope.changeCartItemNumber = function(cartItem){
+    $scope.changeCartItemNumber = function(cartItem){
 
-    CartItemsService.changeCartItemNumber(cartItem);
-
-    updateData();
-  };
-});
+      CartItemsService.changeCartItemNumber(cartItem);
+      updateData();
+    };
+  });

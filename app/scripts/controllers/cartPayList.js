@@ -16,11 +16,11 @@ angular.module('letusgoApp')
     $scope.payButton = function() {
 
       CartItemsService.emptyCartItems();
-      CartItemsService.getCartItems(function(data) {
-
-        $scope.cartPayList = data;
-        $scope.total = CartItemsService.getTotalMoney($scope.cartPayList );
-        $scope.totalNumber = CartItemsService.getTotalNumber($scope.cartPayList );
-      });
+//      CartItemsService.getCartItems(function(data) {
+//
+//        $scope.cartPayList = data;
+//        $scope.total = CartItemsService.getTotalMoney($scope.cartPayList );
+//        $scope.totalNumber = CartItemsService.getTotalNumber($scope.cartPayList );
+//      });
     };
   });

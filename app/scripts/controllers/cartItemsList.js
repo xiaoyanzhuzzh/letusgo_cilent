@@ -21,55 +21,43 @@ angular.module('letusgoApp')
 
   function updateData() {
 
-    updateTotalAndTotalNumber();
+    CartItemsService.getCartItems(function(data) {
+
+      $scope.cartItems = data;
+      updateTotalAndTotalNumber();
+    });
   }
 
   $scope.$emit('to-parent-cartItemsListActive');
 
   $scope.cartItems = [];
-  CartItemsService.getCartItems(function(data) {
-
-    $scope.cartItems = data;
-  });
   updateData();
 
   $scope.addCartItemNumber = function(cartItem){
 
     CartItemsService.addCartItemNumber(cartItem.item.id);
-    CartItemsService.getCartItems(function(data) {
 
-      $scope.cartItems = data;
-    });
     updateData();
   };
 
   $scope.reduceCartItemNumber = function(cartItem){
 
     CartItemsService.reduceCartItemNumber(cartItem.item.id);
-    CartItemsService.getCartItems(function(data) {
 
-      $scope.cartItems = data;
-    });
     updateData();
   };
 
   $scope.deleteCartItem = function(cartItem){
 
     CartItemsService.deleteCartItem(cartItem.item.id, $scope.cartItems);
-    CartItemsService.getCartItems(function(data) {
 
-      $scope.cartItems = data;
-    });
     updateData();
   };
 
   $scope.changeCartItemNumber = function(cartItem){
 
     CartItemsService.changeCartItemNumber(cartItem);
-    CartItemsService.getCartItems(function(data) {
-
-      $scope.cartItems = data;
-    });
+   
     updateData();
   };
 });

@@ -36,6 +36,8 @@ angular.module('letusgoApp')
 
     $scope.addNewCategory = function (newCategory) {
 
+      newCategory.id = $scope.categories[$scope.categories.length - 1].id + 1;
+
       CategoryService.addCategory(newCategory);
       CategoryService.getCategories(function(data) {
         $scope.categories = data;

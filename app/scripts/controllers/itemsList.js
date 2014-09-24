@@ -15,7 +15,7 @@ angular.module('letusgoApp')
     });
 
     $scope.addToCartButton = function(item) {
-      console.log(item);
+
       CartItemsService.setCartItems(item);
 
       $scope.$emit('to-parent-cartCount');

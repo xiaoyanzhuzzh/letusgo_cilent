@@ -89,6 +89,8 @@ describe('indexCtrl', function () {
     expect($scope.itemsListActive).toBe(false);
     expect($scope.cartItemsListActive).toBe(false);
     expect($scope.cartPayListActive).toBe(false);
+    expect($scope.categoryManagementActive).toBe(false);
+    expect($scope.itemManagementActive).toBe(false)
   });
 
   it('should to-parent-itemsListActive can do',function(){
@@ -103,6 +105,8 @@ describe('indexCtrl', function () {
     expect($scope.itemsListActive).toBe(true);
     expect($scope.cartItemsListActive).toBe(false);
     expect($scope.cartPayListActive).toBe(false);
+    expect($scope.categoryManagementActive).toBe(false);
+    expect($scope.itemManagementActive).toBe(false)
   });
 
   it('should to-parent-cartItemsListActive can do',function(){
@@ -117,6 +121,8 @@ describe('indexCtrl', function () {
     expect($scope.itemsListActive).toBe(false);
     expect($scope.cartItemsListActive).toBe(true);
     expect($scope.cartPayListActive).toBe(false);
+    expect($scope.categoryManagementActive).toBe(false);
+    expect($scope.itemManagementActive).toBe(false)
   });
 
 

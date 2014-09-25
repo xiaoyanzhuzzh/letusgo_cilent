@@ -26,6 +26,7 @@ angular.module('letusgoApp')
         $scope.cartItems = data;
         updateTotalAndTotalNumber();
         ItemsService.set('cartCount', $scope.totalNumber);
+        $scope.$emit('to-parent-updateCartCount');
       });
     }
 

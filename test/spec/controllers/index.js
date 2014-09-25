@@ -138,5 +138,39 @@ describe('indexCtrl', function () {
     expect($scope.itemsListActive).toBe(false);
     expect($scope.cartItemsListActive).toBe(false);
     expect($scope.cartPayListActive).toBe(true);
+    expect($scope.categoryManagementActive).toBe(false);
+    expect($scope.itemManagementActive).toBe(false)
+  });
+
+  it('should to-parent-cartPayListActive can do',function(){
+
+    createController();
+
+    $scope.$digest();
+    $rootScope.$broadcast('to-parent-categoryManagementActive');
+    $scope.$digest();
+
+    expect($scope.homeActive).toBe(false);
+    expect($scope.itemsListActive).toBe(false);
+    expect($scope.cartItemsListActive).toBe(false);
+    expect($scope.cartPayListActive).toBe(false);
+    expect($scope.categoryManagementActive).toBe(true);
+    expect($scope.itemManagementActive).toBe(false)
+  });
+
+  it('should to-parent-cartPayListActive can do',function(){
+
+    createController();
+
+    $scope.$digest();
+    $rootScope.$broadcast('to-parent-itemManagementActive');
+    $scope.$digest();
+
+    expect($scope.homeActive).toBe(false);
+    expect($scope.itemsListActive).toBe(false);
+    expect($scope.cartItemsListActive).toBe(false);
+    expect($scope.cartPayListActive).toBe(false);
+    expect($scope.categoryManagementActive).toBe(false);
+    expect($scope.itemManagementActive).toBe(true)
   });
 });

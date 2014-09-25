@@ -1,26 +1,26 @@
 'use strict';
 describe('Controller: ItemsListCtrl', function () {
 
-  var $scope, ItemsService, createController, AddToCartService;
+  var $scope, ItemsService, createController, CartItemsService;
 
   beforeEach(function () {
     module('letusgoApp');
 
     inject(function ($injector) {
 
-        $scope = $injector.get('$rootScope').$new();
-        ItemsService = $injector.get('ItemsService');
-        AddToCartService = $injector.get('AddToCartService');
+      $scope = $injector.get('$rootScope').$new();
+      ItemsService = $injector.get('ItemsService');
+      CartItemsService = $injector.get('CartItemsService');
 
-        var $controller = $injector.get('$controller');
+      var $controller = $injector.get('$controller');
 
-        createController = function () {
-          return $controller ('ItemsListCtrl', {
-               $scope: $scope,
-               ItemsService: ItemsService,
-               AddToCartService: AddToCartService
-          });
-        };
+      createController = function () {
+        return $controller ('ItemsListCtrl', {
+          $scope: $scope,
+          ItemsService: ItemsService,
+          CartItemsService: CartItemsService
+        });
+      };
     });
   });
 

@@ -24,6 +24,13 @@ describe('Controller: ItemsListCtrl', function () {
     });
   });
 
+  it('should emit to parent controller', function () {
+
+    spyOn($scope, '$emit');
+    createController();
+    expect($scope.$emit).toHaveBeenCalledWith('to-parent-itemsListActive');
+  });
+
   describe ('allItems', function () {
       beforeEach(function () {
           var items = [

@@ -133,10 +133,10 @@ describe('CartItemsListCtrl', function () {
 
     beforeEach(function () {
 
-      cartItem = {item: {barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}, number: 2};
-      spyOn(CartItemOperateService, 'getTotalMoney');
-      spyOn(CartItemOperateService, 'getTotalNumber');
-      spyOn(CartItemOperateService, 'deleteCartItem');
+      cartItem = {item: {id:9, barcode:'ITEM000000', name: '可口可乐', unit: '瓶', price:3.00, category:'饮品'}, number: 2};
+      spyOn(CartItemsService, 'getTotalMoney');
+      spyOn(CartItemsService, 'getTotalNumber');
+      spyOn(CartItemsService, 'deleteCartItem');
       createController();
     });
 

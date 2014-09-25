@@ -1,7 +1,7 @@
 'use strict';
 describe('ItemAddCtrl', function () {
 
-  var $scope, createController, CategoryService, ItemManagementService, ItemsService;
+  var $scope, createController, CategoryService, ItemsService;
 
   beforeEach(function () {
     module('letusgoApp');

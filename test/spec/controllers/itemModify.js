@@ -103,18 +103,14 @@ describe('ItemModifyCtrl', function () {
 
       var newItem = {name: '雪碧', unit:'瓶', price:3.00};
 
-      spyOn(ItemsService, 'get');
-      spyOn(ItemsService, 'set');
-
-      spyOn(ItemManagementService, 'modifyItem').and.returnValue(
-
-        [{barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}]
-      );
+      spyOn(ItemsService, 'putItem');
+      spyOn(ItemsService, 'getItems');
 
       createController();
       $scope.modifyCurrentItem(newItem);
 
-      expect(ItemManagementService.modifyItem).toHaveBeenCalled();
+      expect(ItemsService.putItem).toHaveBeenCalled();
+      expect(ItemsService.getItems).toHaveBeenCalled();
     });
   });
 });

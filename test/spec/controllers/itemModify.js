@@ -32,20 +32,18 @@ describe('ItemModifyCtrl', function () {
     expect($scope.$emit).toHaveBeenCalledWith('to-parent-itemManagementActive');
   });
 
-  it ('should load items from localStorage', function () {
+  it ('should load items from redis', function () {
 
-    spyOn(ItemsService, 'get');
     createController();
 
-    expect(ItemsService.get).toHaveBeenCalled();
+    expect($scope.items.length).toBe(0);
   });
 
-  it ('should load categorys from localStorage', function () {
+  it ('should load categories from redis', function () {
 
-    spyOn(ItemsService, 'get');
     createController();
 
-    expect(ItemsService.get).toHaveBeenCalled();
+    expect($scope.categories.length).toBe(0);
   });
 
   it ('should have showItemSignal', function () {

@@ -1,13 +1,13 @@
 'use strict';
 describe('CartPayListCtrl', function () {
-   var $scope, CartItemOperateService, createController, ItemsService;
+   var $scope, CartItemsService, createController, ItemsService;
   beforeEach(function () {
     module('letusgoApp');
 
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      CartItemOperateService = $injector.get('CartItemOperateService');
+      CartItemsService = $injector.get('CartItemsService');
       ItemsService = $injector.get('ItemsService');
 
       var $controller = $injector.get('$controller');
@@ -16,7 +16,7 @@ describe('CartPayListCtrl', function () {
 
         return $controller ('CartPayListCtrl', {
           $scope: $scope,
-          CartItemOperateService: CartItemOperateService,
+          CartItemsService: CartItemsService,
           ItemsService: ItemsService
         });
       };

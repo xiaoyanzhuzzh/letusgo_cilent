@@ -1,45 +1,65 @@
 'use strict';
-describe('ItemsService', function () {
+describe('ItemsService', function() {
 
-    var ItemsService, localStorageService;
+  var ItemsService, localStorageService, $httpBackend, items;
 
-    beforeEach(function () {
+  beforeEach(function() {
 
-        module('letusgoApp');
+    module('letusgoApp');
 
-        inject(function ($injector) {
+    inject(function($injector) {
 
-            ItemsService = $injector.get('ItemsService');
-            localStorageService = $injector.get('localStorageService');
+      ItemsService = $injector.get('ItemsService');
+      localStorageService = $injector.get('localStorageService');
+      $httpBackend = $injector.get('$httpBackend');
 
-        });
+    });
+  });
+
+  describe('should have getItems function', function() {
+
+    beforeEach(function() {
+
+      items = [ {id: 5,barcode:'ITEM000005', name:'方便面', unit:'袋',price: 4.50, category:'零食'}];
+      $httpBackend.when('GET', '/api/items').respond(items);
     });
 
-    it ('should load all the same items', function(){
+    it('that call getItemsData function', function() {
 
-      var items = ItemsService.getItems();
+      var callback = jasmine.createSpy('callback');
 
-      expect(items.length).toBe(6);
-      expect(items[0].barcode).toEqual('ITEM000000');
-      expect(items[1].name).toEqual('雪碧');
-      expect(items[2].category).toEqual('水果');
+      callback({
+
+        items:items
+      });
+      $httpBackend.expectGET('/api/items');
+      ItemsService.getItems(callback, function() {
+
+        $httpBackend.flush();
+      });
+
+      expect(callback).toHaveBeenCalledWith(jasmine.objectContaining({
+
+        items: items
+      }));
     });
+  });
 
-      it ('should have get function', function(){
+  it ('should have get function', function(){
 
 
-      spyOn(localStorageService, 'get');
-      ItemsService.get('items');
+    spyOn(localStorageService, 'get');
+    ItemsService.get('items');
 
-      expect(localStorageService.get.calls.count()).toBe(1);
-    });
+    expect(localStorageService.get.calls.count()).toBe(1);
+  });
 
-    it ('should load all the same items', function(){
+  it ('should load all the same items', function(){
 
-      var cartCount = 9;
-      spyOn(localStorageService, 'set');
-      ItemsService.set('cartCount', cartCount);
+    var cartCount = 9;
+    spyOn(localStorageService, 'set');
+    ItemsService.set('cartCount', cartCount);
 
-      expect(localStorageService.set.calls.count()).toBe(1);
-    });
+    expect(localStorageService.set.calls.count()).toBe(1);
+  });
 });

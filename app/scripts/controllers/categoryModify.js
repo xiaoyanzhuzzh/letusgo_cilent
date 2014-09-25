@@ -3,6 +3,8 @@
 angular.module('letusgoApp')
   .controller('CategoryModifyCtrl', function ($scope, ItemsService, CategoryService) {
 
+    $scope.$emit('to-parent-categoryManagementActive');
+
     $scope.items = [];
     ItemsService.getItems(function(data) {
       $scope.items = data;

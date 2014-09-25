@@ -25,21 +25,10 @@ describe('HomeCtrl', function () {
        });
   });
 
-  it ('should load items', function () {
+  it('should emit to parent controller', function () {
 
-    spyOn(ItemsService, 'getItems').and.returnValue([]);
+    spyOn($scope, '$emit');
     createController();
-
-    expect($scope.items.length).toEqual(0);
-    expect(ItemsService.getItems).toHaveBeenCalled();
-  });
-
-  it ('should load categorys', function () {
-
-    spyOn(CategoryService, 'getCategorysAndId').and.returnValue([]);
-    createController();
-
-    expect($scope.categorys.length).toEqual(0);
-    expect(CategoryService.getCategorysAndId).toHaveBeenCalled();
+    expect($scope.$emit).toHaveBeenCalledWith('to-parent-homeActive');
   });
 });

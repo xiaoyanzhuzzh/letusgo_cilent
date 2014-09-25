@@ -48,6 +48,19 @@ describe('indexCtrl', function () {
     expect(ItemsService.set.calls.count()).toBe(1);
   });
 
+  it('should to-parent-updateCartCount can do',function(){
+
+    spyOn(ItemsService, 'get').and.returnValue(22);
+    createController();
+
+    $scope.$digest();
+    $rootScope.$broadcast('to-parent-updateCartCount');
+    $scope.$digest();
+
+    expect($scope.cartCount).toBe(22);
+    expect(ItemsService.get.calls.count()).toBe(2);
+  });
+
 
   it('should to-parent-cartCount can do',function(){
 

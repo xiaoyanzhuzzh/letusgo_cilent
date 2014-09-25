@@ -47,10 +47,13 @@ describe('CategoryModifyCtrl', function () {
 
     it('should make modifySignal true', function () {
 
+      var newCategory = {id: 0, name: '水果'};
       createController();
-      $scope.modifyCurrentCategory();
+      $scope.modifyButton(newCategory);
 
       expect($scope.modifySignal).toBe(true);
+      expect($scope.categoryInfo.id).toEqual(0);
+      expect($scope.categoryInfo.name).toEqual('水果');
     });
   });
 

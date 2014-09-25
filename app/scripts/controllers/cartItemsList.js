@@ -49,7 +49,7 @@ angular.module('letusgoApp')
 
     $scope.deleteCartItem = function(cartItem){
 
-      CartItemsService.deleteCartItem(cartItem.item.id, $scope.cartItems);
+      CartItemsService.deleteCartItem(cartItem.item.id);
       updateData();
     };
 

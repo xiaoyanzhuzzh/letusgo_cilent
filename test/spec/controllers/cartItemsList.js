@@ -24,6 +24,13 @@ describe('CartItemsListCtrl', function () {
      });
    });
 
+  it('should emit to parent controller', function () {
+
+    spyOn($scope, '$emit');
+    createController();
+    expect($scope.$emit).toHaveBeenCalledWith('to-parent-cartItemsListActive');
+  });
+
   describe('cartItems', function () {
 
     it('should load cartItems', function () {

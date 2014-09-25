@@ -86,14 +86,14 @@ describe('ItemModifyCtrl', function () {
 
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
 
-      spyOn(ItemManagementService, 'deleteItem').and.returnValue([]);
-      spyOn(ItemsService, 'get');
+      spyOn(ItemsService, 'deleteItem');
+      spyOn(ItemsService, 'getItems');
 
       createController();
       $scope.deleteCurrentItem(item);
 
-      expect(ItemManagementService.deleteItem).toHaveBeenCalled();
-      expect(ItemsService.get).toHaveBeenCalled();
+      expect(ItemsService.deleteItem).toHaveBeenCalled();
+      expect(ItemsService.getItems).toHaveBeenCalled();
     });
   });
 

@@ -1,5 +1,5 @@
 'use strict';
-describe('CategoryAddCtrl', function () {
+xdescribe('CategoryAddCtrl', function () {
 
   var $scope, createController, CategoryService, ItemsService;
 
@@ -8,37 +8,33 @@ describe('CategoryAddCtrl', function () {
 
        inject(function ($injector) {
 
-           $scope = $injector.get('$rootScope').$new();
-           CategoryService = $injector.get('CategoryService');
-           ItemsService = $injector.get('ItemsService');
+         $scope = $injector.get('$rootScope').$new();
+         CategoryService = $injector.get('CategoryService');
+         ItemsService = $injector.get('ItemsService');
 
-           var $controller = $injector.get('$controller');
+         var $controller = $injector.get('$controller');
 
-           createController = function () {
+         createController = function () {
 
-             return $controller ('CategoryAddCtrl', {
-                  $scope: $scope,
-                  CategoryService: CategoryService,
-                  ItemsService: ItemsService
-             });
-           };
+           return $controller ('CategoryAddCtrl', {
+                $scope: $scope,
+                CategoryService: CategoryService,
+                ItemsService: ItemsService
+           });
+         };
        });
   });
 
   it ('should load items from localStorage', function () {
 
-    spyOn(ItemsService, 'get');
     createController();
-
-    expect(ItemsService.get).toHaveBeenCalled();
+    expect($scope.items.length).toBe(0);
   });
 
   it ('should load categorys from localStorage', function () {
 
-    spyOn(ItemsService, 'get');
     createController();
-
-    expect(ItemsService.get).toHaveBeenCalled();
+    expect($scope.categories.length).toBe(0);
   });
 
   it ('should have showSignal', function () {

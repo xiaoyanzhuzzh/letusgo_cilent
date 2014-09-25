@@ -74,44 +74,32 @@ describe('CategoryModifyCtrl', function () {
 
       var category = {id: 0, name: '雪碧'};
 
-      spyOn(ItemsService, 'get');
-      spyOn(CategoryService, 'deleteCategory').and.returnValue([]);
-      spyOn(CategoryService, 'deleteItem').and.returnValue([]);
+      spyOn(CategoryService, 'deleteCategory');
+      spyOn(CategoryService, 'getCategories');
 
       createController();
       $scope.deleteCurrentCategory(category);
 
-      expect($scope.items.length).toBe(0);
-      expect($scope.categorys.length).toEqual(0);
-
-      expect(ItemsService.get).toHaveBeenCalled();
-      expect(CategoryService.deleteItem).toHaveBeenCalled();
       expect(CategoryService.deleteCategory).toHaveBeenCalled();
+      expect(CategoryService.getCategories).toHaveBeenCalled();
+
     });
   });
 
-  describe('changeCurrentCategory function', function () {
+  describe('modifyCurrentCategory function', function () {
 
     it('should add change category to categorys', function () {
 
       var category = {id: 0, name: '饮品'};
 
-      spyOn(ItemsService, 'get');
-      spyOn(CategoryService, 'changeCategory').and.returnValue([{id: 0, name: '雪碧'}]);
-      spyOn(CategoryService, 'changeItem').and.returnValue(
-
-        [{barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}]
-      );
+      spyOn(CategoryService, 'putCategory');
+      spyOn(CategoryService, 'getCategories');
 
       createController();
-      $scope.changeCurrentCategory(category);
+      $scope.modifyCurrentCategory(category);
 
-      expect($scope.categorys.length).toEqual(1);
-      expect($scope.items.length).toEqual(1);
-
-      expect(ItemsService.get).toHaveBeenCalled();
-      expect(CategoryService.changeCategory).toHaveBeenCalled();
-      expect(CategoryService.changeItem).toHaveBeenCalled();
+      expect(CategoryService.putCategory).toHaveBeenCalled();
+      expect(CategoryService.getCategories).toHaveBeenCalled();
     });
   });
 });

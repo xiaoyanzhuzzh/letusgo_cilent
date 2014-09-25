@@ -25,14 +25,21 @@ describe('ItemAddCtrl', function () {
     });
   });
 
-  it ('should load items from localStorage', function () {
+  it('should emit to parent controller', function () {
+
+    spyOn($scope, '$emit');
+    createController();
+    expect($scope.$emit).toHaveBeenCalledWith('to-parent-itemManagementActive');
+  });
+
+  it ('should load items from redis', function () {
 
     createController();
 
     expect($scope.items.length).toBe(0);
   });
 
-  it ('should load categories from localStorage', function () {
+  it ('should load categories from redis', function () {
 
     createController();
 

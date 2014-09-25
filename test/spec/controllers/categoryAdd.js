@@ -25,6 +25,13 @@ describe('CategoryAddCtrl', function () {
        });
   });
 
+  it('should emit to parent controller', function () {
+
+    spyOn($scope, '$emit');
+    createController();
+    expect($scope.$emit).toHaveBeenCalledWith('to-parent-categoryManagementActive');
+  });
+
   it ('should load items from localStorage', function () {
 
     createController();

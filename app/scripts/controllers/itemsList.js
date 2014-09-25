@@ -4,6 +4,8 @@
 angular.module('letusgoApp')
   .controller('ItemsListCtrl', function ($scope, ItemsService, CartItemsService) {
 
+    $scope.$emit('to-parent-itemsListActive');
+
     $scope.items = [];
     ItemsService.getItems(function(data) {
       $scope.items = data;

@@ -27,6 +27,13 @@ describe('ItemModifyCtrl', function () {
     });
   });
 
+  it('should emit to parent controller', function () {
+
+    spyOn($scope, '$emit');
+    createController();
+    expect($scope.$emit).toHaveBeenCalledWith('to-parent-itemManagementActive');
+  });
+
   it ('should load items from localStorage', function () {
 
     spyOn(ItemsService, 'get');

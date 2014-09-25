@@ -4,6 +4,8 @@
 angular.module('letusgoApp')
   .controller('CategoryAddCtrl', function ($scope, ItemsService, CategoryService) {
 
+    $scope.$emit('to-parent-categoryManagementActive');
+
     $scope.items = [];
     ItemsService.getItems(function(data) {
       $scope.items = data;

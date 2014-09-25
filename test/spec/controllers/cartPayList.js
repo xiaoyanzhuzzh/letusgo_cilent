@@ -23,6 +23,13 @@ describe('CartPayListCtrl', function () {
     });
   });
 
+  it('should emit to parent controller', function () {
+
+    spyOn($scope, '$emit');
+    createController();
+    expect($scope.$emit).toHaveBeenCalledWith('to-parent-cartPayListActive');
+  });
+
   describe('cartPayList', function () {
     it('should load cartPayList', function () {
 

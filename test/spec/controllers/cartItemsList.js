@@ -74,9 +74,9 @@ describe('CartItemsListCtrl', function () {
 
       $scope.changeCartItemNumber(cartItem);
 
-      expect(CartItemOperateService.getTotalMoney).toHaveBeenCalled();
-      expect(CartItemOperateService.getTotalNumber).toHaveBeenCalled();
-      expect(CartItemOperateService.changeCurrentCartItemNumber).toHaveBeenCalled();
+//      expect(CartItemsService.getTotalMoney).toHaveBeenCalled();
+//      expect(CartItemsService.getTotalNumber).toHaveBeenCalled();
+      expect(CartItemsService.changeCartItemNumber).toHaveBeenCalled();
     });
   });
 

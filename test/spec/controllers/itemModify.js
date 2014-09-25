@@ -57,14 +57,15 @@ describe('ItemModifyCtrl', function () {
 
     it('should make showItemSignal true', function () {
 
-      var changeItem = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
-      spyOn(ItemsService, 'set');
+      var changeItem = {id: 0, barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category: '饮品'};
 
       createController();
       $scope.modifyButton(changeItem);
 
       expect($scope.showItemSignal).toBe(true);
-      expect(ItemsService.set).toHaveBeenCalled();
+      expect($scope.itemInfo.id).toEqual(0);
+      expect($scope.itemInfo.name).toEqual('雪碧');
+      expect($scope.itemInfo.category).toEqual('饮品');
     });
   });
 

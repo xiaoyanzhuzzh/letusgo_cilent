@@ -10,7 +10,6 @@ describe('ItemModifyCtrl', function () {
 
       $scope = $injector.get('$rootScope').$new();
       CategoryService = $injector.get('CategoryService');
-      ItemManagementService = $injector.get('ItemManagementService');
       ItemsService = $injector.get('ItemsService');
 
       var $controller = $injector.get('$controller');
@@ -20,7 +19,6 @@ describe('ItemModifyCtrl', function () {
         return $controller ('ItemModifyCtrl', {
           $scope: $scope,
           CategoryService: CategoryService,
-          ItemManagementService: ItemManagementService,
           ItemsService: ItemsService
         });
       };

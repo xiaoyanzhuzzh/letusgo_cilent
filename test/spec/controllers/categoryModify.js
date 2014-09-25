@@ -25,13 +25,20 @@ describe('CategoryModifyCtrl', function () {
     });
   });
 
-  it ('should load items from localStorage', function () {
+  it('should emit to parent controller', function () {
+
+    spyOn($scope, '$emit');
+    createController();
+    expect($scope.$emit).toHaveBeenCalledWith('to-parent-categoryManagementActive');
+  });
+
+  it ('should load items from redis', function () {
 
     createController();
     expect($scope.items.length).toBe(0);
   });
 
-  it ('should load categorys from localStorage', function () {
+  it ('should load categorys from redis', function () {
 
     createController();
     expect($scope.categories.length).toBe(0);

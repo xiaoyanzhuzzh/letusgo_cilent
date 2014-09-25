@@ -25,6 +25,11 @@ angular.module('letusgoApp')
       ItemsService.set('cartCount', ++$scope.cartCount);
     });
 
+    $scope.$on('to-parent-updateCartCount', function () {
+
+      $scope.cartCount = ItemsService.get('cartCount');
+    });
+
     $scope.$on('to-parent-homeActive', function () {
 
       activity(true, false, false, false, false, false);

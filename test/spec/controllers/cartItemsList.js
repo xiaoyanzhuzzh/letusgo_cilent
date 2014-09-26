@@ -109,8 +109,8 @@ describe('CartItemsListCtrl', function () {
 
       $scope.reduceCartItemNumber(cartItem);
 
-      //expect(CartItemsService.getTotalMoney).toHaveBeenCalled();
-      //expect(CartItemsService.getTotalNumber).toHaveBeenCalled();
+      expect(CartItemsService.getTotalMoney).toHaveBeenCalled();
+      expect(CartItemsService.getTotalNumber).toHaveBeenCalled();
       expect(CartItemsService.reduceCartItemNumber).toHaveBeenCalled();
 
     });

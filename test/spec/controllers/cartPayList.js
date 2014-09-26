@@ -37,11 +37,21 @@ describe('CartPayListCtrl', function () {
   });
 
   describe('cartPayList', function () {
+
+    beforeEach(function() {
+
+      spyOn(CartItemsService, 'getTotalMoney');
+      spyOn(CartItemsService, 'getTotalNumber');
+    });
+
     it('should load cartPayList', function () {
 
       createController();
 
-      expect($scope.cartPayList.length).toBe(0);
+      expect($scope.cartPayList.length).toBe(1);
+
+      expect(CartItemsService.getTotalMoney.calls.count()).toBe(1);
+      expect(CartItemsService.getTotalNumber.calls.count()).toBe(1);
     });
   });
 

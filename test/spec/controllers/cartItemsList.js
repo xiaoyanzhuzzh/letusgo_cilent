@@ -43,33 +43,9 @@ describe('CartItemsListCtrl', function () {
 
       createController();
 
-      expect($scope.cartItems.length).toBe(0);
+      expect($scope.cartItems.length).toBe(1);
     });
   });
-
-//  describe('total', function () {
-//
-//    it('should load total', function () {
-//
-//      spyOn(CartItemsService,'getTotalMoney').and.returnValue(3);
-//      spyOn(CartItemsService,'getCartItems');
-//
-//      createController();
-//
-//      expect($scope.total).toBe(3);
-//    });
-//  });
-//
-//  describe('totalNumber', function () {
-//
-//    it('should load totalNumber', function () {
-//
-//      spyOn(CartItemsService,'getTotalNumber').and.returnValue(1);
-//      createController();
-//
-//      expect($scope.totalNumber).toBe(1);
-//    });
-//  });
 
   describe('changeCartItemNumber', function () {
     var cartItem;

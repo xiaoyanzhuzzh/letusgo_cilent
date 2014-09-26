@@ -93,26 +93,26 @@ describe('CategoryAddCtrl', function () {
 
       var category = {id: 0, name: '雪碧'};
       spyOn(CategoryService, 'deleteCategory');
-      spyOn(CategoryService, 'getCategories');
 
       createController();
       $scope.deleteCurrentCategory(category);
 
       expect(CategoryService.deleteCategory).toHaveBeenCalled();
+      expect(CategoryService.getCategories).toHaveBeenCalled();
     });
   });
 
-//  describe('addNewCategory function', function () {
-//
-//    it('should add new category to categorys', function () {
-//
-//      var newCategory = {id: 0, name: '饮品'};
-//      spyOn(CategoryService, 'addCategory');
-//
-//      createController();
-//      $scope.addNewCategory(newCategory);
-//
-//      expect(CategoryService.addCategory).toHaveBeenCalled();
-//    });
-//  });
+  describe('addNewCategory function', function () {
+
+    it('should add new category to categorys', function () {
+
+      var newCategory = {id: 0, name: '饮品'};
+      spyOn(CategoryService, 'addCategory');
+
+      createController();
+      $scope.addNewCategory(newCategory);
+
+      expect(CategoryService.addCategory).toHaveBeenCalled();
+    });
+  });
 });

@@ -43,7 +43,7 @@ describe('Controller: ItemsListCtrl', function () {
     expect($scope.items[0].id).toBe(5);
   });
 
-  it('should load items from server', function() {
+  it('should load cartItems from server', function() {
 
     createController();
     expect($scope.cartItems.length).toBe(1);

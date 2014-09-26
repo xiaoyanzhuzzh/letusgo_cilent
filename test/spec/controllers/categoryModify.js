@@ -91,7 +91,7 @@ describe('CategoryModifyCtrl', function () {
 
   describe('deleteCurrentCategory function', function () {
 
-    it('should delete current categorys and items', function () {
+    it('should delete current categories and items', function () {
 
       var category = {id: 0, name: '雪碧'};
 
@@ -108,7 +108,7 @@ describe('CategoryModifyCtrl', function () {
 
   describe('modifyCurrentCategory function', function () {
 
-    it('should add change category to categorys', function () {
+    it('should add change category to categories', function () {
 
       var category = {id: 0, name: '饮品'};
 

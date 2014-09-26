@@ -96,7 +96,6 @@ describe('CategoryModifyCtrl', function () {
       var category = {id: 0, name: '雪碧'};
 
       spyOn(CategoryService, 'deleteCategory');
-      spyOn(CategoryService, 'getCategories');
 
       createController();
       $scope.deleteCurrentCategory(category);
@@ -114,7 +113,6 @@ describe('CategoryModifyCtrl', function () {
       var category = {id: 0, name: '饮品'};
 
       spyOn(CategoryService, 'putCategory');
-      spyOn(CategoryService, 'getCategories');
 
       createController();
       $scope.modifyCurrentCategory(category);

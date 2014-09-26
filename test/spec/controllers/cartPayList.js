@@ -69,41 +69,4 @@ describe('CartPayListCtrl', function () {
       //expect(CartItemsService.emptyCartItems).toHaveBeenCalled();
     });
   });
-
-
-
-//    describe('totalMoney', function () {
-//
-//      beforeEach(function () {
-//
-//        spyOn(ItemsService, 'get');
-//        spyOn(CartItemsService,'getTotalMoney').and.returnValue(1);
-//        createController();
-//      });
-//
-//      it ('should get totalMoney', function () {
-//
-//        expect($scope.total).toEqual(1);
-//        expect(CartItemsService.getTotalMoney).toHaveBeenCalled();
-//      });
-//    });
-//
-//    describe('totalNumber', function () {
-//
-//      beforeEach(function () {
-//
-//        spyOn(ItemsService, 'get');
-//        spyOn(CartItemsService,'getTotalNumber').and.returnValue(1);
-//        createController();
-//      });
-//
-//      it ('should get totalNumber', function () {
-//
-//        expect($scope.totalNumber).toEqual(1);
-//        expect(CartItemsService.getTotalNumber).toHaveBeenCalled();
-//        expect(ItemsService.get).toHaveBeenCalled();
-//      });
-//    });
-
-
 });

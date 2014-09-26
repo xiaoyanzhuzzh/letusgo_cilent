@@ -1,6 +1,6 @@
 'use strict';
 describe('CartPayListCtrl', function () {
-   var $scope, CartItemsService, createController, ItemsService;
+   var $scope, CartItemsService, createController, ItemsService, cartPayList;
   beforeEach(function () {
     module('letusgoApp');
 
@@ -20,6 +20,12 @@ describe('CartPayListCtrl', function () {
           ItemsService: ItemsService
         });
       };
+    });
+
+    cartPayList = [{item: {id: 5,barcode:'ITEM000005', name:'方便面', unit:'袋',price: 4.50, category:'零食'}, number: 1}];
+    spyOn(CartItemsService,'getCartItems').and.callFake(function(callback){
+
+      callback(cartPayList);
     });
   });
 

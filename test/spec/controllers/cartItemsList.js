@@ -133,8 +133,8 @@ describe('CartItemsListCtrl', function () {
 
       $scope.deleteCartItem(cartItem);
 
-//      expect(CartItemsService.getTotalMoney).toHaveBeenCalled();
-//      expect(CartItemsService.getTotalNumber).toHaveBeenCalled();
+      expect(CartItemsService.getTotalMoney).toHaveBeenCalled();
+      expect(CartItemsService.getTotalNumber).toHaveBeenCalled();
       expect(CartItemsService.deleteCartItem).toHaveBeenCalled();
     });
   });

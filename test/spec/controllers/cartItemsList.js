@@ -63,8 +63,8 @@ describe('CartItemsListCtrl', function () {
 
       $scope.changeCartItemNumber(cartItem);
 
-//      expect(CartItemsService.getTotalMoney).toHaveBeenCalled();
-//      expect(CartItemsService.getTotalNumber).toHaveBeenCalled();
+      expect(CartItemsService.getTotalMoney).toHaveBeenCalled();
+      expect(CartItemsService.getTotalNumber).toHaveBeenCalled();
       expect(CartItemsService.changeCartItemNumber).toHaveBeenCalled();
     });
   });

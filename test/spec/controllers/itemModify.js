@@ -99,7 +99,6 @@ describe('ItemModifyCtrl', function () {
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
 
       spyOn(ItemsService, 'deleteItem');
-      spyOn(ItemsService, 'getItems');
 
       createController();
       $scope.deleteCurrentItem(item);
@@ -116,7 +115,6 @@ describe('ItemModifyCtrl', function () {
       var newItem = {name: '雪碧', unit:'瓶', price:3.00};
 
       spyOn(ItemsService, 'putItem');
-      spyOn(ItemsService, 'getItems');
 
       createController();
       $scope.modifyCurrentItem(newItem);

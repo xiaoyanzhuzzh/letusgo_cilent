@@ -70,7 +70,6 @@ describe('Controller: ItemsListCtrl', function () {
 
       expect(CartItemsService.setCartItems.calls.count()).toBe(1);
       expect($scope.$emit).toHaveBeenCalledWith('to-parent-cartCount');
-
     });
   });
 });

@@ -22,6 +22,32 @@ describe('Controller: ItemsListCtrl', function () {
         });
       };
     });
+
+    items = [{id: 5,barcode:'ITEM000005', name:'方便面', unit:'袋',price: 4.50, category:'零食'}];
+    spyOn(ItemsService, 'getItems').and.callFake(function(callback){
+
+      callback(items);
+    });
+
+    cartItems = [{item: {id: 5,barcode:'ITEM000005', name:'方便面', unit:'袋',price: 4.50, category:'零食'}, number: 1}];
+    spyOn(CartItemsService,'getCartItems').and.callFake(function(callback){
+
+      callback(cartItems);
+    });
+  });
+
+  it('should load items from server', function() {
+
+    createController();
+    expect($scope.items.length).toBe(1);
+    expect($scope.items[0].id).toBe(5);
+  });
+
+  it('should load items from server', function() {
+
+    createController();
+    expect($scope.cartItems.length).toBe(1);
+    expect($scope.cartItems[0].item.name).toEqual('方便面');
   });
 
   it('should emit to parent controller', function () {
@@ -29,20 +55,6 @@ describe('Controller: ItemsListCtrl', function () {
     spyOn($scope, '$emit');
     createController();
     expect($scope.$emit).toHaveBeenCalledWith('to-parent-itemsListActive');
-  });
-
-  it ('should load items from redis', function () {
-
-    createController();
-
-    expect($scope.items.length).toBe(0);
-  });
-
-  it ('should load cartItems from redis', function () {
-
-    createController();
-
-    expect($scope.cartItems.length).toBe(0);
   });
 
   describe ('addToCartButton can add item to cartItem', function () {

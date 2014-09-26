@@ -76,13 +76,13 @@ describe('CartPayListCtrl', function () {
   describe('payButton function', function () {
     it('should have payButton function', function () {
 
-      //spyOn('CartItemsService', 'emptyCartItems');
+//      spyOn('CartItemsService', 'emptyCartItems');
       createController();
       $scope.payButton();
 
       expect($scope.showFinishPaySignal).toBe(true);
       expect($scope.showFinishPaySignal).toBe(true);
-      //expect(CartItemsService.emptyCartItems).toHaveBeenCalled();
+//      expect(CartItemsService.emptyCartItems).toHaveBeenCalled();
     });
   });
 });

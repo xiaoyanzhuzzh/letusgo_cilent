@@ -1,7 +1,7 @@
 'use strict';
 describe('ItemAddCtrl', function () {
 
-  var $scope, createController, CategoryService, ItemsService;
+  var $scope, createController, CategoryService, ItemsService, items, categories;
 
   beforeEach(function () {
     module('letusgoApp');
@@ -23,6 +23,32 @@ describe('ItemAddCtrl', function () {
         });
       };
     });
+
+    items = [{id: 5,barcode:'ITEM000005', name:'方便面', unit:'袋',price: 4.50, category:'零食'}];
+    spyOn(ItemsService, 'getItems').and.callFake(function(callback){
+
+      callback(items);
+    });
+
+    categories = [{id: 5, name: '零食'}];
+    spyOn(CategoryService,'getCategories').and.callFake(function(callback){
+
+      callback(categories);
+    });
+  });
+
+  it('should load items from server', function() {
+
+    createController();
+    expect($scope.items.length).toBe(1);
+    expect($scope.items[0].id).toBe(5);
+  });
+
+  it('should load categories from server', function() {
+
+    createController();
+    expect($scope.categories.length).toBe(1);
+    expect($scope.categories[0].name).toEqual('零食');
   });
 
   it('should emit to parent controller', function () {
@@ -30,20 +56,6 @@ describe('ItemAddCtrl', function () {
     spyOn($scope, '$emit');
     createController();
     expect($scope.$emit).toHaveBeenCalledWith('to-parent-itemManagementActive');
-  });
-
-  it ('should load items from redis', function () {
-
-    createController();
-
-    expect($scope.items.length).toBe(0);
-  });
-
-  it ('should load categories from redis', function () {
-
-    createController();
-
-    expect($scope.categories.length).toBe(0);
   });
 
   describe('addButton', function () {

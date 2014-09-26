@@ -54,7 +54,7 @@ describe('ItemsService', function() {
     expect(localStorageService.get.calls.count()).toBe(1);
   });
 
-  it ('should load all the same items', function(){
+  it ('should set function', function(){
 
     var cartCount = 9;
     spyOn(localStorageService, 'set');

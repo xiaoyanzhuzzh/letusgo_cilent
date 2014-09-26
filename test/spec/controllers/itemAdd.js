@@ -86,7 +86,6 @@ describe('ItemAddCtrl', function () {
 
       var item = {id: 0, barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
       spyOn(ItemsService, 'deleteItem');
-      spyOn(ItemsService, 'getItems');
 
       createController();
       $scope.deleteCurrentItem(item);

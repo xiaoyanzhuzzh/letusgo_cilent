@@ -64,10 +64,13 @@ describe('Controller: ItemsListCtrl', function () {
       var itemA = {id: 0, barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'};
 
       spyOn(CartItemsService, 'setCartItems');
+      spyOn($scope, '$emit');
       createController();
       $scope.addToCartButton(itemA);
 
       expect(CartItemsService.setCartItems.calls.count()).toBe(1);
+      expect($scope.$emit).toHaveBeenCalledWith('to-parent-cartCount');
+
     });
   });
 });

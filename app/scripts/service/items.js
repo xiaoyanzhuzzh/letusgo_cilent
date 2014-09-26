@@ -39,11 +39,6 @@ angular.module('letusgoApp')
         });
     };
 
-    this.deleteItem = function(id){
-
-      deleteItemData(id);
-    };
-
     this.putItem = function(item) {
 
       putItemData(item);
@@ -52,6 +47,11 @@ angular.module('letusgoApp')
     this.addItem = function(item) {
 
       addItemData(item);
+    };
+
+    this.deleteItem = function(id){
+
+      deleteItemData(id);
     };
 
     this.get = function(key){

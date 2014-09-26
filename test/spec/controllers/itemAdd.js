@@ -95,20 +95,19 @@ describe('ItemAddCtrl', function () {
     });
   });
 
-//  describe('addNewItem function', function () {
-//
-//    it('should add change category to categorys', function () {
-//      var item = {id: 0, barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00};
-//
-//      spyOn(ItemsService, 'addItem');
-//      spyOn(ItemsService, 'getItems').and.returnValue([]);
-//
-//      createController();
-//      $scope.addNewItem(item);
-//
-//      expect(ItemsService.set).toHaveBeenCalled();
-//      expect(ItemsService.get).toHaveBeenCalled();
-//      expect($scope.showItemSignal).toEqual(false);
-//    });
-//  });
+  describe('addNewItem function', function () {
+
+    it('should add change category to categorys', function () {
+      var item = {id: 0, barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00};
+
+      spyOn(ItemsService, 'addItem');
+
+      createController();
+      $scope.addNewItem(item);
+
+      expect($scope.showItemSignal).toEqual(false);
+      expect(ItemsService.getItems).toHaveBeenCalled();
+      expect(ItemsService.addItem).toHaveBeenCalled();
+    });
+  });
 });

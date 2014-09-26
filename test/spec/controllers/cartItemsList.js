@@ -85,8 +85,8 @@ describe('CartItemsListCtrl', function () {
 
       $scope.addCartItemNumber(cartItem);
 
-//      expect(CartItemsService.getTotalMoney).toHaveBeenCalled();
-//      expect(CartItemsService.getTotalNumber).toHaveBeenCalled();
+      expect(CartItemsService.getTotalMoney).toHaveBeenCalled();
+      expect(CartItemsService.getTotalNumber).toHaveBeenCalled();
       expect(CartItemsService.addCartItemNumber).toHaveBeenCalled();
 
     });

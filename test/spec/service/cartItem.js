@@ -87,14 +87,14 @@ describe('CartItemsService', function () {
 
     beforeEach(function() {
 
-      $httpBackend.when('DELETE', '/api/cartItems' + cartItems[0].id).respond(201, 'success');
+      $httpBackend.when('PUT', '/api/cartItems' + cartItems[0].id).respond(201, 'success');
     });
 
     it('that call reduceCartItemNumberData function', function() {
 
       CartItemsService.reduceCartItemNumber(cartItems[0].id);
 
-      $httpBackend.expectDELETE('/api/cartItems' + cartItems[0].id).respond(201, 'success');
+      $httpBackend.expectPUT('/api/cartItems' + cartItems[0].id).respond(201, 'success');
       CartItemsService.reduceCartItemNumber(function() {
 
         $httpBackend.flush();

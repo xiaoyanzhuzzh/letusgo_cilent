@@ -102,6 +102,63 @@ describe('CartItemsService', function () {
     });
   });
 
+  describe('should have deleteCartItem function', function() {
+
+    beforeEach(function() {
+
+      $httpBackend.when('DELETE', '/api/cartItems' + cartItems[0].id).respond(201, 'success');
+    });
+
+    it('that call deleteCartItemData function', function() {
+
+      CartItemsService.deleteCartItem(cartItems[0].id);
+
+      $httpBackend.expectDELETE('/api/cartItems' + cartItems[0].id).respond(201, 'success');
+      CartItemsService.deleteCartItem(function() {
+
+        $httpBackend.flush();
+      });
+    });
+  });
+
+  describe('should have changeCartItemNumber function', function() {
+
+    beforeEach(function() {
+
+      $httpBackend.when('PUT', '/api/cartItems' + cartItems[0].id, cartItems[0]).respond(201, 'success');
+    });
+
+    it('that call changeCartItemNumberData function', function() {
+
+      CartItemsService.changeCartItemNumber(cartItems[0].id);
+
+      $httpBackend.expectPUT('/api/cartItems' + cartItems[0].id).respond(201, 'success');
+      CartItemsService.changeCartItemNumber(function() {
+
+        $httpBackend.flush();
+      });
+    });
+  });
+
+  describe('should have emptyCartItems function', function() {
+
+    beforeEach(function() {
+
+      $httpBackend.when('DELETE', '/api/cartItems').respond(201, 'success');
+    });
+
+    it('that call emptyCartItemsData function', function() {
+
+      CartItemsService.emptyCartItems();
+
+      $httpBackend.expectDELETE('/api/cartItems').respond(201, 'success');
+      CartItemsService.emptyCartItems(function() {
+
+        $httpBackend.flush();
+      });
+    });
+  });
+
   describe('getTotalNumber', function () {
 
     it ('should have getTotalNumber function and return totalNumber that is 0', function(){

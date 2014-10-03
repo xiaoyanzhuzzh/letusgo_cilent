@@ -98,14 +98,21 @@ describe('ItemAddCtrl', function () {
   describe('addNewItem function', function () {
 
     it('should add change category to categorys', function () {
-      var item = {id: 0, barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00};
 
+      var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00};
+      spyOn(ItemsService,'getMaxItemId').and.callFake(function(callback){
+
+        callback(9);
+      });
+
+      spyOn(ItemsService, 'setMaxItemId');
       spyOn(ItemsService, 'addItem');
 
       createController();
       $scope.addNewItem(item);
 
       expect($scope.showItemSignal).toEqual(false);
+      expect(ItemsService.setMaxItemId).toHaveBeenCalled();
       expect(ItemsService.getItems).toHaveBeenCalled();
       expect(ItemsService.addItem).toHaveBeenCalled();
     });

@@ -126,6 +126,7 @@ describe('CategoryService', function () {
       });
     });
   });
+
   describe('should have addCategory function', function() {
 
     beforeEach(function() {

@@ -1,7 +1,7 @@
 'use strict';
 describe('CategoryAddCtrl', function () {
 
-  var $scope, createController, CategoryService, ItemsService, items, categories;
+  var $scope, createController, CategoryService, ItemsService, items, categories, id;
 
   beforeEach(function () {
     module('letusgoApp');
@@ -34,6 +34,12 @@ describe('CategoryAddCtrl', function () {
     spyOn(CategoryService,'getCategories').and.callFake(function(callback){
 
       callback(categories);
+    });
+
+    id = 9;
+    spyOn(CategoryService,'getMaxCategoryId').and.callFake(function(callback){
+
+      callback(id);
     });
   });
 

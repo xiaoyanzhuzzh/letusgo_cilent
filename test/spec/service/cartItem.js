@@ -144,14 +144,14 @@ describe('CartItemsService', function () {
 
     beforeEach(function() {
 
-      $httpBackend.when('DELETE', '/api/cartItems').respond(201, 'success');
+      $httpBackend.when('POST', '/api/payment').respond(201, 'success');
     });
 
     it('that call emptyCartItemsData function', function() {
 
       CartItemsService.emptyCartItems();
 
-      $httpBackend.expectDELETE('/api/cartItems').respond(201, 'success');
+      $httpBackend.expectPOST('/api/payment').respond(201, 'success');
       CartItemsService.emptyCartItems(function() {
 
         $httpBackend.flush();

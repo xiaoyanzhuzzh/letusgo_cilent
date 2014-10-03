@@ -112,12 +112,14 @@ describe('CategoryAddCtrl', function () {
 
     it('should add new category to categorys', function () {
 
-      var newCategory = {id: 0, name: '饮品'};
+      var newCategory = {name: '饮品'};
+      spyOn(CategoryService, 'setMaxCategoryId');
       spyOn(CategoryService, 'addCategory');
 
       createController();
       $scope.addNewCategory(newCategory);
 
+      expect(CategoryService.setMaxCategoryId).toHaveBeenCalled();
       expect(CategoryService.addCategory).toHaveBeenCalled();
     });
   });

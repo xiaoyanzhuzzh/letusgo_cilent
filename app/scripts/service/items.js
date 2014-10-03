@@ -27,12 +27,12 @@ angular.module('letusgoApp')
       $http({method: 'POST', url: 'api/items/' + item.id, data:{'item': item}});
     }
 
-    function getMaxIdData(callback) {
+    function getMaxItemData(callback) {
 
       $http.get('api/maxItemId')
         .success(function(data) {
 
-          callback(data);
+          callback(dIdata);
         });
     }
 
@@ -41,9 +41,9 @@ angular.module('letusgoApp')
       $http({method: 'POST', url: 'api/maxItemId/'});
     }
 
-    this.getMaxId = function(callback){
+    this.getMaxItemId = function(callback){
 
-      getMaxIdData(function(data) {
+      getMaxItemData(function(data) {
 
         callback(data);
       });

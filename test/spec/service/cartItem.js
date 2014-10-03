@@ -44,7 +44,6 @@ describe('CartItemsService', function () {
       }));
     });
   });
-
   describe('should have setCartItems function', function() {
 
     beforeEach(function() {

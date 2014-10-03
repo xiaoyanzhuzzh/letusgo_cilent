@@ -39,7 +39,7 @@ angular.module('letusgoApp')
     $scope.addNewItem = function (item) {
 
       ItemsService.setMaxItemId();
-      ItemsService.getMaxId(function(data) {
+      ItemsService.getMaxItemId(function(data) {
 
         item.id = parseInt(data) + 1;
 

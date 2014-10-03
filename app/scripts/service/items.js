@@ -27,16 +27,43 @@ angular.module('letusgoApp')
       $http({method: 'POST', url: 'api/items/' + item.id, data:{'item': item}});
     }
 
-    this.getItems = function(callback){
+    function getMaxIdData(callback) {
 
-        getItemsData(function (data) {
+      $http.get('api/maxItemId')
+        .success(function(data) {
 
-          if(data === []) {
-
-            $http.post('/api/items');
-          }
           callback(data);
         });
+    }
+
+    function setMaxItemIdData() {
+
+      $http({method: 'POST', url: 'api/maxItemId/'});
+    }
+
+    this.getMaxId = function(callback){
+
+      getMaxIdData(function(data) {
+
+        callback(data);
+      });
+    };
+
+    this.setMaxItemId = function() {
+
+      setMaxItemIdData();
+    };
+
+    this.getItems = function(callback){
+
+      getItemsData(function (data) {
+
+        if(data === []) {
+
+          $http.post('/api/items');
+        }
+        callback(data);
+      });
     };
 
     this.putItem = function(item) {

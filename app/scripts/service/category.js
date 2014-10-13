@@ -27,33 +27,6 @@ angular.module('letusgoApp')
       $http({method: 'POST', url: '/api/categories/' + category.id, data:{'category': category}});
     }
 
-    function getMaxCategoryIdData(callback) {
-
-      $http.get('api/maxCategoryId')
-        .success(function(data) {
-
-          callback(data);
-        });
-    }
-
-    function setMaxCategoryIdData() {
-
-      $http({method: 'POST', url: 'api/maxCategoryId/'});
-    }
-
-    this.getMaxCategoryId = function(callback){
-
-      getMaxCategoryIdData(function(data) {
-
-        callback(data);
-      });
-    };
-
-    this.setMaxCategoryId = function() {
-
-      setMaxCategoryIdData();
-    };
-
     this.getCategories = function (callback) {
 
       getCategoriesData(function(data){

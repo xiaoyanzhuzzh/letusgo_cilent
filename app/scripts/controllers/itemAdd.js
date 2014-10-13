@@ -37,16 +37,11 @@ angular.module('letusgoApp')
     };
 
     $scope.addNewItem = function (item) {
+      item.id = $scope.items[$scope.items.length - 1].id + 1;
 
-      ItemsService.setMaxItemId();
-      ItemsService.getMaxItemId(function(data) {
-
-        item.id = parseInt(data) + 1;
-
-        ItemsService.addItem(item);
-        ItemsService.getItems(function(data) {
-          $scope.items = data;
-        });
+      ItemsService.addItem(item);
+      ItemsService.getItems(function(data) {
+        $scope.items = data;
       });
       $scope.showItemSignal = false;
    };

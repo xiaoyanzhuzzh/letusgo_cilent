@@ -30,11 +30,7 @@ angular.module('letusgoApp')
     this.getItems = function(callback){
 
       getItemsData(function (data) {
-
-        if(data === []) {
-
-          $http.post('/api/items');
-        }
+        
         callback(data);
       });
     };

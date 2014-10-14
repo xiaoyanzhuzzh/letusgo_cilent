@@ -43,53 +43,6 @@ describe('CategoryService', function () {
     });
   });
 
-  describe('should have getMaxCategoryId function', function() {
-
-    beforeEach(function() {
-
-      $httpBackend.when('GET', '/api/maxCategoryId').respond(9);
-    });
-
-    it('that call getMaxCategoryIdData function', function() {
-
-      var callback = jasmine.createSpy('callback');
-
-      callback({
-
-        id: 9
-      });
-      $httpBackend.expectGET('/api/maxCategoryId');
-      CategoryService.getMaxCategoryId(callback, function() {
-
-        $httpBackend.flush();
-      });
-
-      expect(callback).toHaveBeenCalledWith(jasmine.objectContaining({
-
-        id: 9
-      }));
-    });
-  });
-
-  describe('should have setMaxCategoryId function', function() {
-
-    beforeEach(function() {
-
-      $httpBackend.when('POST', '/api/maxCategoryId').respond(201, 'success');
-    });
-
-    it('that call setMaxCategoryIdData function', function() {
-
-      CategoryService.setMaxCategoryId();
-
-      $httpBackend.expectPOST('/api/maxCategoryId').respond(201, 'success');
-      CategoryService.setMaxCategoryId(function() {
-
-        $httpBackend.flush();
-      });
-    });
-  });
-
   describe('should have deleteCategory function', function() {
 
     beforeEach(function() {

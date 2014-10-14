@@ -100,7 +100,7 @@ describe('ItemAddCtrl', function () {
     it('should add change category to categorys', function () {
 
       var item = {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00};
-      
+
       spyOn(ItemsService, 'addItem');
 
       createController();

@@ -35,12 +35,6 @@ describe('CategoryAddCtrl', function () {
 
       callback(categories);
     });
-
-    id = 9;
-    spyOn(CategoryService,'getMaxCategoryId').and.callFake(function(callback){
-
-      callback(id);
-    });
   });
 
   it('should load items from server', function() {
@@ -113,13 +107,11 @@ describe('CategoryAddCtrl', function () {
     it('should add new category to categorys', function () {
 
       var newCategory = {name: '饮品'};
-      spyOn(CategoryService, 'setMaxCategoryId');
       spyOn(CategoryService, 'addCategory');
 
       createController();
       $scope.addNewCategory(newCategory);
 
-      expect(CategoryService.setMaxCategoryId).toHaveBeenCalled();
       expect(CategoryService.addCategory).toHaveBeenCalled();
     });
   });

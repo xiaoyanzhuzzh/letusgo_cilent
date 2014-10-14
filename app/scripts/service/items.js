@@ -30,7 +30,7 @@ angular.module('letusgoApp')
     this.getItems = function(callback){
 
       getItemsData(function (data) {
-        
+
         callback(data);
       });
     };

@@ -45,53 +45,6 @@ describe('ItemsService', function() {
     });
   });
 
-  describe('should have getMaxItemId function', function() {
-
-    beforeEach(function() {
-
-      $httpBackend.when('GET', '/api/maxItemId').respond(9);
-    });
-
-    it('that call getMaxItemIdData function', function() {
-
-      var callback = jasmine.createSpy('callback');
-
-      callback({
-
-        id: 9
-      });
-      $httpBackend.expectGET('/api/maxItemId');
-      ItemsService.getMaxItemId(callback, function() {
-
-        $httpBackend.flush();
-      });
-
-      expect(callback).toHaveBeenCalledWith(jasmine.objectContaining({
-
-        id: 9
-      }));
-    });
-  });
-
-  describe('should have setMaxItemId function', function() {
-
-    beforeEach(function() {
-
-      $httpBackend.when('POST', '/api/maxItemId').respond(201, 'success');
-    });
-
-    it('that call setMaxItemIdData function', function() {
-
-      ItemsService.setMaxItemId();
-
-      $httpBackend.expectPOST('/api/maxItemId').respond(201, 'success');
-      ItemsService.setMaxItemId(function() {
-
-        $httpBackend.flush();
-      });
-    });
-  });
-
   describe('should have putItem function', function() {
 
     beforeEach(function() {

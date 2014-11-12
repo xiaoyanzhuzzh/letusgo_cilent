@@ -37,7 +37,8 @@ angular.module('letusgoApp')
 
     $scope.addCartItemNumber = function(cartItem){
 
-      CartItemsService.addCartItemNumber(cartItem.item.id);
+      console.log(cartItem);
+      CartItemsService.addCartItemNumber(cartItem);
       updateData();
     };
 
@@ -49,7 +50,7 @@ angular.module('letusgoApp')
 
     $scope.deleteCartItem = function(cartItem){
 
-      CartItemsService.deleteCartItem(cartItem.item.id);
+      CartItemsService.deleteCartItem(cartItem);
       updateData();
     };
 

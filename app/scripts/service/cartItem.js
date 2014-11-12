@@ -16,7 +16,6 @@ angular.module('letusgoApp')
 
     function updateCartItems(item, cartItems) {
       var cartItem = isExistInCart(item.id, cartItems);
-      console.log(cartItem);
       if (cartItem) {
         cartItem.number += 1;
       }
@@ -72,8 +71,6 @@ angular.module('letusgoApp')
     };
 
     this.setCartItems = function(item) {
-      console.log(item.name+'+++++++++++++');
-
       this.getCartItems(function(data) {
         updateCartItems(item, data);
         setCartItemsData(data);

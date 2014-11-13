@@ -49,15 +49,19 @@ angular.module('letusgoApp')
       });
     };
 
+    $scope.changeCartItemNumber = function(cartItem){
+      console.log(cartItem);
+
+      CartItemsService.changeCartItemNumber(cartItem, function(){
+        updateData();
+      });
+    };
+
     $scope.deleteCartItem = function(cartItem){
 
       CartItemsService.deleteCartItem(cartItem);
       updateData();
     };
 
-    $scope.changeCartItemNumber = function(cartItem){
 
-      CartItemsService.changeCartItemNumber(cartItem);
-      updateData();
-    };
   });

@@ -24,6 +24,16 @@ angular.module('letusgoApp')
       }
     }
 
+    function addCartItemNumberData(cartItems, id){
+
+      var cartItem = _.find(cartItems, function(cartItem) {
+        return cartItem.item.id === id;
+      });
+
+      cartItem.number += 1;
+      return cartItem;
+    }
+
     function getCartItemsData(callback) {
 
       $http.get('/api/cartItems')
@@ -37,21 +47,6 @@ angular.module('letusgoApp')
       $http({method: 'POST', url: '/api/cartItems', data: {'cartItems': cartItems}});
     }
 
-    function changeCartItemNumberData(cartItem) {
-
-      $http({method: 'PUT', url: '/api/cartItems', data: {'cartItem': cartItem}});
-    }
-
-    function addCartItemNumberData(id) {
-
-      $http({method: 'POST', url: '/api/cartItems/' + id});
-    }
-
-    function reduceCartItemNumberData(id) {
-
-      $http({method: 'PUT', url: '/api/cartItems/' + id});
-    }
-
     function deleteCartItemData(id) {
 
       $http.delete('api/cartItems/' + id);
@@ -60,6 +55,11 @@ angular.module('letusgoApp')
     function emptyCartItemsData(){
 
       $http.post('/api/payment/');
+    }
+
+    function changeCartItemNumberData(cartItem) {
+
+      $http({method: 'PUT', url: '/api/cartItems/' + cartItem.item.id, data:{'cartItem': cartItem}});
     }
 
     this.getCartItems = function(callback) {
@@ -71,15 +71,23 @@ angular.module('letusgoApp')
     };
 
     this.setCartItems = function(item) {
+
       this.getCartItems(function(data) {
+
         updateCartItems(item, data);
         setCartItemsData(data);
       });
     };
 
-    this.addCartItemNumber = function(id) {
+    this.addCartItemNumber = function(id, callback) {
 
-      addCartItemNumberData(id);
+      this.getCartItems(function(data) {
+
+        var cartItem = addCartItemNumberData(data, id);
+        changeCartItemNumberData(cartItem);
+
+        callback();
+      });
     };
 
     this.reduceCartItemNumber = function(id) {

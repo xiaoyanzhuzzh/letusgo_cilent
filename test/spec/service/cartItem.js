@@ -32,6 +32,7 @@ describe('CartItemsService', function () {
 
         cartItems: cartItems
       });
+
       $httpBackend.expectGET('/api/cartItems');
       CartItemsService.getCartItems(callback, function() {
 
@@ -44,6 +45,7 @@ describe('CartItemsService', function () {
       }));
     });
   });
+
   describe('should have setCartItems function', function() {
 
     beforeEach(function() {
@@ -51,8 +53,30 @@ describe('CartItemsService', function () {
       $httpBackend.when('POST', '/api/cartItems' + items[0].id, items[0]).respond(201, 'success');
     });
 
-    it('that call setCartItemsData function', function() {
+    it('that call setCartItemsData function and item exists in cart', function() {
+      var callback = jasmine.createSpy('callback');
 
+      callback({
+
+        cartItems: cartItems
+      });
+
+      CartItemsService.setCartItems(items[0].id);
+
+      $httpBackend.expectPOST('/api/cartItems' + items[0].id).respond(201, 'success');
+      CartItemsService.setCartItems(function() {
+
+us      });
+
+    });
+
+    it('that call setCartItemsData function but item does not exist in cart', function(){
+      var newCartItems = [{item: {id: 2,barcode:'ITEM000002', name:'羽毛球', unit:'个',price: 1.50, category:'运动器材'}, number: 5}];
+
+      var callback = jasmine.createSpy('callback');
+      callback({
+        cartItems: newCartItems
+      });
       CartItemsService.setCartItems(items[0].id);
 
       $httpBackend.expectPOST('/api/cartItems' + items[0].id).respond(201, 'success');
@@ -67,18 +91,31 @@ describe('CartItemsService', function () {
 
     beforeEach(function() {
 
-      $httpBackend.when('POST', '/api/cartItems' + cartItems[0].id).respond(201, 'success');
+      spyOn(CartItemsService, 'getCartItems');
+      $httpBackend.when('PUT', '/api/cartItems' + cartItems[0].id, cartItems[0]).respond(201, 'success');
     });
 
     it('that call addCartItemNumberData function', function() {
 
-      CartItemsService.addCartItemNumber(cartItems[0].id);
+      var callback = jasmine.createSpy('callback');
 
-      $httpBackend.expectPOST('/api/cartItems' + cartItems[0].id).respond(201, 'success');
-      CartItemsService.addCartItemNumber(function() {
+      callback({
+
+        cartItems: cartItems
+      });
+
+      $httpBackend.expectPUT('/api/cartItems' + cartItems[0].id).respond(201, 'success');
+      CartItemsService.addCartItemNumber(cartItems[0].id, callback, function() {
 
         $httpBackend.flush();
       });
+
+      expect(callback).toHaveBeenCalledWith(jasmine.objectContaining({
+
+        cartItems: cartItems
+      }));
+
+      expect(CartItemsService.getCartItems).toHaveBeenCalled();
     });
   });
 
@@ -86,18 +123,31 @@ describe('CartItemsService', function () {
 
     beforeEach(function() {
 
-      $httpBackend.when('PUT', '/api/cartItems' + cartItems[0].id).respond(201, 'success');
+      spyOn(CartItemsService, 'getCartItems');
+      $httpBackend.when('PUT', '/api/cartItems' + cartItems[0].id, cartItems[0]).respond(201, 'success');
     });
 
     it('that call reduceCartItemNumberData function', function() {
 
-      CartItemsService.reduceCartItemNumber(cartItems[0].id);
+      var callback = jasmine.createSpy('callback');
+
+      callback({
+
+        cartItems: cartItems
+      });
 
       $httpBackend.expectPUT('/api/cartItems' + cartItems[0].id).respond(201, 'success');
-      CartItemsService.reduceCartItemNumber(function() {
+      CartItemsService.reduceCartItemNumber(cartItems[0].id, callback, function() {
 
         $httpBackend.flush();
       });
+
+      expect(callback).toHaveBeenCalledWith(jasmine.objectContaining({
+
+        cartItems: cartItems
+      }));
+
+      expect(CartItemsService.getCartItems).toHaveBeenCalled();
     });
   });
 
@@ -124,18 +174,30 @@ describe('CartItemsService', function () {
 
     beforeEach(function() {
 
+      spyOn(CartItemsService, 'getCartItems');
       $httpBackend.when('PUT', '/api/cartItems' + cartItems[0].id, cartItems[0]).respond(201, 'success');
     });
 
     it('that call changeCartItemNumberData function', function() {
+      var callback = jasmine.createSpy('callback');
 
-      CartItemsService.changeCartItemNumber(cartItems[0].id);
+      callback({
+
+        cartItems: cartItems
+      });
 
       $httpBackend.expectPUT('/api/cartItems' + cartItems[0].id).respond(201, 'success');
-      CartItemsService.changeCartItemNumber(function() {
+      CartItemsService.changeCartItemNumber(cartItems[0], callback, function() {
 
         $httpBackend.flush();
       });
+
+      expect(callback).toHaveBeenCalledWith(jasmine.objectContaining({
+
+        cartItems: cartItems
+      }));
+
+      expect(CartItemsService.getCartItems).toHaveBeenCalled();
     });
   });
 
@@ -183,17 +245,14 @@ describe('CartItemsService', function () {
     it ('should have getTotalMoney function and return totalMoney that is 0', function(){
 
       var array;
-      var totalMoney = CartItemsService.getTotalMoney(array);
-
-      expect(totalMoney).toBe(0);
+      expect(CartItemsService.getTotalMoney(array)).toBe(0);
     });
 
     it ('should have getTotalMoney function and return totalMoney that is not 0', function(){
 
       var array = [{item: {barcode:'ITEM000001', name: '雪碧', unit:'瓶', price:3.00, category:'饮品'}, number: 1}];
-      var totalMoney = CartItemsService.getTotalMoney(array);
 
-      expect(totalMoney).toEqual(3*1);
+      expect(CartItemsService.getTotalMoney(array)).toEqual(3*1);
     });
   });
 });

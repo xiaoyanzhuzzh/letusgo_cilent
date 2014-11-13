@@ -34,6 +34,17 @@ angular.module('letusgoApp')
       return cartItem;
     }
 
+    function reduceCartItemNumberData(cartItems, id){
+      var cartItem = _.find(cartItems, function(cartItem) {
+        return cartItem.item.id === id;
+      });
+
+      if(cartItem.number > 1){
+        cartItem.number -= 1;
+      }
+      return cartItem;
+    }
+
     function getCartItemsData(callback) {
 
       $http.get('/api/cartItems')
@@ -90,11 +101,17 @@ angular.module('letusgoApp')
       });
     };
 
-    this.reduceCartItemNumber = function(id) {
+    this.reduceCartItemNumber = function(id, callback) {
 
-      reduceCartItemNumberData(id);
+      this.getCartItems(function(data) {
+
+        var cartItem = reduceCartItemNumberData(data, id);
+        changeCartItemNumberData(cartItem);
+
+        callback();
+      });
     };
-
+    
     this.deleteCartItem = function(id) {
 
       deleteCartItemData(id);

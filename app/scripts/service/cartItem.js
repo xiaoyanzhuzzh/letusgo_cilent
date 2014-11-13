@@ -104,9 +104,7 @@ angular.module('letusgoApp')
 
       this.getCartItems(function(data) {
 
-        var cartItem = addCartItemNumberData(data, id);
-        modifyCartItemNumberData(cartItem);
-
+        modifyCartItemNumberData(addCartItemNumberData(data, id));
         callback();
       });
     };
@@ -115,9 +113,7 @@ angular.module('letusgoApp')
 
       this.getCartItems(function(data) {
 
-        var cartItem = reduceCartItemNumberData(data, id);
-        modifyCartItemNumberData(cartItem);
-
+        modifyCartItemNumberData(reduceCartItemNumberData(data, id));
         callback();
       });
     };
@@ -125,7 +121,7 @@ angular.module('letusgoApp')
     this.changeCartItemNumber = function(changeCartItem, callback) {
 
       this.getCartItems(function(data) {
-        
+
         modifyCartItemNumberData(changeCartItemNumberData(data, changeCartItem));
         callback();
       });
